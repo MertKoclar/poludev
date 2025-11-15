@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { supabase } from '../config/supabaseClient';
@@ -7,10 +7,12 @@ import type { Project } from '../types';
 import { ExternalLink, Github, ArrowLeft, Calendar, Code2, Star, GitFork, Eye, CheckCircle, Clock, AlertCircle } from 'lucide-react';
 import { Lightbox } from '../components/Lightbox';
 import { SkeletonCard } from '../components/Skeleton';
+import { SEO } from '../components/SEO';
 
 export const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { t, i18n } = useTranslation();
+  const location = useLocation();
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -40,6 +42,8 @@ export const ProjectDetail: React.FC = () => {
   };
 
   const lang = i18n.language as 'tr' | 'en';
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  const currentLocale = i18n.language || 'en';
 
   const getStatusConfig = (status?: string) => {
     switch (status) {
@@ -120,8 +124,53 @@ export const ProjectDetail: React.FC = () => {
   const statusConfig = getStatusConfig(project.status);
   const images = project.image_url ? [project.image_url] : [];
 
+  const projectTitle = lang === 'tr' ? project.title_tr : project.title_en;
+  const projectDescription = lang === 'tr' ? project.description_tr : project.description_en;
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: projectTitle,
+    description: projectDescription,
+    url: `${siteUrl}${location.pathname}`,
+    image: project.image_url || `${siteUrl}/og-image.jpg`,
+    applicationCategory: 'WebApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    creator: {
+      '@type': 'Organization',
+      name: 'Poludev',
+    },
+    datePublished: project.created_at,
+    dateModified: project.updated_at || project.created_at,
+  };
+
+  const alternateLocales = [
+    { locale: 'en', url: `${siteUrl}/projects/${project.id}` },
+    { locale: 'tr', url: `${siteUrl}/tr/projects/${project.id}` },
+  ];
+
   return (
-    <div className="min-h-screen pt-20 pb-20">
+    <>
+      <SEO
+        title={projectTitle}
+        description={projectDescription}
+        keywords={`${projectTitle}, ${project.tags?.join(', ') || ''}, web development, React, TypeScript, ${project.category || ''}, Poludev`}
+        image={project.image_url || undefined}
+        url={`${siteUrl}${location.pathname}`}
+        type="article"
+        publishedTime={project.created_at}
+        modifiedTime={project.updated_at || project.created_at}
+        locale={currentLocale}
+        alternateLocales={alternateLocales}
+        structuredData={structuredData}
+        canonical={`${siteUrl}/projects/${project.id}`}
+      />
+      <div className="min-h-screen pt-20 pb-20">
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
@@ -309,7 +358,8 @@ export const ProjectDetail: React.FC = () => {
         currentIndex={lightboxIndex}
         onNavigate={setLightboxIndex}
       />
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { supabase } from '../config/supabaseClient';
 import { USER_IDS, USER_NAMES } from '../config/constants';
@@ -11,10 +11,12 @@ import { SocialLinks } from '../components/SocialLinks';
 import { Timeline } from '../components/Timeline';
 import { Testimonials } from '../components/Testimonials';
 import { ContactInfo } from '../components/ContactInfo';
+import { SEO } from '../components/SEO';
 import { Code, User as UserIcon, Award, Briefcase, GraduationCap, Heart, Briefcase as BriefcaseIcon, FileText, ExternalLink } from 'lucide-react';
 
 export const About: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
   const [mertData, setMertData] = useState<AboutUs | null>(null);
   const [mustafaData, setMustafaData] = useState<AboutUs | null>(null);
   const [mertUser, setMertUser] = useState<User | null>(null);
@@ -68,6 +70,37 @@ export const About: React.FC = () => {
   };
 
   const lang = i18n.language as 'tr' | 'en';
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  const currentLocale = i18n.language || 'en';
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    mainEntity: {
+      '@type': 'Organization',
+      name: 'Poludev',
+      alternateName: 'Poludev - Mert & Mustafa',
+      url: `${siteUrl}${location.pathname}`,
+      description: t('about.heroDescription') || 'Passionate developers creating innovative solutions',
+      founders: [
+        {
+          '@type': 'Person',
+          name: mertUser?.name || 'Mert',
+          jobTitle: 'Full-stack Developer',
+        },
+        {
+          '@type': 'Person',
+          name: mustafaUser?.name || 'Mustafa',
+          jobTitle: 'Full-stack Developer',
+        },
+      ],
+    },
+  };
+
+  const alternateLocales = [
+    { locale: 'en', url: `${siteUrl}/about` },
+    { locale: 'tr', url: `${siteUrl}/tr/about` },
+  ];
 
   if (loading) {
     return (
@@ -131,8 +164,19 @@ export const About: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
+    <>
+      <SEO
+        title={t('about.title') || 'About Us'}
+        description={t('about.heroDescription') || 'Passionate developers creating innovative solutions'}
+        keywords="about us, Mert, Mustafa, full-stack developers, web developers, React developers, TypeScript developers, software developers, Poludev"
+        url={`${siteUrl}${location.pathname}`}
+        type="website"
+        locale={currentLocale}
+        alternateLocales={alternateLocales}
+        structuredData={structuredData}
+      />
+      <div className="min-h-screen">
+        {/* Hero Section */}
       <section className="relative py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -557,6 +601,7 @@ export const About: React.FC = () => {
         phone={mertData?.contact_phone || mustafaData?.contact_phone}
         location={mertData?.location || mustafaData?.location}
       />
-    </div>
+      </div>
+    </>
   );
 };

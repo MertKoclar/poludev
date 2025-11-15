@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../config/supabaseClient';
 import type { Project, ProjectStatus, ProjectCategory } from '../types';
 import { ExternalLink, Github, Search, X, Code2, ArrowUpDown, Star, GitFork, Eye, ZoomIn } from 'lucide-react';
 import { SkeletonProjectCard } from '../components/Skeleton';
 import { Lightbox } from '../components/Lightbox';
+import { SEO } from '../components/SEO';
 
 type SortOption = 'newest' | 'oldest' | 'name-asc' | 'name-desc' | 'popular';
 
 export const Projects: React.FC = () => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const [projects, setProjects] = useState<Project[]>([]);
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -116,6 +118,37 @@ export const Projects: React.FC = () => {
   const allTags = Array.from(new Set(projects.flatMap((p) => p.tags)));
 
   const lang = i18n.language as 'tr' | 'en';
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  const currentLocale = i18n.language || 'en';
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: t('projects.title') || 'Projects',
+    description: t('projects.description') || 'Our portfolio of web development projects',
+    url: `${siteUrl}${location.pathname}`,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: filteredProjects.length,
+      itemListElement: filteredProjects.slice(0, 10).map((project, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'SoftwareApplication',
+          name: lang === 'tr' ? project.title_tr : project.title_en,
+          description: lang === 'tr' ? project.description_tr : project.description_en,
+          url: `${siteUrl}/projects/${project.id}`,
+          applicationCategory: 'WebApplication',
+          operatingSystem: 'Web',
+        },
+      })),
+    },
+  };
+
+  const alternateLocales = [
+    { locale: 'en', url: `${siteUrl}/projects` },
+    { locale: 'tr', url: `${siteUrl}/tr/projects` },
+  ];
 
   if (loading) {
     return (
@@ -145,8 +178,19 @@ export const Projects: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
+    <>
+      <SEO
+        title={t('projects.title') || 'Projects'}
+        description={t('projects.description') || 'Our portfolio of web development projects'}
+        keywords="projects, portfolio, web development, React projects, TypeScript projects, web applications, software projects, Poludev projects"
+        url={`${siteUrl}${location.pathname}`}
+        type="website"
+        locale={currentLocale}
+        alternateLocales={alternateLocales}
+        structuredData={structuredData}
+      />
+      <div className="min-h-screen">
+        {/* Hero Section */}
       <section className="relative py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -527,6 +571,7 @@ export const Projects: React.FC = () => {
         images={lightboxImage ? [lightboxImage] : []}
         currentIndex={0}
       />
-    </div>
+      </div>
+    </>
   );
 };
