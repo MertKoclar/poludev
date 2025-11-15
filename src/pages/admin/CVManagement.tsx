@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../../config/supabaseClient';
-import { STORAGE_BUCKETS, USER_IDS, USER_NAMES } from '../../config/constants';
-import type { User, CVVersion, CVDownload, CVAnalytics, CVFormat } from '../../types';
+import { STORAGE_BUCKETS, USER_IDS } from '../../config/constants';
+import type { User, CVVersion, CVAnalytics, CVFormat } from '../../types';
 import { Modal } from '../../components/Modal';
 import { useToast } from '../../context/ToastContext';
 import {
@@ -12,7 +12,6 @@ import {
   Download,
   Eye,
   Trash2,
-  Plus,
   History,
   BarChart3,
   File,
@@ -25,7 +24,6 @@ import {
   AlertCircle,
   ExternalLink,
   Loader2,
-  Image as ImageIcon,
 } from 'lucide-react';
 
 type TabType = 'overview' | 'versions' | 'analytics' | 'upload';
@@ -143,7 +141,7 @@ export const CVManagement: React.FC = () => {
         .gte('downloaded_at', last30Days.toISOString());
 
       // Downloads by version
-      const { data: versionData } = await supabase
+      await supabase
         .from('cv_downloads')
         .select('cv_version_id')
         .eq('cv_version_id', cvVersionId);
@@ -234,7 +232,7 @@ export const CVManagement: React.FC = () => {
         .getPublicUrl(filePath);
 
       // Create new CV version record
-      const { data: versionData, error: versionError } = await supabase
+      const { error: versionError } = await supabase
         .from('cv_versions')
         .insert([
           {
@@ -270,7 +268,7 @@ export const CVManagement: React.FC = () => {
     }
   };
 
-  const handleDownloadCV = async (cvVersion: CVVersion, userName: string) => {
+  const handleDownloadCV = async (cvVersion: CVVersion, _userName: string) => {
     try {
       // Track download
       const { data: currentUser } = await supabase.auth.getUser();
@@ -381,12 +379,6 @@ export const CVManagement: React.FC = () => {
       console.error('Error deleting CV version:', error);
       showError(error.message || t('admin.errorDeletingVersion') || 'Error deleting version');
     }
-  };
-
-  const getFileSizeString = (bytes: number) => {
-    if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(2)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
   };
 
   const getUserAnalytics = (user: UserWithCV): CVAnalytics => {
@@ -599,7 +591,7 @@ const CVUserDetail: React.FC<CVUserDetailProps> = ({
   onNotesChange,
   formats,
   templates,
-  onRefresh,
+  onRefresh: _onRefresh,
   t,
 }) => {
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -642,6 +634,12 @@ const CVUserDetail: React.FC<CVUserDetailProps> = ({
       .from(STORAGE_BUCKETS.CV_FILES)
       .getPublicUrl(filePath);
     return data.publicUrl;
+  };
+
+  const getFileSizeString = (bytes: number) => {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(2)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
   };
 
   return (
@@ -712,11 +710,7 @@ const CVUserDetail: React.FC<CVUserDetailProps> = ({
             onSetActive={onSetActive}
             onDelete={onDelete}
             getPublicUrl={getPublicUrl}
-            getFileSizeString={(bytes: number) => {
-              if (bytes < 1024) return `${bytes} B`;
-              if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(2)} KB`;
-              return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
-            }}
+            getFileSizeString={getFileSizeString}
             t={t}
           />
         )}

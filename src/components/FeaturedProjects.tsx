@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight, Code2 } from 'lucide-react';
 import { supabase } from '../config/supabaseClient';
-import { Project } from '../types';
+import type { Project } from '../types';
 
 export const FeaturedProjects: React.FC = () => {
   const { t, i18n } = useTranslation();

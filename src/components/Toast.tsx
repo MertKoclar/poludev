@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { X, CheckCircle, AlertCircle, AlertTriangle, Info } from 'lucide-react';
-import { ToastData } from '../context/ToastContext';
+import type { ToastData } from '../context/ToastContext';
 
 interface ToastProps {
   toast: ToastData;

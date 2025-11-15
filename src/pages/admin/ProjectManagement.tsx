@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { supabase } from '../../config/supabaseClient';
-import { Project, ProjectCategory, ProjectStatus } from '../../types';
+import type { Project, ProjectCategory, ProjectStatus } from '../../types';
 import { ImageUploader } from '../../components/ImageUploader';
 import { Modal } from '../../components/Modal';
 import { useToast } from '../../context/ToastContext';

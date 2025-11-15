@@ -20,7 +20,6 @@ export const Login: React.FC = () => {
     handleChange,
     handleBlur,
     validateForm,
-    resetForm,
   } = useFormValidation(
     { email: '', password: '' },
     {

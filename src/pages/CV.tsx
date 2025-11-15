@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { supabase } from '../config/supabaseClient';
-import { User } from '../types';
+import type { User } from '../types';
 
 export const CV: React.FC = () => {
   const { name } = useParams<{ name: string }>();

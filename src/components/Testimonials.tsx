@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote, Star, User } from 'lucide-react';
-import { Testimonial as TestimonialType } from '../types';
+import type { Testimonial as TestimonialType } from '../types';
 import { useTranslation } from 'react-i18next';
 
 interface TestimonialsProps {

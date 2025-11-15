@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, Globe, Instagram, Facebook, Youtube } from 'lucide-react';
-import { SocialLink as SocialLinkType } from '../types';
+import type { SocialLink as SocialLinkType } from '../types';
 
 interface SocialLinksProps {
   links: SocialLinkType[];

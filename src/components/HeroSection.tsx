@@ -25,7 +25,7 @@ export const HeroSection: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: [0.43, 0.13, 0.23, 0.96] as const,
       },
     },
   };
@@ -43,7 +43,7 @@ export const HeroSection: React.FC = () => {
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: [0.43, 0.13, 0.23, 0.96] as const,
           }}
         />
         <motion.div
@@ -55,7 +55,7 @@ export const HeroSection: React.FC = () => {
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: [0.43, 0.13, 0.23, 0.96] as const,
           }}
         />
         <motion.div
@@ -67,7 +67,7 @@ export const HeroSection: React.FC = () => {
           transition={{
             duration: 30,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: [0.43, 0.13, 0.23, 0.96] as const,
           }}
         />
       </div>

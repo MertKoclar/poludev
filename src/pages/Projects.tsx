@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../config/supabaseClient';
-import { Project, ProjectStatus, ProjectCategory } from '../types';
-import { ExternalLink, Github, Search, X, Code2, Filter, ArrowUpDown, Star, GitFork, Eye, ZoomIn } from 'lucide-react';
+import type { Project, ProjectStatus, ProjectCategory } from '../types';
+import { ExternalLink, Github, Search, X, Code2, ArrowUpDown, Star, GitFork, Eye, ZoomIn } from 'lucide-react';
 import { SkeletonProjectCard } from '../components/Skeleton';
 import { Lightbox } from '../components/Lightbox';
 

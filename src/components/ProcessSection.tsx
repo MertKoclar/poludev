@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Search, Lightbulb, Code2, Rocket, CheckCircle } from 'lucide-react';
+import { Search, Lightbulb, Code2, Rocket } from 'lucide-react';
 
 export const ProcessSection: React.FC = () => {
   const { t } = useTranslation();
