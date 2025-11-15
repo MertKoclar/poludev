@@ -1,60 +1,102 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Code, Smartphone } from 'lucide-react';
-import { ServiceCard } from './ServiceCard';
+import { Code, Smartphone, Globe, Database, Palette, Rocket } from 'lucide-react';
 
-const ServicesSection = () => {
-    const services = [
-        {
-            icon: Code,
-            title: 'Full Stack Web Geliştirme',
-            description: 'Uçtan uca kapsamlı web uygulamaları için modern mimariler ve ölçeklenebilir çözümler sunuyoruz. Frontend (React) ve Backend (Node.js, Express) yetkinliklerimizle projenizi başarıya taşıyoruz.',
-            features: [
-                'Özel Mimariler ve API Gelişimi',
-                'E-ticaret ve Kurumsal Çözümler',
-                'Veritabanı Tasarımı ve Optimizasyonu',
-            ],
-            delay: 0.1,
-        },
-        {
-            icon: Smartphone,
-            title: 'Mobil Uygulama Geliştirme',
-            description: 'iOS ve Android platformları için hızlı, estetik ve kullanıcı odaklı mobil deneyimler yaratıyoruz. Markanızın mobil dünyadaki varlığını güçlendirin.',
-            features: [
-                'Cross-Platform (Flutter) Uygulamalar',
-                'Native Performans ve Deneyim',
-                'API Entegrasyonu ve Yayınlama Desteği',
-            ],
-            delay: 0.3,
-        },
-    ];
+export const ServicesSection: React.FC = () => {
+  const { t } = useTranslation();
 
-    return (
-        <section className="py-20 md:py-32 bg-white dark:bg-gray-900 transition-colors duration-500" id="hizmetler">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <motion.div
-                    className="text-center mb-16"
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                >
-                    <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-4">
-                        Çözüm Sunduğumuz Alanlar
-                    </h2>
-                    <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                        Dijital dönüşümünüzü hızlandıracak yenilikçi ve güvenilir yazılım hizmetleri.
-                    </p>
-                </motion.div>
+  const services = [
+    {
+      icon: Code,
+      titleKey: 'services.web.title',
+      descriptionKey: 'services.web.description',
+      color: 'from-blue-500 to-blue-600',
+      delay: 0.1,
+    },
+    {
+      icon: Smartphone,
+      titleKey: 'services.mobile.title',
+      descriptionKey: 'services.mobile.description',
+      color: 'from-purple-500 to-purple-600',
+      delay: 0.2,
+    },
+    {
+      icon: Globe,
+      titleKey: 'services.api.title',
+      descriptionKey: 'services.api.description',
+      color: 'from-pink-500 to-pink-600',
+      delay: 0.3,
+    },
+    {
+      icon: Database,
+      titleKey: 'services.backend.title',
+      descriptionKey: 'services.backend.description',
+      color: 'from-orange-500 to-orange-600',
+      delay: 0.4,
+    },
+    {
+      icon: Palette,
+      titleKey: 'services.uiux.title',
+      descriptionKey: 'services.uiux.description',
+      color: 'from-green-500 to-green-600',
+      delay: 0.5,
+    },
+    {
+      icon: Rocket,
+      titleKey: 'services.deployment.title',
+      descriptionKey: 'services.deployment.description',
+      color: 'from-cyan-500 to-cyan-600',
+      delay: 0.6,
+    },
+  ];
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    {services.map((service, index) => (
-                        <ServiceCard key={index} {...service} />
-                    ))}
+  return (
+    <section className="py-20 bg-white dark:bg-gray-900">
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            {t('services.title') || 'Our Services'}
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            {t('services.subtitle') || 'Comprehensive solutions for your digital needs'}
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: service.delay }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="group relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
+              >
+                <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${service.color} mb-6 shadow-lg group-hover:shadow-xl transition-shadow`}>
+                  <Icon className="w-8 h-8 text-white" />
                 </div>
-            </div>
-        </section>
-    );
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {t(service.titleKey)}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  {t(service.descriptionKey)}
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 };
 
-export default ServicesSection;

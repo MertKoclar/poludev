@@ -1,52 +1,60 @@
-import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
-import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import AboutSection from './components/AboutSection';
-import PortfolioSection from './components/PortfolioSection';
-import TestimonialsSection from './components/TestimonialsSection';
-import ServicesSection from './components/ServicesSection';
-import TechStackSection from './components/TechStackSection';
-import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
+import { AuthProvider } from './context/AuthContext';
+import { ToastProvider } from './context/ToastContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { Layout } from './components/Layout';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { Home } from './pages/Home';
+import { About } from './pages/About';
+import { Projects } from './pages/Projects';
+import { ProjectDetail } from './pages/ProjectDetail';
+import { Login } from './pages/Login';
+import { CV } from './pages/CV';
+import { Admin } from './pages/Admin';
+import './i18n/config';
 
-// ====================================================================
-// ANA BİLEŞEN (App.jsx)
-// Tüm Context ve Bileşenleri bir araya getirir.
-// ====================================================================
-
-const App = () => {
+function App() {
   return (
-    <ThemeProvider>
-      <div className="min-h-screen font-sans antialiased bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
-        <Header />
-        <main>
-          <div id="hero">
-            <HeroSection />
-          </div>
-          <div id="hakkimizda">
-            <AboutSection />
-          </div>
-          <div id="projeler">
-            <PortfolioSection />
-          </div>
-          <div id="referanslar">
-            <TestimonialsSection />
-          </div>
-          <div id="hizmetler">
-            <ServicesSection />
-          </div>
-          <div id="teknolojiler">
-            <TechStackSection />
-          </div>
-          <div id="iletisim">
-            <ContactSection />
-          </div>
-        </main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <ToastProvider>
+          <AuthProvider>
+            <Router>
+              <Routes>
+                {/* Public Routes with Layout */}
+                <Route
+                  path="/*"
+                  element={
+                    <Layout>
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/projects" element={<Projects />} />
+                        <Route path="/projects/:id" element={<ProjectDetail />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/cv/:name" element={<CV />} />
+                      </Routes>
+                    </Layout>
+                  }
+                />
+
+                {/* Admin Routes with AdminLayout (inside ProtectedRoute) */}
+                <Route
+                  path="/admin/*"
+                  element={
+                    <ProtectedRoute requireAdmin>
+                      <Admin />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </Router>
+          </AuthProvider>
+        </ToastProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
-};
+}
 
 export default App;

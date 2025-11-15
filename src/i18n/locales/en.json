@@ -1,0 +1,366 @@
+{
+  "common": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "admin": "Admin",
+    "login": "Login",
+    "logout": "Logout",
+    "cv": "CV",
+    "download": "Download",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "welcome": "Welcome",
+    "search": "Search...",
+    "and": "and",
+    "close": "Close"
+  },
+  "home": {
+    "title": "Poludev",
+    "subtitle": "Mert & Mustafa",
+    "description": "Two passionate developers creating modern web solutions",
+    "cta": "Explore Our Projects"
+  },
+  "about": {
+    "title": "About Us",
+    "heroDescription": "We are passionate developers creating innovative solutions",
+    "mert": {
+      "name": "Mert",
+      "bio": "Full-stack developer and technology enthusiast"
+    },
+    "mustafa": {
+      "name": "Mustafa",
+      "bio": "Full-stack developer and software architect"
+    },
+    "skills": "Skills",
+    "certifications": {
+      "title": "Certifications",
+      "subtitle": "Professional certifications and credentials"
+    },
+    "testimonials": {
+      "title": "What People Say",
+      "subtitle": "Testimonials from our clients and partners"
+    },
+    "contact": {
+      "title": "Get In Touch",
+      "subtitle": "We would love to hear from you",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "sendMessage": "Send us a message",
+      "name": "Your Name",
+      "message": "Your Message",
+      "send": "Send Message"
+    }
+  },
+  "projects": {
+    "title": "Our Projects",
+    "description": "Projects we developed together",
+    "viewLive": "View Live",
+    "viewCode": "View Code",
+    "noProjects": "No projects added yet",
+    "noProjectsFound": "No projects found",
+    "all": "All",
+    "code": "Code",
+    "backToProjects": "Back to Projects",
+    "notFound": "Project Not Found",
+    "notFoundDescription": "The project you are looking for does not exist.",
+    "technologies": "Technologies Used",
+    "featured": "Featured",
+    "sortBy": "Sort by:",
+    "sort": {
+      "newest": "Newest First",
+      "oldest": "Oldest First",
+      "nameAsc": "Name (A-Z)",
+      "nameDesc": "Name (Z-A)",
+      "popular": "Most Popular"
+    },
+    "allCategories": "All Categories",
+    "allStatuses": "All Statuses",
+    "status": {
+      "active": "Active",
+      "completed": "Completed",
+      "inDevelopment": "In Development",
+      "onHold": "On Hold"
+    },
+    "category": {
+      "web": "Web",
+      "mobile": "Mobile",
+      "desktop": "Desktop",
+      "api": "API",
+      "other": "Other"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive solutions for your digital needs",
+    "web": {
+      "title": "Web Development",
+      "description": "We develop modern, responsive and high-performance web applications."
+    },
+    "mobile": {
+      "title": "Mobile App",
+      "description": "We create cross-platform mobile applications for iOS and Android."
+    },
+    "api": {
+      "title": "API Development",
+      "description": "We design secure and scalable RESTful APIs."
+    },
+    "backend": {
+      "title": "Backend Development",
+      "description": "Robust and reliable backend systems and database management."
+    },
+    "uiux": {
+      "title": "UI/UX Design",
+      "description": "We create user-focused and aesthetic interface designs."
+    },
+    "deployment": {
+      "title": "Deployment",
+      "description": "We deploy your applications on cloud platforms."
+    }
+  },
+  "technologies": {
+    "title": "Technologies We Love",
+    "subtitle": "Modern tools and frameworks we work with"
+  },
+  "process": {
+    "title": "Our Process",
+    "subtitle": "How we bring your ideas to life",
+    "discover": {
+      "title": "Discover",
+      "description": "We analyze your project requirements and determine the best solution."
+    },
+    "design": {
+      "title": "Design",
+      "description": "We create modern designs with a focus on user experience."
+    },
+    "develop": {
+      "title": "Develop",
+      "description": "We write clean and maintainable code using best practices."
+    },
+    "deploy": {
+      "title": "Deploy",
+      "description": "We deploy your application securely and provide continuous support."
+    }
+  },
+  "cta": {
+    "title": "Ready to Start Your Project?",
+    "description": "Let's work together to bring your ideas to life and create something amazing.",
+    "viewProjects": "View Our Work",
+    "contactUs": "Get In Touch"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "dashboard": "Dashboard",
+    "projectManagement": "Project Management",
+    "aboutManagement": "About Management",
+    "cvManagement": "CV Management",
+    "addProject": "Add Project",
+    "editProject": "Edit Project",
+    "projectTitle": "Project Title",
+    "projectDescription": "Project Description",
+    "projectTags": "Project Tags",
+    "projectImage": "Project Image",
+    "projectLiveUrl": "Live URL",
+    "projectGithubUrl": "GitHub URL",
+    "uploadCV": "Upload CV",
+    "selectUser": "Select User",
+    "mert": "Mert",
+    "mustafa": "Mustafa",
+    "bioTr": "Biography (Turkish)",
+    "bioEn": "Biography (English)",
+    "skills": "Skills",
+    "saveChanges": "Save Changes",
+    "totalProjects": "Total Projects",
+    "featuredProjects": "Featured Projects",
+    "totalUsers": "Total Users",
+    "activeProjects": "Active Projects",
+    "quickActions": "Quick Actions",
+    "recentActivity": "Recent Activity",
+    "justNow": "Just now",
+    "minutesAgo": "minutes ago",
+    "hoursAgo": "hours ago",
+    "daysAgo": "days ago",
+    "noRecentActivity": "No recent activity",
+    "manageProjects": "Manage your projects, add, edit or delete them.",
+    "manageAbout": "Update about us information.",
+    "manageCV": "Upload or update CV files.",
+    "bulkActions": "Bulk Actions",
+    "selectAll": "Select All",
+    "deleteSelected": "Delete Selected",
+    "projectCategory": "Project Category",
+    "projectStatus": "Project Status",
+    "projectFeatured": "Featured",
+    "projectStarCount": "Star Count",
+    "projectForkCount": "Fork Count",
+    "projectViewCount": "View Count",
+    "uploadImage": "Upload Image",
+    "imagePreview": "Image Preview",
+    "removeImage": "Remove Image",
+    "profilePhoto": "Profile Photo",
+    "uploadProfilePhoto": "Upload Profile Photo",
+    "socialMediaLinks": "Social Media Links",
+    "addSocialLink": "Add Social Media Link",
+    "platform": "Platform",
+    "url": "URL",
+    "remove": "Remove",
+    "addSkill": "Add Skill",
+    "skillName": "Skill Name",
+    "dragToReorder": "Drag to reorder",
+    "selected": "selected",
+    "preview": "Preview",
+    "deleteConfirm": "Are you sure you want to delete this project?",
+    "bulkDeleteConfirm": "Are you sure you want to delete selected projects?",
+    "projectDeleted": "Project deleted successfully",
+    "projectsDeleted": "projects deleted successfully",
+    "projectSaved": "Project saved successfully",
+    "changesSaved": "Changes saved successfully",
+    "noProjects": "No projects found. Add your first project!",
+    "search": "Search...",
+    "menu": "Menu",
+    "dashboardDescription": "Welcome to the admin dashboard. Manage your site content from here.",
+    "general": "General",
+    "add": "Add",
+    "name": "Name",
+    "institution": "Institution",
+    "degree": "Degree",
+    "field": "Field of Study",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "location": "Location",
+    "descriptionTr": "Description (Turkish)",
+    "descriptionEn": "Description (English)",
+    "current": "Current",
+    "company": "Company",
+    "position": "Position",
+    "certificationName": "Certification Name",
+    "issuer": "Issuing Organization",
+    "issueDate": "Issue Date",
+    "expiryDate": "Expiry Date",
+    "credentialId": "Credential ID",
+    "credentialUrl": "Credential URL",
+    "viewCredential": "View Credential",
+    "role": "Role",
+    "avatarUrl": "Avatar URL",
+    "rating": "Rating",
+    "noEducation": "No education entries. Add your first one!",
+    "noExperience": "No experience entries. Add your first one!",
+    "noCertifications": "No certifications. Add your first one!",
+    "noTestimonials": "No testimonials. Add your first one!",
+    "overview": "Overview",
+    "versions": "Versions",
+    "analytics": "Analytics",
+    "cvPreview": "CV Preview",
+    "cvUploaded": "CV uploaded successfully",
+    "errorFetchingCV": "Error fetching CV data",
+    "errorUploadingCV": "Error uploading CV",
+    "errorDownloadingCV": "Error downloading CV",
+    "errorActivatingVersion": "Error activating version",
+    "errorDeletingVersion": "Error deleting version",
+    "cvVersionActivated": "CV version activated",
+    "cvVersionDeleted": "CV version deleted successfully",
+    "deleteCVVersionConfirm": "Are you sure you want to delete this CV version?",
+    "cannotDeleteOnlyVersion": "Cannot delete the only CV version",
+    "active": "Active",
+    "activeVersion": "Active Version",
+    "version": "Version",
+    "uploaded": "Uploaded",
+    "fileSize": "File Size",
+    "template": "Template",
+    "notes": "Notes",
+    "totalDownloads": "Total Downloads",
+    "last7Days": "Last 7 Days",
+    "last30Days": "Last 30 Days",
+    "avgPerDay": "Avg. per Day",
+    "openInNewTab": "Open in New Tab",
+    "setActive": "Set Active",
+    "noCVUploaded": "No CV uploaded",
+    "uploadFirstCV": "Upload a CV to get started",
+    "noCVVersions": "No CV versions found",
+    "downloadsOverTime": "Downloads Over Time (Last 30 Days)",
+    "noDownloadData": "No download data available yet",
+    "uploadNewVersion": "Upload New CV Version",
+    "selectCVFile": "Select CV File",
+    "clickToUpload": "Click to upload",
+    "cvFormat": "CV Format",
+    "cvTemplate": "CV Template",
+    "optional": "Optional",
+    "versionNotes": "Version Notes",
+    "versionNotesPlaceholder": "Add notes about this version...",
+    "uploadWillCreateNewVersion": "Uploading will create a new version and set it as active. Previous versions will be preserved.",
+    "defaultTemplate": "Default Template",
+    "modernTemplate": "Modern Template",
+    "classicTemplate": "Classic Template",
+    "creativeTemplate": "Creative Template"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "loginSubtitle": "Enter your credentials to access the admin panel",
+    "adminOnly": "Admin access only. Unauthorized access is prohibited.",
+    "invalidCredentials": "Invalid email or password",
+    "signInSuccess": "Successfully signed in",
+    "signOutSuccess": "Successfully signed out"
+  },
+  "cv": {
+    "title": "CV",
+    "download": "Download CV",
+    "view": "View CV",
+    "mert": "Mert's CV",
+    "mustafa": "Mustafa's CV"
+  },
+  "statistics": {
+    "projects": "Projects",
+    "happyClients": "Happy Clients",
+    "yearsExperience": "Years Experience",
+    "awards": "Awards"
+  },
+  "skills": {
+    "title": "Skills & Technologies"
+  },
+  "values": {
+    "title": "Our Values",
+    "subtitle": "What drives us every day",
+    "innovation": {
+      "title": "Innovation",
+      "description": "We love creating new solutions"
+    },
+    "passion": {
+      "title": "Passion",
+      "description": "We are passionate about what we do"
+    },
+    "excellence": {
+      "title": "Excellence",
+      "description": "We strive for the best quality"
+    }
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "email": "Email",
+    "buildTogether": "Let's build something amazing together.",
+    "allRightsReserved": "All rights reserved.",
+    "madeWith": "Made with",
+    "by": "by"
+  },
+  "errorBoundary": {
+    "title": "Something Went Wrong",
+    "message": "Sorry, an unexpected error occurred. Please refresh the page or return to the home page.",
+    "unknownError": "Unknown error",
+    "tryAgain": "Try Again"
+  },
+  "validation": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 8 characters"
+  }
+}

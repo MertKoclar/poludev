@@ -1,0 +1,371 @@
+{
+  "common": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımızda",
+    "projects": "Projeler",
+    "admin": "Admin",
+    "login": "Giriş Yap",
+    "logout": "Çıkış Yap",
+    "cv": "CV",
+    "download": "İndir",
+    "view": "Görüntüle",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "loading": "Yükleniyor...",
+    "error": "Hata",
+    "success": "Başarılı",
+    "welcome": "Hoş Geldiniz",
+    "search": "Ara...",
+    "and": "ve",
+    "close": "Kapat",
+    "language": "Dil",
+    "theme": "Tema",
+    "menu": "Menü"
+  },
+  "home": {
+    "title": "Poludev",
+    "subtitle": "Mert & Mustafa",
+    "description": "Modern web çözümleri geliştiren iki tutkulu geliştirici",
+    "cta": "Projelerimizi Keşfet"
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "heroDescription": "İnovatif çözümler yaratan tutkulu geliştiricileriz",
+    "mert": {
+      "name": "Mert",
+      "bio": "Full-stack developer ve teknoloji tutkunu"
+    },
+    "mustafa": {
+      "name": "Mustafa",
+      "bio": "Full-stack developer ve yazılım mimarı"
+    },
+    "skills": "Yetenekler",
+    "education": "Eğitim",
+    "experience": "Deneyim",
+    "certifications": {
+      "title": "Sertifikalar",
+      "subtitle": "Profesyonel sertifikalar ve kimlik bilgileri"
+    },
+    "testimonials": {
+      "title": "Ne Diyorlar?",
+      "subtitle": "Müşterilerimizden ve ortaklarımızdan referanslar"
+    },
+    "contact": {
+      "title": "İletişime Geçin",
+      "subtitle": "Sizden haber almak isteriz",
+      "email": "E-posta",
+      "phone": "Telefon",
+      "location": "Konum",
+      "sendMessage": "Bize bir mesaj gönderin",
+      "name": "Adınız",
+      "message": "Mesajınız",
+      "send": "Mesaj Gönder"
+    }
+  },
+  "projects": {
+    "title": "Projelerimiz",
+    "description": "Birlikte geliştirdiğimiz projeler",
+    "viewLive": "Canlı Görüntüle",
+    "viewCode": "Kodu Görüntüle",
+    "noProjects": "Henüz proje eklenmedi",
+    "noProjectsFound": "Proje bulunamadı",
+    "all": "Tümü",
+    "code": "Kod",
+    "backToProjects": "Projelere Dön",
+    "notFound": "Proje Bulunamadı",
+    "notFoundDescription": "Aradığınız proje bulunamadı.",
+    "technologies": "Kullanılan Teknolojiler",
+    "featured": "Öne Çıkan",
+    "sortBy": "Sırala:",
+    "sort": {
+      "newest": "En Yeni",
+      "oldest": "En Eski",
+      "nameAsc": "İsim (A-Z)",
+      "nameDesc": "İsim (Z-A)",
+      "popular": "En Popüler"
+    },
+    "allCategories": "Tüm Kategoriler",
+    "allStatuses": "Tüm Durumlar",
+    "status": {
+      "active": "Aktif",
+      "completed": "Tamamlandı",
+      "inDevelopment": "Geliştirme Aşamasında",
+      "onHold": "Beklemede"
+    },
+    "category": {
+      "web": "Web",
+      "mobile": "Mobil",
+      "desktop": "Masaüstü",
+      "api": "API",
+      "other": "Diğer"
+    }
+  },
+  "services": {
+    "title": "Hizmetlerimiz",
+    "subtitle": "Dijital ihtiyaçlarınız için kapsamlı çözümler",
+    "web": {
+      "title": "Web Geliştirme",
+      "description": "Modern, responsive ve performanslı web uygulamaları geliştiriyoruz."
+    },
+    "mobile": {
+      "title": "Mobil Uygulama",
+      "description": "iOS ve Android için cross-platform mobil uygulamalar oluşturuyoruz."
+    },
+    "api": {
+      "title": "API Geliştirme",
+      "description": "Güvenli ve ölçeklenebilir RESTful API'ler tasarlıyoruz."
+    },
+    "backend": {
+      "title": "Backend Geliştirme",
+      "description": "Güçlü ve güvenilir backend sistemleri ve veritabanı yönetimi."
+    },
+    "uiux": {
+      "title": "UI/UX Tasarım",
+      "description": "Kullanıcı odaklı ve estetik arayüz tasarımları yapıyoruz."
+    },
+    "deployment": {
+      "title": "Deployment",
+      "description": "Uygulamalarınızı cloud platformlarında deploy ediyoruz."
+    }
+  },
+  "technologies": {
+    "title": "Kullandığımız Teknolojiler",
+    "subtitle": "Çalıştığımız modern araçlar ve framework'ler"
+  },
+  "process": {
+    "title": "Çalışma Sürecimiz",
+    "subtitle": "Fikirlerinizi hayata geçirme yolumuz",
+    "discover": {
+      "title": "Keşfet",
+      "description": "Projenizin gereksinimlerini analiz edip en iyi çözümü belirliyoruz."
+    },
+    "design": {
+      "title": "Tasarım",
+      "description": "Kullanıcı deneyimini ön planda tutarak modern tasarımlar oluşturuyoruz."
+    },
+    "develop": {
+      "title": "Geliştirme",
+      "description": "En iyi pratikleri kullanarak temiz ve sürdürülebilir kod yazıyoruz."
+    },
+    "deploy": {
+      "title": "Yayınlama",
+      "description": "Uygulamanızı güvenli bir şekilde deploy edip sürekli destek sunuyoruz."
+    }
+  },
+  "cta": {
+    "title": "Projenize Başlamaya Hazır mısınız?",
+    "description": "Birlikte çalışalım ve fikirlerinizi hayata geçirip harika bir şeyler yaratalım.",
+    "viewProjects": "Çalışmalarımızı Görün",
+    "contactUs": "İletişime Geçin"
+  },
+  "admin": {
+    "title": "Admin Paneli",
+    "dashboard": "Kontrol Paneli",
+    "projectManagement": "Proje Yönetimi",
+    "aboutManagement": "Hakkımızda Yönetimi",
+    "cvManagement": "CV Yönetimi",
+    "addProject": "Proje Ekle",
+    "editProject": "Projeyi Düzenle",
+    "projectTitle": "Proje Başlığı",
+    "projectDescription": "Proje Açıklaması",
+    "projectTags": "Etiketler",
+    "projectImage": "Proje Görseli",
+    "projectLiveUrl": "Canlı URL",
+    "projectGithubUrl": "GitHub URL",
+    "uploadCV": "CV Yükle",
+    "selectUser": "Kullanıcı Seç",
+    "mert": "Mert",
+    "mustafa": "Mustafa",
+    "bioTr": "Biyografi (Türkçe)",
+    "bioEn": "Biyografi (İngilizce)",
+    "skills": "Yetenekler",
+    "saveChanges": "Değişiklikleri Kaydet",
+    "totalProjects": "Toplam Projeler",
+    "featuredProjects": "Öne Çıkan Projeler",
+    "totalUsers": "Toplam Kullanıcılar",
+    "activeProjects": "Aktif Projeler",
+    "quickActions": "Hızlı İşlemler",
+    "recentActivity": "Son Aktiviteler",
+    "justNow": "Şimdi",
+    "minutesAgo": "dakika önce",
+    "hoursAgo": "saat önce",
+    "daysAgo": "gün önce",
+    "noRecentActivity": "Henüz aktivite yok",
+    "manageProjects": "Projelerinizi yönetin, ekleyin, düzenleyin veya silin.",
+    "manageAbout": "Hakkımızda bilgilerini güncelleyin.",
+    "manageCV": "CV dosyalarını yükleyin veya güncelleyin.",
+    "bulkActions": "Toplu İşlemler",
+    "selectAll": "Tümünü Seç",
+    "deleteSelected": "Seçilenleri Sil",
+    "projectCategory": "Proje Kategorisi",
+    "projectStatus": "Proje Durumu",
+    "projectFeatured": "Öne Çıkan",
+    "projectStarCount": "Yıldız Sayısı",
+    "projectForkCount": "Fork Sayısı",
+    "projectViewCount": "Görüntülenme Sayısı",
+    "uploadImage": "Görsel Yükle",
+    "imagePreview": "Görsel Önizleme",
+    "removeImage": "Görseli Kaldır",
+    "profilePhoto": "Profil Fotoğrafı",
+    "uploadProfilePhoto": "Profil Fotoğrafı Yükle",
+    "socialMediaLinks": "Sosyal Medya Linkleri",
+    "addSocialLink": "Sosyal Medya Linki Ekle",
+    "platform": "Platform",
+    "url": "URL",
+    "remove": "Kaldır",
+    "addSkill": "Yetenek Ekle",
+    "skillName": "Yetenek Adı",
+    "dragToReorder": "Sıralamak için sürükle",
+    "selected": "seçildi",
+    "preview": "Önizle",
+    "deleteConfirm": "Bu projeyi silmek istediğinizden emin misiniz?",
+    "bulkDeleteConfirm": "Seçilen projeleri silmek istediğinizden emin misiniz?",
+    "projectDeleted": "Proje başarıyla silindi",
+    "projectsDeleted": "projeler başarıyla silindi",
+    "projectSaved": "Proje başarıyla kaydedildi",
+    "changesSaved": "Değişiklikler başarıyla kaydedildi",
+    "noProjects": "Henüz proje yok. İlk projenizi ekleyin!",
+    "search": "Ara...",
+    "menu": "Menü",
+    "dashboardDescription": "Yönetim paneline hoş geldiniz. Site içeriğinizi buradan yönetebilirsiniz.",
+    "general": "Genel",
+    "add": "Ekle",
+    "name": "Ad",
+    "institution": "Kurum",
+    "degree": "Derece",
+    "field": "Alan",
+    "startDate": "Başlangıç Tarihi",
+    "endDate": "Bitiş Tarihi",
+    "location": "Konum",
+    "descriptionTr": "Açıklama (Türkçe)",
+    "descriptionEn": "Açıklama (İngilizce)",
+    "current": "Devam Ediyor",
+    "company": "Şirket",
+    "position": "Pozisyon",
+    "certificationName": "Sertifika Adı",
+    "issuer": "Veren Kurum",
+    "issueDate": "Veriliş Tarihi",
+    "expiryDate": "Son Geçerlilik Tarihi",
+    "credentialId": "Sertifika ID",
+    "credentialUrl": "Sertifika URL",
+    "viewCredential": "Sertifikayı Görüntüle",
+    "role": "Rol",
+    "avatarUrl": "Avatar URL",
+    "rating": "Değerlendirme",
+    "noEducation": "Henüz eğitim bilgisi yok. İlkinizi ekleyin!",
+    "noExperience": "Henüz deneyim bilgisi yok. İlkinizi ekleyin!",
+    "noCertifications": "Henüz sertifika yok. İlkinizi ekleyin!",
+    "noTestimonials": "Henüz referans yok. İlkinizi ekleyin!",
+    "overview": "Genel Bakış",
+    "versions": "Versiyonlar",
+    "analytics": "Analitik",
+    "cvPreview": "CV Önizleme",
+    "cvUploaded": "CV başarıyla yüklendi",
+    "errorFetchingCV": "CV verileri alınırken hata oluştu",
+    "errorUploadingCV": "CV yüklenirken hata oluştu",
+    "errorDownloadingCV": "CV indirilirken hata oluştu",
+    "errorActivatingVersion": "Versiyon etkinleştirilirken hata oluştu",
+    "errorDeletingVersion": "Versiyon silinirken hata oluştu",
+    "cvVersionActivated": "CV versiyonu etkinleştirildi",
+    "cvVersionDeleted": "CV versiyonu başarıyla silindi",
+    "deleteCVVersionConfirm": "Bu CV versiyonunu silmek istediğinizden emin misiniz?",
+    "cannotDeleteOnlyVersion": "Son kalan versiyonu silemezsiniz",
+    "active": "Aktif",
+    "activeVersion": "Aktif Versiyon",
+    "version": "Versiyon",
+    "uploaded": "Yüklendi",
+    "fileSize": "Dosya Boyutu",
+    "template": "Şablon",
+    "notes": "Notlar",
+    "totalDownloads": "Toplam İndirme",
+    "last7Days": "Son 7 Gün",
+    "last30Days": "Son 30 Gün",
+    "avgPerDay": "Günlük Ortalama",
+    "openInNewTab": "Yeni Sekmede Aç",
+    "setActive": "Aktif Yap",
+    "noCVUploaded": "CV yüklenmemiş",
+    "uploadFirstCV": "Başlamak için CV yükleyin",
+    "noCVVersions": "CV versiyonu bulunamadı",
+    "downloadsOverTime": "Zaman İçinde İndirmeler (Son 30 Gün)",
+    "noDownloadData": "Henüz indirme verisi yok",
+    "uploadNewVersion": "Yeni CV Versiyonu Yükle",
+    "selectCVFile": "CV Dosyası Seç",
+    "clickToUpload": "Yüklemek için tıklayın",
+    "cvFormat": "CV Formatı",
+    "cvTemplate": "CV Şablonu",
+    "optional": "Opsiyonel",
+    "versionNotes": "Versiyon Notları",
+    "versionNotesPlaceholder": "Bu versiyon hakkında notlar ekleyin...",
+    "uploadWillCreateNewVersion": "Yükleme yeni bir versiyon oluşturacak ve onu aktif yapacak. Önceki versiyonlar korunacak.",
+    "defaultTemplate": "Varsayılan Şablon",
+    "modernTemplate": "Modern Şablon",
+    "classicTemplate": "Klasik Şablon",
+    "creativeTemplate": "Yaratıcı Şablon"
+  },
+  "auth": {
+    "email": "E-posta",
+    "password": "Şifre",
+    "signIn": "Giriş Yap",
+    "signOut": "Çıkış Yap",
+    "loginSubtitle": "Admin paneline erişmek için bilgilerinizi girin",
+    "adminOnly": "Sadece admin erişimi. Yetkisiz erişim yasaktır.",
+    "invalidCredentials": "Geçersiz e-posta veya şifre",
+    "signInSuccess": "Başarıyla giriş yapıldı",
+    "signOutSuccess": "Başarıyla çıkış yapıldı"
+  },
+  "cv": {
+    "title": "CV",
+    "download": "CV İndir",
+    "view": "CV Görüntüle",
+    "mert": "Mert'in CV'si",
+    "mustafa": "Mustafa'nın CV'si"
+  },
+  "statistics": {
+    "projects": "Projeler",
+    "happyClients": "Mutlu Müşteri",
+    "yearsExperience": "Yıl Deneyim",
+    "awards": "Ödüller"
+  },
+  "skills": {
+    "title": "Yetenekler & Teknolojiler"
+  },
+  "values": {
+    "title": "Değerlerimiz",
+    "subtitle": "Bizi her gün harekete geçiren şeyler",
+    "innovation": {
+      "title": "Yenilikçilik",
+      "description": "Yeni çözümler yaratmayı seviyoruz"
+    },
+    "passion": {
+      "title": "Tutku",
+      "description": "Yaptığımız işe tutkuluyuz"
+    },
+    "excellence": {
+      "title": "Mükemmellik",
+      "description": "En iyi kalite için çalışıyoruz"
+    }
+  },
+  "footer": {
+    "quickLinks": "Hızlı Bağlantılar",
+    "contact": "İletişim",
+    "email": "E-posta",
+    "buildTogether": "Birlikte harika şeyler inşa edelim.",
+    "allRightsReserved": "Tüm hakları saklıdır.",
+    "madeWith": "ile yapıldı",
+    "by": "tarafından"
+  },
+  "errorBoundary": {
+    "title": "Bir Hata Oluştu",
+    "message": "Üzgünüz, beklenmeyen bir hata oluştu. Lütfen sayfayı yenileyin veya ana sayfaya dönün.",
+    "unknownError": "Bilinmeyen hata",
+    "tryAgain": "Tekrar Dene"
+  },
+  "validation": {
+    "emailRequired": "E-posta adresi gereklidir",
+    "emailInvalid": "Lütfen geçerli bir e-posta adresi girin",
+    "passwordRequired": "Şifre gereklidir",
+    "passwordMinLength": "Şifre en az 8 karakter olmalıdır"
+  }
+}
