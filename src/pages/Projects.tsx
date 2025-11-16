@@ -193,15 +193,6 @@ export const Projects: React.FC = () => {
       <div className="min-h-screen">
         {/* Hero Section */}
       <section className="relative py-32 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10 pt-20">
-          <Breadcrumb
-            items={[
-              { label: t('common.home') || 'Home', path: '/' },
-              { label: t('projects.title') || 'Projects', path: '/projects' },
-            ]}
-            className="mb-6"
-          />
-        </div>
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-0 right-0 w-96 h-96 bg-amber-300 dark:bg-amber-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
@@ -217,6 +208,13 @@ export const Projects: React.FC = () => {
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
+          <Breadcrumb
+            items={[
+              { label: t('common.home') || 'Home', path: '/' },
+              { label: t('projects.title') || 'Projects', path: '/projects' },
+            ]}
+            className="mb-6"
+          />
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
