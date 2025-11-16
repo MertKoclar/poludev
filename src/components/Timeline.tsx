@@ -40,7 +40,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items, title }) => {
       )}
       <div className="relative">
         {/* Timeline line */}
-        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400" />
+        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-orange-500 via-orange-600 to-amber-500 dark:from-orange-400 dark:via-orange-500 dark:to-amber-400" />
 
         <div className="space-y-8">
           {sortedItems.map((item, index) => (
@@ -56,8 +56,8 @@ export const Timeline: React.FC<TimelineProps> = ({ items, title }) => {
               <div className="absolute left-6 top-1.5">
                 <div className={`w-4 h-4 rounded-full border-2 ${
                   item.current 
-                    ? 'bg-blue-600 dark:bg-blue-400 border-blue-600 dark:border-blue-400' 
-                    : 'bg-white dark:bg-gray-800 border-blue-500 dark:border-blue-400'
+                    ? 'bg-orange-600 dark:bg-orange-400 border-orange-600 dark:border-orange-400' 
+                    : 'bg-white dark:bg-gray-800 border-orange-500 dark:border-orange-400'
                 }`} />
               </div>
 
@@ -69,7 +69,7 @@ export const Timeline: React.FC<TimelineProps> = ({ items, title }) => {
                       {item.title}
                     </h4>
                     {item.subtitle && (
-                      <p className="text-lg font-medium text-blue-600 dark:text-blue-400 mb-2">
+                      <p className="text-lg font-medium text-orange-600 dark:text-orange-400 mb-2">
                         {item.subtitle}
                       </p>
                     )}

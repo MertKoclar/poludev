@@ -7,18 +7,18 @@ interface SkillsSectionProps {
   color?: string;
 }
 
-export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills, color = 'blue' }) => {
+export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills, color = 'orange' }) => {
   const { t } = useTranslation();
   const getColorClass = (color: string) => {
     switch (color) {
       case 'green':
         return 'bg-gradient-to-r from-green-500 to-green-600';
-      case 'purple':
-        return 'bg-gradient-to-r from-purple-500 to-purple-600';
-      case 'pink':
-        return 'bg-gradient-to-r from-pink-500 to-pink-600';
+      case 'amber':
+        return 'bg-gradient-to-r from-amber-500 to-amber-600';
+      case 'orange':
+        return 'bg-gradient-to-r from-orange-500 to-orange-600';
       default:
-        return 'bg-gradient-to-r from-blue-500 to-blue-600';
+        return 'bg-gradient-to-r from-orange-500 to-amber-600';
     }
   };
 

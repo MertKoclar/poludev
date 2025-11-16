@@ -117,7 +117,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
           className="flex items-center gap-3 group"
           onClick={() => setSidebarOpen(false)}
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow">
             <LayoutDashboard className="w-6 h-6 text-white" />
           </div>
           <div>
@@ -152,7 +152,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                 transition-all duration-200 group relative
                 ${
                   active
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25'
+                    ? 'bg-gradient-to-r from-orange-600 to-amber-600 text-white shadow-lg shadow-orange-500/25'
                     : 'text-gray-300 hover:bg-gray-700/50 hover:text-white'
                 }
               `}
@@ -243,7 +243,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                   <input
                     type="text"
                     placeholder={t('common.search') || 'Search...'}
-                    className="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm"
+                    className="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all text-sm"
                   />
                 </div>
               </div>
@@ -274,7 +274,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                       {t('common.admin')}
                     </p>
                   </div>
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold shadow-lg">
+                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white font-semibold shadow-lg">
                     {user?.email?.charAt(0).toUpperCase() || 'A'}
                   </div>
                   <button
@@ -326,7 +326,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                   px-3 py-2 rounded-xl transition-all duration-200 flex-1
                   ${
                     active
-                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                      ? 'text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/20'
                       : 'text-gray-500 dark:text-gray-400'
                   }
                 `}
@@ -373,7 +373,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
                   </button>
                 </div>
                 <div className="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-800">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center text-white font-semibold">
                     {user?.email?.charAt(0).toUpperCase() || 'A'}
                   </div>
                   <div>

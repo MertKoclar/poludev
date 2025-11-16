@@ -106,7 +106,7 @@ export const About: React.FC = () => {
     return (
       <div className="min-h-screen">
         {/* Hero Section Skeleton */}
-        <section className="relative py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <section className="relative py-32 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center max-w-3xl mx-auto space-y-6">
               <div className="h-20 bg-gray-200 dark:bg-gray-700 rounded-lg w-3/4 mx-auto animate-pulse" />
@@ -177,10 +177,10 @@ export const About: React.FC = () => {
       />
       <div className="min-h-screen">
         {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative py-32 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-0 right-0 w-96 h-96 bg-blue-300 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
+            className="absolute top-0 right-0 w-96 h-96 bg-orange-300 dark:bg-orange-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
             animate={{
               x: [0, 100, 0],
               y: [0, -100, 0],
@@ -204,9 +204,9 @@ export const About: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <UserIcon className="w-16 h-16 mx-auto mb-6 text-blue-600 dark:text-blue-400" />
+              <UserIcon className="w-16 h-16 mx-auto mb-6 text-orange-600 dark:text-orange-400" />
             </motion.div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 dark:from-orange-400 dark:via-orange-500 dark:to-amber-500">
               {t('about.title')}
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -232,7 +232,7 @@ export const About: React.FC = () => {
                 >
                   <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 overflow-hidden">
                     {/* Decorative Background */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-full blur-3xl -z-0" />
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-orange-500/10 to-amber-500/10 rounded-full blur-3xl -z-0" />
 
                     {/* Content */}
                     <div className="relative z-10">
@@ -260,7 +260,7 @@ export const About: React.FC = () => {
                           <div className="mb-4 flex gap-3 justify-center">
                             <Link
                               to={`/cv/${member.cvRoute}`}
-                              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-lg hover:from-orange-700 hover:to-amber-700 transition-all duration-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                             >
                               <FileText className="w-4 h-4" />
                               {t('cv.download') || 'Download CV'}
@@ -303,7 +303,7 @@ export const About: React.FC = () => {
                           {member.data.contact_email && (
                             <a 
                               href={`mailto:${member.data.contact_email}`}
-                              className="block text-blue-600 dark:text-blue-400 hover:underline"
+                              className="block text-orange-600 dark:text-orange-400 hover:underline"
                             >
                               📧 {member.data.contact_email}
                             </a>
@@ -311,7 +311,7 @@ export const About: React.FC = () => {
                           {member.data.contact_phone && (
                             <a 
                               href={`tel:${member.data.contact_phone}`}
-                              className="block text-blue-600 dark:text-blue-400 hover:underline"
+                              className="block text-orange-600 dark:text-orange-400 hover:underline"
                             >
                               📞 {member.data.contact_phone}
                             </a>
@@ -466,14 +466,14 @@ export const About: React.FC = () => {
                           className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-700"
                         >
                           <div className="flex items-start gap-4">
-                            <div className="p-3 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg">
+                            <div className="p-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-lg">
                               <Award className="w-6 h-6 text-white" />
                             </div>
                             <div className="flex-1">
                               <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
                                 {cert.name}
                               </h4>
-                              <p className="text-blue-600 dark:text-blue-400 font-medium mb-2">
+                              <p className="text-orange-600 dark:text-orange-400 font-medium mb-2">
                                 {cert.issuer}
                               </p>
                               <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
@@ -502,7 +502,7 @@ export const About: React.FC = () => {
                                   href={cert.credential_url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="inline-block mt-3 text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium"
+                                  className="inline-block mt-3 text-orange-600 dark:text-orange-400 hover:underline text-sm font-medium"
                                 >
                                   View Credential →
                                 </a>
@@ -579,7 +579,7 @@ export const About: React.FC = () => {
                   whileHover={{ y: -10 }}
                   className="text-center p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
                 >
-                  <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 mb-4">
+                  <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-orange-500 to-amber-600 mb-4">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">

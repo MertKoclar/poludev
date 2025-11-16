@@ -64,7 +64,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
               className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow border border-gray-200 dark:border-gray-700"
             >
               {/* Quote icon */}
-              <div className="absolute top-4 right-4 text-blue-200 dark:text-blue-900/30">
+              <div className="absolute top-4 right-4 text-orange-200 dark:text-orange-900/30">
                 <Quote className="w-8 h-8" />
               </div>
 
@@ -82,7 +82,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center">
                     <User className="w-6 h-6 text-white" />
                   </div>
                 )}

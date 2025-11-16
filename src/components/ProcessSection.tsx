@@ -66,30 +66,30 @@ export const ProcessSection: React.FC = () => {
                 >
                   {/* Connection Line (not for last item) */}
                   {index < steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 z-0 transform translate-x-4">
+                    <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-orange-500 to-amber-500 z-0 transform translate-x-4">
                       <motion.div
                         initial={{ scaleX: 0 }}
                         whileInView={{ scaleX: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: index * 0.2 }}
-                        className="h-full bg-gradient-to-r from-blue-500 to-purple-500 origin-left"
+                        className="h-full bg-gradient-to-r from-orange-500 to-amber-500 origin-left"
                       />
                     </div>
                   )}
 
                   <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group">
                     {/* Step Number */}
-                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                    <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br from-orange-500 to-amber-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg">
                       {step.number}
                     </div>
 
                     {/* Icon */}
-                    <div className="inline-flex p-4 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 mb-6 shadow-lg group-hover:shadow-xl transition-shadow">
+                    <div className="inline-flex p-4 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 mb-6 shadow-lg group-hover:shadow-xl transition-shadow">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
 
                     {/* Content */}
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                       {t(step.titleKey)}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-300 leading-relaxed">

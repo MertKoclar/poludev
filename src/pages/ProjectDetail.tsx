@@ -57,7 +57,7 @@ export const ProjectDetail: React.FC = () => {
         return {
           icon: CheckCircle,
           label: t('projects.status.completed') || 'Completed',
-          color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400',
+          color: 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400',
         };
       case 'in-development':
         return {
@@ -111,7 +111,7 @@ export const ProjectDetail: React.FC = () => {
           </p>
           <Link
             to="/projects"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-semibold"
           >
             <ArrowLeft className="w-4 h-4" />
             {t('projects.backToProjects') || 'Back to Projects'}
@@ -172,10 +172,10 @@ export const ProjectDetail: React.FC = () => {
       />
       <div className="min-h-screen pt-20 pb-20">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-0 right-0 w-96 h-96 bg-purple-300 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
+            className="absolute top-0 right-0 w-96 h-96 bg-amber-300 dark:bg-amber-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
             animate={{
               x: [0, 100, 0],
               y: [0, -100, 0],
@@ -196,7 +196,7 @@ export const ProjectDetail: React.FC = () => {
             {/* Back Button */}
             <Link
               to="/projects"
-              className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors mb-8"
+              className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors mb-8"
             >
               <ArrowLeft className="w-5 h-5" />
               {t('projects.backToProjects') || 'Back to Projects'}
@@ -212,7 +212,7 @@ export const ProjectDetail: React.FC = () => {
                   </div>
                 )}
                 {project.category && (
-                  <span className="px-4 py-2 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded-full font-medium">
+                  <span className="px-4 py-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full font-medium">
                     {getCategoryLabel(project.category)}
                   </span>
                 )}
@@ -273,7 +273,7 @@ export const ProjectDetail: React.FC = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-lg font-semibold hover:bg-orange-700 transition-colors"
                   >
                     <ExternalLink className="w-5 h-5" />
                     {t('projects.viewLive')}
@@ -339,7 +339,7 @@ export const ProjectDetail: React.FC = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     whileHover={{ scale: 1.1, y: -2 }}
-                    className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full text-sm font-medium shadow-md hover:shadow-lg transition-shadow cursor-default"
+                    className="px-4 py-2 bg-gradient-to-r from-orange-500 to-amber-600 text-white rounded-full text-sm font-medium shadow-md hover:shadow-lg transition-shadow cursor-default"
                   >
                     {tag}
                   </motion.span>

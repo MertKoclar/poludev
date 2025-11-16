@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
-import { Menu, X } from 'lucide-react';
+import { CodeXml, Menu, X } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const { t } = useTranslation();
@@ -42,9 +42,10 @@ export const Header: React.FC = () => {
           >
             <Link
               to="/"
-              className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600"
+              className="flex text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-amber-600"
             >
-              {t('home.title')}
+              {/* {t('home.title')} */}
+              <span className='dark:text-white text-gray-800 inline-flex items-center gap-2'><CodeXml />Polu</span><span className='text-orange-500'>dev</span>
             </Link>
           </motion.div>
 
@@ -56,15 +57,15 @@ export const Header: React.FC = () => {
                 to={link.path}
                 className={`relative px-3 py-2 font-medium transition-colors ${
                   isActive(link.path)
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                    ? 'text-orange-600 dark:text-orange-400'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400'
                 }`}
               >
                 {link.label}
                 {isActive(link.path) && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 dark:bg-blue-400"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-orange-600 dark:bg-orange-400"
                     initial={false}
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
@@ -77,8 +78,8 @@ export const Header: React.FC = () => {
                 to="/admin"
                 className={`px-3 py-2 font-medium transition-colors ${
                   isActive('/admin')
-                    ? 'text-blue-600 dark:text-blue-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
+                    ? 'text-orange-600 dark:text-orange-400'
+                    : 'text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400'
                 }`}
               >
                 {t('common.admin')}
@@ -89,7 +90,7 @@ export const Header: React.FC = () => {
               {user && (
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                  className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors font-medium"
                 >
                   {t('common.logout')}
                 </button>
@@ -126,7 +127,7 @@ export const Header: React.FC = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`px-4 py-2 font-medium transition-colors ${
                       isActive(link.path)
-                        ? 'text-blue-600 dark:text-blue-400'
+                        ? 'text-orange-600 dark:text-orange-400'
                         : 'text-gray-700 dark:text-gray-300'
                     }`}
                   >

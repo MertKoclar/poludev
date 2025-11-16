@@ -109,7 +109,7 @@ export const Dashboard: React.FC = () => {
       icon: Plus,
       label: t('admin.addProject'),
       link: '/admin/projects',
-      color: 'bg-blue-600 hover:bg-blue-700',
+      color: 'bg-orange-600 hover:bg-orange-600',
     },
     {
       icon: Edit,
@@ -121,7 +121,7 @@ export const Dashboard: React.FC = () => {
       icon: Upload,
       label: t('admin.cvManagement'),
       link: '/admin/cv',
-      color: 'bg-purple-600 hover:bg-purple-700',
+      color: 'bg-amber-600 hover:bg-amber-600',
     },
   ];
 
@@ -141,7 +141,7 @@ export const Dashboard: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
       </div>
     );
   }
@@ -168,28 +168,28 @@ export const Dashboard: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-xl shadow-lg text-white"
+          className="bg-gradient-to-br from-orange-600 to-orange-600 p-6 rounded-xl shadow-lg text-white"
         >
           <div className="flex items-center justify-between mb-4">
             <Rocket className="w-8 h-8" />
             <TrendingUp className="w-6 h-6 opacity-80" />
           </div>
           <h3 className="text-2xl sm:text-3xl font-bold mb-1">{stats.projects}</h3>
-          <p className="text-blue-100">{t('admin.totalProjects') || 'Total Projects'}</p>
+          <p className="text-orange-600">{t('admin.totalProjects') || 'Total Projects'}</p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="bg-gradient-to-br from-purple-500 to-purple-600 p-4 sm:p-6 rounded-xl shadow-lg text-white"
+          className="bg-gradient-to-br from-amber-600 to-amber-600 p-4 sm:p-6 rounded-xl shadow-lg text-white"
         >
           <div className="flex items-center justify-between mb-4">
             <CheckCircle className="w-8 h-8" />
             <TrendingUp className="w-6 h-6 opacity-80" />
           </div>
           <h3 className="text-3xl font-bold mb-1">{stats.featuredProjects}</h3>
-          <p className="text-purple-100">{t('admin.featuredProjects') || 'Featured Projects'}</p>
+          <p className="text-amber-600">{t('admin.featuredProjects') || 'Featured Projects'}</p>
         </motion.div>
 
         <motion.div
@@ -269,13 +269,13 @@ export const Dashboard: React.FC = () => {
                 >
                   <div className={`p-2 rounded-lg ${
                     activity.action === 'created' ? 'bg-green-100 dark:bg-green-900/30' :
-                    activity.action === 'updated' ? 'bg-blue-100 dark:bg-blue-900/30' :
+                    activity.action === 'updated' ? 'bg-orange-600 dark:bg-orange-600/30' :
                     'bg-red-100 dark:bg-red-900/30'
                   }`}>
                     {activity.action === 'created' ? (
                       <Plus className="w-4 h-4 text-green-600 dark:text-green-400" />
                     ) : activity.action === 'updated' ? (
-                      <Edit className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      <Edit className="w-4 h-4 text-orange-600 dark:text-orange-600" />
                     ) : (
                       <AlertCircle className="w-4 h-4 text-red-600 dark:text-red-400" />
                     )}
@@ -316,7 +316,7 @@ export const Dashboard: React.FC = () => {
           </p>
           <Link
             to="/admin/projects"
-            className="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="inline-block px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-600 transition-colors"
           >
             {t('common.view')}
           </Link>
@@ -356,7 +356,7 @@ export const Dashboard: React.FC = () => {
           </p>
           <Link
             to="/admin/cv"
-            className="inline-block px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            className="inline-block px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-600 transition-colors"
           >
             {t('common.view')}
           </Link>

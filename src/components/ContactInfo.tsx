@@ -52,8 +52,8 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:shadow-lg transition-shadow"
               >
-                <div className="inline-flex p-4 bg-blue-100 dark:bg-blue-900/30 rounded-full mb-4">
-                  <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                <div className="inline-flex p-4 bg-orange-100 dark:bg-orange-900/30 rounded-full mb-4">
+                  <Mail className="w-6 h-6 text-orange-600 dark:text-orange-400" />
                 </div>
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
                   {t('about.contact.email') || 'Email'}
@@ -74,8 +74,8 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
                 whileHover={{ scale: 1.05, y: -5 }}
                 className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl hover:shadow-lg transition-shadow"
               >
-                <div className="inline-flex p-4 bg-purple-100 dark:bg-purple-900/30 rounded-full mb-4">
-                  <Phone className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                <div className="inline-flex p-4 bg-amber-100 dark:bg-amber-900/30 rounded-full mb-4">
+                  <Phone className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                 </div>
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
                   {t('about.contact.phone') || 'Phone'}
@@ -94,8 +94,8 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl"
               >
-                <div className="inline-flex p-4 bg-pink-100 dark:bg-pink-900/30 rounded-full mb-4">
-                  <MapPin className="w-6 h-6 text-pink-600 dark:text-pink-400" />
+                <div className="inline-flex p-4 bg-orange-100 dark:bg-orange-900/30 rounded-full mb-4">
+                  <MapPin className="w-6 h-6 text-orange-600 dark:text-orange-400" />
                 </div>
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
                   {t('about.contact.location') || 'Location'}
@@ -123,24 +123,24 @@ export const ContactInfo: React.FC<ContactInfoProps> = ({
                   <input
                     type="text"
                     placeholder={t('about.contact.name') || 'Your Name'}
-                    className="px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 dark:text-white"
+                    className="px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-gray-900 dark:text-white"
                   />
                   <input
                     type="email"
                     placeholder={t('about.contact.email') || 'Your Email'}
-                    className="px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 dark:text-white"
+                    className="px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-gray-900 dark:text-white"
                   />
                 </div>
                 <textarea
                   rows={5}
                   placeholder={t('about.contact.message') || 'Your Message'}
-                  className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-900 dark:text-white resize-none"
+                  className="w-full px-4 py-3 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:outline-none text-gray-900 dark:text-white resize-none"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   type="submit"
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all flex items-center justify-center gap-2"
+                  className="w-full px-6 py-3 bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-lg font-semibold hover:from-orange-700 hover:to-amber-700 transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="w-5 h-5" />
                   {t('about.contact.send') || 'Send Message'}

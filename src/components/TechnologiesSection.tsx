@@ -19,16 +19,16 @@ export const TechnologiesSection: React.FC = () => {
   const { t } = useTranslation();
 
   const technologies = [
-    { icon: Code2, name: 'React', color: 'text-blue-500', bgColor: 'from-blue-500 to-blue-600' },
-    { icon: FileCode, name: 'TypeScript', color: 'text-blue-600', bgColor: 'from-blue-600 to-blue-700' },
+    { icon: Code2, name: 'React', color: 'text-orange-500', bgColor: 'from-orange-500 to-orange-600' },
+    { icon: FileCode, name: 'TypeScript', color: 'text-orange-600', bgColor: 'from-orange-600 to-amber-600' },
     { icon: Server, name: 'Node.js', color: 'text-green-600', bgColor: 'from-green-500 to-green-600' },
-    { icon: Database, name: 'PostgreSQL', color: 'text-blue-700', bgColor: 'from-blue-600 to-blue-800' },
+    { icon: Database, name: 'PostgreSQL', color: 'text-orange-700', bgColor: 'from-orange-600 to-orange-800' },
     { icon: Palette, name: 'Tailwind CSS', color: 'text-cyan-500', bgColor: 'from-cyan-500 to-cyan-600' },
-    { icon: Sparkles, name: 'Framer Motion', color: 'text-purple-600', bgColor: 'from-purple-500 to-purple-600' },
+    { icon: Sparkles, name: 'Framer Motion', color: 'text-amber-600', bgColor: 'from-amber-500 to-amber-600' },
     { icon: Cloud, name: 'Supabase', color: 'text-green-500', bgColor: 'from-green-400 to-green-600' },
-    { icon: Box, name: 'Docker', color: 'text-blue-400', bgColor: 'from-blue-400 to-blue-500' },
-    { icon: Layers, name: 'Kubernetes', color: 'text-blue-600', bgColor: 'from-blue-500 to-indigo-600' },
-    { icon: Network, name: 'GraphQL', color: 'text-pink-600', bgColor: 'from-pink-500 to-pink-600' },
+    { icon: Box, name: 'Docker', color: 'text-orange-400', bgColor: 'from-orange-400 to-orange-500' },
+    { icon: Layers, name: 'Kubernetes', color: 'text-orange-600', bgColor: 'from-orange-500 to-amber-600' },
+    { icon: Network, name: 'GraphQL', color: 'text-amber-600', bgColor: 'from-amber-500 to-amber-600' },
     { icon: Database, name: 'MongoDB', color: 'text-green-500', bgColor: 'from-green-400 to-green-600' },
     { icon: Zap, name: 'Python', color: 'text-yellow-500', bgColor: 'from-yellow-400 to-yellow-600' },
   ];

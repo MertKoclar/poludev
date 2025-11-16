@@ -38,7 +38,7 @@ export const FeaturedProjects: React.FC = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
       </div>
     );
   }
@@ -89,14 +89,14 @@ export const FeaturedProjects: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
               ) : (
-                <div className="h-64 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                <div className="h-64 bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center">
                   <Code2 className="w-20 h-20 text-white opacity-50" />
                 </div>
               )}
 
               {/* Project Content */}
               <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                   {lang === 'tr' ? project.title_tr : project.title_en}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2">
@@ -108,7 +108,7 @@ export const FeaturedProjects: React.FC = () => {
                   {project.tags.slice(0, 3).map((tag, tagIndex) => (
                     <span
                       key={tagIndex}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium"
+                      className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium"
                     >
                       {tag}
                     </span>
@@ -124,7 +124,7 @@ export const FeaturedProjects: React.FC = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
-                      className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
+                      className="flex items-center gap-2 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
                       {t('projects.viewLive')}

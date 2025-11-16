@@ -11,21 +11,21 @@ export const ServicesSection: React.FC = () => {
       icon: Code,
       titleKey: 'services.web.title',
       descriptionKey: 'services.web.description',
-      color: 'from-blue-500 to-blue-600',
+      color: 'from-orange-500 to-orange-600',
       delay: 0.1,
     },
     {
       icon: Smartphone,
       titleKey: 'services.mobile.title',
       descriptionKey: 'services.mobile.description',
-      color: 'from-purple-500 to-purple-600',
+      color: 'from-orange-600 to-amber-600',
       delay: 0.2,
     },
     {
       icon: Globe,
       titleKey: 'services.api.title',
       descriptionKey: 'services.api.description',
-      color: 'from-pink-500 to-pink-600',
+      color: 'from-amber-500 to-amber-600',
       delay: 0.3,
     },
     {
@@ -85,7 +85,7 @@ export const ServicesSection: React.FC = () => {
                 <div className={`inline-flex p-4 rounded-xl bg-gradient-to-br ${service.color} mb-6 shadow-lg group-hover:shadow-xl transition-shadow`}>
                   <Icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                   {t(service.titleKey)}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 leading-relaxed">

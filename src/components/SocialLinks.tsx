@@ -63,8 +63,8 @@ export const SocialLinks: React.FC<SocialLinksProps> = ({
             className={`
               ${sizeClasses[size]}
               ${variant === 'minimal' 
-                ? 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400' 
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400'
+                ? 'text-gray-600 dark:text-gray-400 hover:text-orange-600 dark:hover:text-orange-400' 
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-orange-100 dark:hover:bg-orange-900/30 hover:text-orange-600 dark:hover:text-orange-400'
               }
               rounded-lg transition-colors
             `}

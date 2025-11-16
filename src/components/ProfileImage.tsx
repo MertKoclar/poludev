@@ -55,14 +55,14 @@ export const ProfileImage: React.FC<ProfileImageProps> = ({
             className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+          <div className="w-full h-full bg-gradient-to-br from-orange-500 via-orange-600 to-amber-500 flex items-center justify-center text-white font-bold">
             {initials || <User className="w-1/2 h-1/2" />}
           </div>
         )}
       </motion.div>
 
       {editable && (
-        <label className="absolute bottom-0 right-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-blue-700 transition-colors shadow-lg">
+        <label className="absolute bottom-0 right-0 w-8 h-8 bg-orange-600 rounded-full flex items-center justify-center cursor-pointer hover:bg-orange-700 transition-colors shadow-lg">
           <Camera className="w-4 h-4 text-white" />
           <input
             type="file"

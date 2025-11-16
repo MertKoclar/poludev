@@ -33,7 +33,7 @@ export const Footer: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-2xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+            <h3 className="text-2xl font-bold text-white mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-amber-400">
               {t('home.title')}
             </h3>
             <p className="text-gray-400 mb-4">
@@ -106,8 +106,7 @@ export const Footer: React.FC = () => {
               &copy; {currentYear} {t('home.title')}. {t('footer.allRightsReserved')}
             </p>
             <p className="text-gray-400 text-sm flex items-center gap-2">
-              {t('footer.madeWith')} <Heart className="w-4 h-4 text-red-500 fill-red-500" /> {t('common.and')} {' '}
-              <Code2 className="w-4 h-4 text-blue-500" /> {t('footer.by')} Poludev
+              Poludev {t('footer.by')}  <Code2 className="w-4 h-4 text-orange-500" />
             </p>
           </div>
         </div>

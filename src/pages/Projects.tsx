@@ -154,7 +154,7 @@ export const Projects: React.FC = () => {
     return (
       <div className="min-h-screen">
         {/* Hero Section Skeleton */}
-        <section className="relative py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <section className="relative py-32 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center max-w-3xl mx-auto space-y-6">
               <div className="h-20 bg-gray-200 dark:bg-gray-700 rounded-lg w-3/4 mx-auto animate-pulse" />
@@ -191,10 +191,10 @@ export const Projects: React.FC = () => {
       />
       <div className="min-h-screen">
         {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative py-32 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-0 right-0 w-96 h-96 bg-purple-300 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
+            className="absolute top-0 right-0 w-96 h-96 bg-amber-300 dark:bg-amber-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
             animate={{
               x: [0, 100, 0],
               y: [0, -100, 0],
@@ -218,9 +218,9 @@ export const Projects: React.FC = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Code2 className="w-16 h-16 mx-auto mb-6 text-blue-600 dark:text-blue-400" />
+              <Code2 className="w-16 h-16 mx-auto mb-6 text-orange-600 dark:text-orange-400" />
             </motion.div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-400 dark:to-pink-400">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 dark:from-orange-400 dark:via-orange-500 dark:to-amber-500">
               {t('projects.title')}
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed">
@@ -249,7 +249,7 @@ export const Projects: React.FC = () => {
                 placeholder={t('common.search') || 'Search projects...'}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none text-gray-900 dark:text-white"
+                className="w-full pl-12 pr-4 py-4 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:border-orange-500 dark:focus:border-orange-500 focus:outline-none text-gray-900 dark:text-white"
               />
               {searchTerm && (
                 <button
@@ -270,7 +270,7 @@ export const Projects: React.FC = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:outline-none"
               >
                 <option value="newest">{t('projects.sort.newest') || 'Newest First'}</option>
                 <option value="oldest">{t('projects.sort.oldest') || 'Oldest First'}</option>
@@ -287,7 +287,7 @@ export const Projects: React.FC = () => {
                   onClick={() => setSelectedCategory(null)}
                   className={`px-4 py-2 rounded-full font-medium transition-all text-sm ${
                     selectedCategory === null
-                      ? 'bg-purple-600 text-white shadow-lg'
+                      ? 'bg-orange-600 text-white shadow-lg'
                       : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700'
                   }`}
                 >
@@ -299,7 +299,7 @@ export const Projects: React.FC = () => {
                     onClick={() => setSelectedCategory(selectedCategory === category ? null : category)}
                     className={`px-4 py-2 rounded-full font-medium transition-all text-sm ${
                       selectedCategory === category
-                        ? 'bg-purple-600 text-white shadow-lg'
+                        ? 'bg-orange-600 text-white shadow-lg'
                         : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700'
                     }`}
                   >
@@ -345,7 +345,7 @@ export const Projects: React.FC = () => {
                   onClick={() => setSelectedTag(null)}
                   className={`px-4 py-2 rounded-full font-medium transition-all text-sm ${
                     selectedTag === null
-                      ? 'bg-blue-600 text-white shadow-lg'
+                      ? 'bg-orange-600 text-white shadow-lg'
                       : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700'
                   }`}
                 >
@@ -357,7 +357,7 @@ export const Projects: React.FC = () => {
                     onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
                     className={`px-4 py-2 rounded-full font-medium transition-all text-sm ${
                       selectedTag === tag
-                        ? 'bg-blue-600 text-white shadow-lg'
+                        ? 'bg-orange-600 text-white shadow-lg'
                         : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700'
                     }`}
                   >
@@ -422,7 +422,7 @@ export const Projects: React.FC = () => {
                                 onClick={(e) => e.stopPropagation()}
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
-                                className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                                className="flex items-center gap-2 px-4 py-2 bg-orange-600 text-white rounded-lg font-medium hover:bg-orange-700 transition-colors"
                               >
                                 <ExternalLink className="w-4 h-4" />
                                 {t('projects.viewLive')}
@@ -446,7 +446,7 @@ export const Projects: React.FC = () => {
                         </div>
                       </div>
                     ) : (
-                      <div className="h-64 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                      <div className="h-64 bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center">
                         <Code2 className="w-20 h-20 text-white opacity-50" />
                       </div>
                     )}
@@ -456,7 +456,7 @@ export const Projects: React.FC = () => {
                       <div className="flex items-start justify-between mb-2">
                         <h3 
                           onClick={() => navigate(`/projects/${project.id}`)}
-                          className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors cursor-pointer flex-1"
+                          className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors cursor-pointer flex-1"
                         >
                           {lang === 'tr' ? project.title_tr : project.title_en}
                         </h3>
@@ -473,7 +473,7 @@ export const Projects: React.FC = () => {
                               project.status === 'active' 
                                 ? 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400'
                                 : project.status === 'completed'
-                                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+                                ? 'bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400'
                                 : project.status === 'in-development'
                                 ? 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400'
                                 : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-400'
@@ -482,7 +482,7 @@ export const Projects: React.FC = () => {
                             </span>
                           )}
                           {project.category && (
-                            <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 rounded-full text-xs font-medium">
+                            <span className="px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full text-xs font-medium">
                               {t(`projects.category.${project.category}`) || project.category}
                             </span>
                           )}
@@ -523,7 +523,7 @@ export const Projects: React.FC = () => {
                           <span
                             key={tagIndex}
                             onClick={() => setSelectedTag(tag)}
-                            className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium cursor-pointer hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+                            className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded-full text-xs font-medium cursor-pointer hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors"
                           >
                             {tag}
                           </span>
@@ -537,7 +537,7 @@ export const Projects: React.FC = () => {
                             href={project.live_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm"
+                            className="flex items-center gap-2 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 font-medium text-sm"
                           >
                             <ExternalLink className="w-4 h-4" />
                             Live

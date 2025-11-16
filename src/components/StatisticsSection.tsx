@@ -37,19 +37,19 @@ export const StatisticsSection: React.FC = () => {
       icon: Rocket,
       value: stats.projects,
       labelKey: 'statistics.projects',
-      color: 'from-blue-500 to-blue-600',
+      color: 'from-orange-500 to-orange-600',
     },
     {
       icon: Users,
       value: stats.clients || 50,
       labelKey: 'statistics.happyClients',
-      color: 'from-purple-500 to-purple-600',
+      color: 'from-orange-600 to-amber-600',
     },
     {
       icon: Code,
       value: `${stats.experience}+`,
       labelKey: 'statistics.yearsExperience',
-      color: 'from-pink-500 to-pink-600',
+      color: 'from-amber-500 to-amber-600',
     },
     {
       icon: Award,

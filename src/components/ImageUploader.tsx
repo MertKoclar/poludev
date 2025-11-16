@@ -181,7 +181,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
             relative border-2 border-dashed rounded-lg p-8 text-center cursor-pointer
             transition-colors
             ${dragActive 
-              ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' 
+              ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20' 
               : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'
             }
           `}
@@ -196,7 +196,7 @@ export const ImageUploader: React.FC<ImageUploaderProps> = ({
           />
           {uploading ? (
             <div className="flex flex-col items-center">
-              <Loader2 className="w-12 h-12 text-blue-600 dark:text-blue-400 animate-spin mb-4" />
+              <Loader2 className="w-12 h-12 text-orange-600 dark:text-orange-400 animate-spin mb-4" />
               <p className="text-gray-600 dark:text-gray-400">Uploading...</p>
             </div>
           ) : (

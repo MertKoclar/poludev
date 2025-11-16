@@ -89,10 +89,10 @@ export const AboutManagement: React.FC = () => {
               <img
                 src={mertData.profile_image_url}
                 alt="Mert"
-                className="w-16 h-16 rounded-full object-cover border-2 border-blue-500"
+                className="w-16 h-16 rounded-full object-cover border-2 border-orange-600"
               />
             ) : (
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-xl border-2 border-blue-500">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-600 to-amber-600 flex items-center justify-center text-white font-bold text-xl border-2 border-orange-600">
                 M
               </div>
             )}
@@ -139,7 +139,7 @@ export const AboutManagement: React.FC = () => {
               setEditingUser('mert');
               setActiveTab('general');
             }}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center gap-2"
+            className="w-full px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-600 transition-colors duration-200 flex items-center justify-center gap-2"
           >
             <Edit2 className="w-4 h-4" />
             {t('common.edit')}
@@ -375,7 +375,7 @@ const AboutForm: React.FC<AboutFormProps> = ({ user, data, activeTab, onTabChang
                 className={`
                   flex items-center gap-2 px-4 py-2 rounded-lg transition-colors whitespace-nowrap
                   ${isActive
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-orange-600 text-white'
                     : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
                   }
                 `}
@@ -482,7 +482,7 @@ const AboutForm: React.FC<AboutFormProps> = ({ user, data, activeTab, onTabChang
             type="button"
             onClick={handleSubmit}
             disabled={loading}
-            className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 disabled:opacity-50 flex items-center justify-center gap-2"
+            className="flex-1 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-600 transition-colors duration-200 disabled:opacity-50 flex items-center justify-center gap-2"
           >
             <Save className="w-4 h-4" />
             {loading ? t('common.loading') : t('admin.saveChanges')}
@@ -604,7 +604,7 @@ const GeneralTab: React.FC<GeneralTabProps> = ({
             <button
               type="button"
               onClick={handleAddSkill}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-600 transition-colors"
             >
               <Plus className="w-5 h-5" />
             </button>
@@ -615,7 +615,7 @@ const GeneralTab: React.FC<GeneralTabProps> = ({
                 key={index}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="flex items-center gap-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium"
+                className="flex items-center gap-2 px-3 py-1 bg-orange-600 dark:bg-orange-600/30 text-orange-600 dark:text-orange-600 rounded-full text-sm font-medium"
               >
                 <GripVertical className="w-4 h-4 text-gray-400 cursor-move" />
                 <span>{skill}</span>
@@ -689,7 +689,7 @@ const GeneralTab: React.FC<GeneralTabProps> = ({
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                  className="p-2 text-orange-600 dark:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-600/20 rounded-lg transition-colors"
                 >
                   <ExternalLink className="w-4 h-4" />
                 </a>
@@ -928,7 +928,7 @@ const EducationTab: React.FC<EducationTabProps> = ({ education, setEducation, ed
           <button
             type="button"
             onClick={handleAddOrUpdate}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-600 transition-colors"
           >
             {editingItem ? t('common.save') : t('admin.add')}
           </button>
@@ -973,7 +973,7 @@ const EducationTab: React.FC<EducationTabProps> = ({ education, setEducation, ed
                 <button
                   type="button"
                   onClick={() => handleEdit(index)}
-                  className="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                  className="p-2 text-orange-600 dark:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-600/20 rounded-lg transition-colors"
                 >
                   <Edit2 className="w-4 h-4" />
                 </button>
@@ -1174,7 +1174,7 @@ const ExperienceTab: React.FC<any> = ({ experience, setExperience, editingItem, 
           <button
             type="button"
             onClick={handleAddOrUpdate}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-600 transition-colors"
           >
             {editingItem ? t('common.save') : t('admin.add')}
           </button>
@@ -1228,7 +1228,7 @@ const ExperienceTab: React.FC<any> = ({ experience, setExperience, editingItem, 
                 <button
                   type="button"
                   onClick={() => handleEdit(index)}
-                  className="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                  className="p-2 text-orange-600 dark:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-600/20 rounded-lg transition-colors"
                 >
                   <Edit2 className="w-4 h-4" />
                 </button>
@@ -1400,7 +1400,7 @@ const CertificationsTab: React.FC<any> = ({ certifications, setCertifications, e
           <button
             type="button"
             onClick={handleAddOrUpdate}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-600 transition-colors"
           >
             {editingItem ? t('common.save') : t('admin.add')}
           </button>
@@ -1444,7 +1444,7 @@ const CertificationsTab: React.FC<any> = ({ certifications, setCertifications, e
                     href={cert.credential_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1 mt-1"
+                    className="text-xs text-orange-600 dark:text-orange-600 hover:underline flex items-center gap-1 mt-1"
                   >
                     <ExternalLink className="w-3 h-3" />
                     {t('admin.viewCredential') || 'View Credential'}
@@ -1455,7 +1455,7 @@ const CertificationsTab: React.FC<any> = ({ certifications, setCertifications, e
                 <button
                   type="button"
                   onClick={() => handleEdit(index)}
-                  className="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                  className="p-2 text-orange-600 dark:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-600/20 rounded-lg transition-colors"
                 >
                   <Edit2 className="w-4 h-4" />
                 </button>
@@ -1656,7 +1656,7 @@ const TestimonialsTab: React.FC<any> = ({ testimonials, setTestimonials, editing
           <button
             type="button"
             onClick={handleAddOrUpdate}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-600 transition-colors"
           >
             {editingItem ? t('common.save') : t('admin.add')}
           </button>
@@ -1690,7 +1690,7 @@ const TestimonialsTab: React.FC<any> = ({ testimonials, setTestimonials, editing
                     className="w-12 h-12 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-600 to-amber-600 flex items-center justify-center text-white font-bold">
                     {test.name.charAt(0).toUpperCase()}
                   </div>
                 )}
@@ -1720,7 +1720,7 @@ const TestimonialsTab: React.FC<any> = ({ testimonials, setTestimonials, editing
                 <button
                   type="button"
                   onClick={() => handleEdit(index)}
-                  className="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
+                  className="p-2 text-orange-600 dark:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-600/20 rounded-lg transition-colors"
                 >
                   <Edit2 className="w-4 h-4" />
                 </button>
