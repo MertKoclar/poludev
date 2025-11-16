@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { supabase } from '../../config/supabaseClient';
+import { USER_IDS } from '../../config/constants';
 import { 
   Rocket, 
   Users, 
@@ -46,7 +47,7 @@ interface ProjectByStatus {
 }
 
 export const Dashboard: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [stats, setStats] = useState<Stats>({
     projects: 0,
     featuredProjects: 0,
@@ -69,7 +70,7 @@ export const Dashboard: React.FC = () => {
       // Fetch projects stats
       const { data: projects, error: projectsError } = await supabase
         .from('projects')
-        .select('id, featured, status');
+        .select('id, featured, status, title_tr, title_en, created_at, updated_at');
 
       if (projectsError) throw projectsError;
 
@@ -127,20 +128,99 @@ export const Dashboard: React.FC = () => {
         }))
       );
 
-      // Generate recent activities (mock - can be improved with actual activity log)
-      const activities: RecentActivity[] = projects?.slice(0, 5).map((p: any, index: number) => ({
-        id: p.id,
-        type: 'project' as const,
-        action: index % 3 === 0 ? 'created' as const : 'updated' as const,
-        title: p.title_tr || 'Project',
-        timestamp: new Date(Date.now() - index * 3600000).toISOString(),
-      })) || [];
-
-      setRecentActivities(activities);
+      // Fetch dynamic recent activities
+      await fetchRecentActivities();
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchRecentActivities = async () => {
+    try {
+      const lang = i18n.language as 'tr' | 'en';
+      const activities: RecentActivity[] = [];
+
+      // Fetch recent projects
+      const { data: recentProjects, error: projectsError } = await supabase
+        .from('projects')
+        .select('id, title_tr, title_en, created_at, updated_at')
+        .order('updated_at', { ascending: false })
+        .limit(10);
+
+      if (!projectsError && recentProjects) {
+        recentProjects.forEach((project: any) => {
+          const title = lang === 'tr' ? project.title_tr : project.title_en;
+          const createdTime = new Date(project.created_at).getTime();
+          const updatedTime = project.updated_at ? new Date(project.updated_at).getTime() : createdTime;
+          
+          // If updated recently (within 1 hour of creation, consider it as created)
+          // Otherwise, use the most recent timestamp
+          const isRecentlyCreated = Math.abs(updatedTime - createdTime) < 3600000; // 1 hour
+          
+          activities.push({
+            id: `project-${project.id}`,
+            type: 'project',
+            action: isRecentlyCreated ? 'created' : 'updated',
+            title: title || 'Project',
+            timestamp: isRecentlyCreated ? project.created_at : project.updated_at || project.created_at,
+          });
+        });
+      }
+
+      // Fetch recent about_us updates
+      const { data: recentAbout, error: aboutError } = await supabase
+        .from('about_us')
+        .select('id, user_id, updated_at, created_at')
+        .order('updated_at', { ascending: false })
+        .limit(5);
+
+      if (!aboutError && recentAbout) {
+        recentAbout.forEach((about: any) => {
+          const createdTime = new Date(about.created_at).getTime();
+          const updatedTime = about.updated_at ? new Date(about.updated_at).getTime() : createdTime;
+          const isRecentlyCreated = Math.abs(updatedTime - createdTime) < 3600000;
+          
+          const userName = about.user_id === USER_IDS.MERT ? 'Mert' : about.user_id === USER_IDS.MUSTAFA ? 'Mustafa' : 'User';
+          activities.push({
+            id: `about-${about.id}`,
+            type: 'about',
+            action: isRecentlyCreated ? 'created' : 'updated',
+            title: `About Us (${userName})`,
+            timestamp: isRecentlyCreated ? about.created_at : about.updated_at || about.created_at,
+          });
+        });
+      }
+
+      // Fetch recent CV uploads
+      const { data: recentCVs, error: cvError } = await supabase
+        .from('cv_versions')
+        .select('id, user_id, version, uploaded_at, created_at')
+        .order('uploaded_at', { ascending: false })
+        .limit(5);
+
+      if (!cvError && recentCVs) {
+        recentCVs.forEach((cv: any) => {
+          const userName = cv.user_id === USER_IDS.MERT ? 'Mert' : cv.user_id === USER_IDS.MUSTAFA ? 'Mustafa' : 'User';
+          activities.push({
+            id: `cv-${cv.id}`,
+            type: 'cv',
+            action: 'created',
+            title: `CV Version ${cv.version} (${userName})`,
+            timestamp: cv.uploaded_at || cv.created_at,
+          });
+        });
+      }
+
+      // Sort all activities by timestamp (most recent first) and take top 10
+      activities.sort((a, b) => {
+        return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
+      });
+
+      setRecentActivities(activities.slice(0, 10));
+    } catch (error) {
+      console.error('Error fetching recent activities:', error);
     }
   };
 
@@ -302,35 +382,60 @@ export const Dashboard: React.FC = () => {
           </h2>
           <div className="space-y-4">
             {recentActivities.length > 0 ? (
-              recentActivities.map((activity) => (
-                <div
-                  key={activity.id}
-                  className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg"
-                >
-                  <div className={`p-2 rounded-lg ${
-                    activity.action === 'created' ? 'bg-green-100 dark:bg-green-900/30' :
-                    activity.action === 'updated' ? 'bg-orange-600 dark:bg-orange-600/30' :
-                    'bg-red-100 dark:bg-red-900/30'
-                  }`}>
-                    {activity.action === 'created' ? (
-                      <Plus className="w-4 h-4 text-green-600 dark:text-green-400" />
-                    ) : activity.action === 'updated' ? (
-                      <Edit className="w-4 h-4 text-orange-600 dark:text-orange-600" />
-                    ) : (
-                      <AlertCircle className="w-4 h-4 text-red-600 dark:text-red-400" />
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium text-gray-900 dark:text-white">
-                      {activity.title}
-                    </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {activity.action} • {formatTimeAgo(activity.timestamp)}
-                    </p>
-                  </div>
-                  <Clock className="w-4 h-4 text-gray-400" />
-                </div>
-              ))
+              recentActivities.map((activity) => {
+                const getActivityLink = () => {
+                  if (activity.type === 'project') {
+                    return `/admin/projects`;
+                  } else if (activity.type === 'about') {
+                    return `/admin/about`;
+                  } else if (activity.type === 'cv') {
+                    return `/admin/cv`;
+                  }
+                  return '#';
+                };
+
+                const getActionLabel = () => {
+                  if (activity.action === 'created') {
+                    return t('admin.created') || 'created';
+                  } else if (activity.action === 'updated') {
+                    return t('admin.updated') || 'updated';
+                  } else if (activity.action === 'deleted') {
+                    return t('admin.deleted') || 'deleted';
+                  }
+                  return activity.action;
+                };
+
+                return (
+                  <Link
+                    key={activity.id}
+                    to={getActivityLink()}
+                    className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+                  >
+                    <div className={`p-2 rounded-lg flex-shrink-0 ${
+                      activity.action === 'created' ? 'bg-green-100 dark:bg-green-900/30' :
+                      activity.action === 'updated' ? 'bg-orange-100 dark:bg-orange-900/30' :
+                      'bg-red-100 dark:bg-red-900/30'
+                    }`}>
+                      {activity.action === 'created' ? (
+                        <Plus className="w-4 h-4 text-green-600 dark:text-green-400" />
+                      ) : activity.action === 'updated' ? (
+                        <Edit className="w-4 h-4 text-orange-600 dark:text-orange-400" />
+                      ) : (
+                        <AlertCircle className="w-4 h-4 text-red-600 dark:text-red-400" />
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                        {activity.title}
+                      </p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        {getActionLabel()} • {formatTimeAgo(activity.timestamp)}
+                      </p>
+                    </div>
+                    <Clock className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                  </Link>
+                );
+              })
             ) : (
               <p className="text-gray-500 dark:text-gray-400 text-center py-8">
                 {t('admin.noRecentActivity') || 'No recent activity'}
