@@ -99,7 +99,9 @@
       "active": "Aktif",
       "completed": "Tamamlandı",
       "inDevelopment": "Geliştirme Aşamasında",
-      "onHold": "Beklemede"
+      "in-development": "Geliştirme Aşamasında",
+      "onHold": "Beklemede",
+      "on-hold": "Beklemede"
     },
     "category": {
       "web": "Web",

@@ -96,7 +96,9 @@
       "active": "Active",
       "completed": "Completed",
       "inDevelopment": "In Development",
-      "onHold": "On Hold"
+      "in-development": "In Development",
+      "onHold": "On Hold",
+      "on-hold": "On Hold"
     },
     "category": {
       "web": "Web",

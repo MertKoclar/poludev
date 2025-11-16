@@ -30,15 +30,42 @@ export const ProjectManagement: React.FC = () => {
 
   const fetchProjects = async () => {
     try {
-      const { data, error } = await supabase
+      setLoading(true);
+      // Try to fetch with display_order first, fallback to created_at if it fails
+      let query = supabase
         .from('projects')
-        .select('*')
-        .order('display_order', { ascending: true, nullsFirst: false })
-        .order('created_at', { ascending: false });
+        .select('*');
+      
+      // Try ordering by display_order, but don't fail if column doesn't exist
+      try {
+        query = query.order('display_order', { ascending: true, nullsFirst: true });
+      } catch (e) {
+        // display_order column might not exist, continue without it
+        console.warn('display_order column not found, using created_at only');
+      }
+      
+      const { data, error } = await query.order('created_at', { ascending: false });
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error:', error);
+        // If error is about display_order, try without it
+        if (error.message?.includes('display_order') || error.code === '42703') {
+          const { data: fallbackData, error: fallbackError } = await supabase
+            .from('projects')
+            .select('*')
+            .order('created_at', { ascending: false });
+          
+          if (fallbackError) throw fallbackError;
+          setProjects(fallbackData || []);
+          return;
+        }
+        throw error;
+      }
+      
+      console.log('Fetched projects:', data?.length || 0, 'projects');
       setProjects(data || []);
     } catch (err: any) {
+      console.error('Error in fetchProjects:', err);
       logError(err, 'fetchProjects');
       error(getErrorMessage(err, t('admin.errorFetchingProjects') || 'Failed to fetch projects'));
     } finally {
@@ -243,13 +270,24 @@ export const ProjectManagement: React.FC = () => {
         />
       )}
 
-      {projects.length === 0 ? (
+      {!loading && projects.length === 0 && (
         <div className="text-center py-20 bg-gray-100 dark:bg-gray-800 rounded-lg">
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-lg mb-4">
             {t('admin.noProjects') || 'No projects found. Add your first project!'}
           </p>
+          <button
+            onClick={() => {
+              setEditingProject(null);
+              setShowForm(true);
+            }}
+            className="px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+          >
+            {t('admin.addProject')}
+          </button>
         </div>
-      ) : (
+      )}
+
+      {!loading && projects.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {projects.map((project) => (
             <motion.div
