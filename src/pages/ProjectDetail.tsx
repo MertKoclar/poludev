@@ -8,6 +8,7 @@ import { ExternalLink, Github, ArrowLeft, Calendar, Code2, Star, GitFork, Eye, C
 import { Lightbox } from '../components/Lightbox';
 import { SkeletonCard } from '../components/Skeleton';
 import { SEO } from '../components/SEO';
+import { Breadcrumb } from '../components/Breadcrumb';
 
 export const ProjectDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -193,6 +194,15 @@ export const ProjectDetail: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
+            {/* Breadcrumb */}
+            <Breadcrumb
+              items={[
+                { label: t('common.home') || 'Home', path: '/' },
+                { label: t('projects.title') || 'Projects', path: '/projects' },
+                { label: projectTitle, path: `/projects/${project.id}` },
+              ]}
+              className="mb-6"
+            />
             {/* Back Button */}
             <Link
               to="/projects"

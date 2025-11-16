@@ -22,7 +22,8 @@
     "close": "Kapat",
     "language": "Dil",
     "theme": "Tema",
-    "menu": "Menü"
+    "menu": "Menü",
+    "at": "-"
   },
   "home": {
     "title": "Poludev",
@@ -31,39 +32,45 @@
     "cta": "Projelerimizi Keşfet"
   },
   "about": {
-    "title": "Hakkımızda",
-    "heroDescription": "İnovatif çözümler yaratan tutkulu geliştiricileriz",
-    "mert": {
-      "name": "Mert",
-      "bio": "Full-stack developer ve teknoloji tutkunu"
+      "title": "Hakkımızda",
+      "heroDescription": "İnovatif çözümler yaratan tutkulu geliştiricileriz",
+      "mert": {
+        "name": "Mert",
+        "bio": "Full-stack developer ve teknoloji tutkunu"
+      },
+      "mustafa": {
+        "name": "Mustafa",
+        "bio": "Full-stack developer ve yazılım mimarı"
+      },
+      "skills": "Yetenekler",
+      "education": "Eğitim",
+      "experience": "Deneyim",
+      "certifications": {
+        "title": "Sertifikalar",
+        "subtitle": "Profesyonel sertifikalar ve kimlik bilgileri",
+        "issued": "Veriliş",
+        "expires": "Son Geçerlilik",
+        "credentialId": "Sertifika ID",
+        "viewCredential": "Sertifikayı Görüntüle"
+      },
+      "testimonials": {
+        "title": "Ne Diyorlar?",
+        "subtitle": "Müşterilerimizden ve ortaklarımızdan referanslar"
+      },
+      "contact": {
+        "title": "İletişime Geçin",
+        "subtitle": "Sizden haber almak isteriz",
+        "email": "E-posta",
+        "phone": "Telefon",
+        "location": "Konum",
+        "sendMessage": "Bize bir mesaj gönderin",
+        "name": "Adınız",
+        "message": "Mesajınız",
+        "send": "Mesaj Gönder",
+        "contactEmail": "İletişim E-postası",
+        "contactPhone": "İletişim Telefonu"
+      }
     },
-    "mustafa": {
-      "name": "Mustafa",
-      "bio": "Full-stack developer ve yazılım mimarı"
-    },
-    "skills": "Yetenekler",
-    "education": "Eğitim",
-    "experience": "Deneyim",
-    "certifications": {
-      "title": "Sertifikalar",
-      "subtitle": "Profesyonel sertifikalar ve kimlik bilgileri"
-    },
-    "testimonials": {
-      "title": "Ne Diyorlar?",
-      "subtitle": "Müşterilerimizden ve ortaklarımızdan referanslar"
-    },
-    "contact": {
-      "title": "İletişime Geçin",
-      "subtitle": "Sizden haber almak isteriz",
-      "email": "E-posta",
-      "phone": "Telefon",
-      "location": "Konum",
-      "sendMessage": "Bize bir mesaj gönderin",
-      "name": "Adınız",
-      "message": "Mesajınız",
-      "send": "Mesaj Gönder"
-    }
-  },
   "projects": {
     "title": "Projelerimiz",
     "description": "Birlikte geliştirdiğimiz projeler",
@@ -161,11 +168,12 @@
     "contactUs": "İletişime Geçin"
   },
   "admin": {
-    "title": "Admin Paneli",
-    "dashboard": "Kontrol Paneli",
-    "projectManagement": "Proje Yönetimi",
-    "aboutManagement": "Hakkımızda Yönetimi",
-    "cvManagement": "CV Yönetimi",
+      "title": "Admin Paneli",
+      "dashboard": "Kontrol Paneli",
+      "projectManagement": "Proje Yönetimi",
+      "aboutManagement": "Hakkımızda Yönetimi",
+      "cvManagement": "CV Yönetimi",
+      "siteSettings": "Site Ayarları",
     "addProject": "Proje Ekle",
     "editProject": "Projeyi Düzenle",
     "projectTitle": "Proje Başlığı",
@@ -302,7 +310,8 @@
     "defaultTemplate": "Varsayılan Şablon",
     "modernTemplate": "Modern Şablon",
     "classicTemplate": "Klasik Şablon",
-    "creativeTemplate": "Yaratıcı Şablon"
+    "creativeTemplate": "Yaratıcı Şablon",
+    "projectsReordered": "Projeler başarıyla yeniden sıralandı"
   },
   "auth": {
     "email": "E-posta",

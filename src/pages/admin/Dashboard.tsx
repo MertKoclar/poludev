@@ -15,6 +15,7 @@ import {
   CheckCircle,
   AlertCircle
 } from 'lucide-react';
+import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 interface Stats {
   projects: number;
@@ -33,6 +34,17 @@ interface RecentActivity {
   timestamp: string;
 }
 
+interface ProjectByCategory {
+  category: string;
+  count: number;
+}
+
+interface ProjectByStatus {
+  status: string;
+  count: number;
+  [key: string]: string | number;
+}
+
 export const Dashboard: React.FC = () => {
   const { t } = useTranslation();
   const [stats, setStats] = useState<Stats>({
@@ -45,6 +57,8 @@ export const Dashboard: React.FC = () => {
   });
   const [recentActivities, setRecentActivities] = useState<RecentActivity[]>([]);
   const [loading, setLoading] = useState(true);
+  const [projectsByCategory, setProjectsByCategory] = useState<ProjectByCategory[]>([]);
+  const [projectsByStatus, setProjectsByStatus] = useState<ProjectByStatus[]>([]);
 
   useEffect(() => {
     fetchDashboardData();
@@ -86,6 +100,32 @@ export const Dashboard: React.FC = () => {
         users: usersCount || 0,
         aboutEntries: aboutCount || 0,
       });
+
+      // Calculate projects by category
+      const categoryCounts: Record<string, number> = {};
+      projects?.forEach((p: any) => {
+        const category = p.category || 'other';
+        categoryCounts[category] = (categoryCounts[category] || 0) + 1;
+      });
+      setProjectsByCategory(
+        Object.entries(categoryCounts).map(([category, count]) => ({
+          category: category.charAt(0).toUpperCase() + category.slice(1),
+          count,
+        }))
+      );
+
+      // Calculate projects by status
+      const statusCounts: Record<string, number> = {};
+      projects?.forEach((p: any) => {
+        const status = p.status || 'active';
+        statusCounts[status] = (statusCounts[status] || 0) + 1;
+      });
+      setProjectsByStatus(
+        Object.entries(statusCounts).map(([status, count]) => ({
+          status: status.replace('-', ' ').split(' ').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' '),
+          count,
+        }))
+      );
 
       // Generate recent activities (mock - can be improved with actual activity log)
       const activities: RecentActivity[] = projects?.slice(0, 5).map((p: any, index: number) => ({
@@ -362,6 +402,69 @@ export const Dashboard: React.FC = () => {
           </Link>
         </motion.div>
       </div>
+
+      {/* Charts Section */}
+      {(projectsByCategory.length > 0 || projectsByStatus.length > 0) && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          {/* Projects by Category Chart */}
+          {projectsByCategory.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700"
+            >
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Projects by Category
+              </h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={projectsByCategory}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="category" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="count" fill="#f97316" />
+                </BarChart>
+              </ResponsiveContainer>
+            </motion.div>
+          )}
+
+          {/* Projects by Status Chart */}
+          {projectsByStatus.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1 }}
+              className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700"
+            >
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                Projects by Status
+              </h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={projectsByStatus}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={(entry: any) => `${entry.status} ${((entry.percent || 0) * 100).toFixed(0)}%`}
+                    outerRadius={80}
+                    fill="#8884d8"
+                    dataKey="count"
+                  >
+                    {projectsByStatus.map((_entry, index) => {
+                      const colors = ['#f97316', '#10b981', '#3b82f6', '#f59e0b', '#ef4444'];
+                      return <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />;
+                    }) as React.ReactNode[]}
+                  </Pie>
+                  <Tooltip />
+                </PieChart>
+              </ResponsiveContainer>
+            </motion.div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

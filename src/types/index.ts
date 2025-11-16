@@ -70,6 +70,7 @@ export interface Project {
   fork_count?: number;
   view_count?: number;
   featured?: boolean;
+  display_order?: number;
   created_at: string;
   updated_at: string;
 }
@@ -150,6 +151,16 @@ export interface SiteContent {
   section: string;
   key: string;
   value: string;
+  updated_at: string;
+}
+
+// Site settings types
+export interface SiteSettings {
+  id: string;
+  email: string | null;
+  phone: string | null;
+  location: string | null;
+  created_at: string;
   updated_at: string;
 }
 

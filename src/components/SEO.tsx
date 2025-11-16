@@ -52,6 +52,10 @@ export const SEO: React.FC<SEOProps> = ({
   const currentImage = image || `${siteUrl}/og-image.jpg`;
   const canonicalUrl = canonical || currentUrl;
 
+  // Generate image dimensions for better SEO
+  const imageWidth = 1200;
+  const imageHeight = 630;
+
   useEffect(() => {
     // Update document title
     document.title = currentTitle;
@@ -81,6 +85,9 @@ export const SEO: React.FC<SEOProps> = ({
     updateMetaTag('og:title', currentTitle, true);
     updateMetaTag('og:description', currentDescription, true);
     updateMetaTag('og:image', currentImage, true);
+    updateMetaTag('og:image:width', String(imageWidth), true);
+    updateMetaTag('og:image:height', String(imageHeight), true);
+    updateMetaTag('og:image:alt', currentTitle, true);
     updateMetaTag('og:url', currentUrl, true);
     updateMetaTag('og:type', type, true);
     updateMetaTag('og:site_name', siteName, true);
@@ -91,6 +98,7 @@ export const SEO: React.FC<SEOProps> = ({
     updateMetaTag('twitter:title', currentTitle);
     updateMetaTag('twitter:description', currentDescription);
     updateMetaTag('twitter:image', currentImage);
+    updateMetaTag('twitter:image:alt', currentTitle);
 
     // Article meta tags
     if (publishedTime) {

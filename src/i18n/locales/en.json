@@ -19,7 +19,8 @@
     "welcome": "Welcome",
     "search": "Search...",
     "and": "and",
-    "close": "Close"
+    "close": "Close",
+    "at": "at"
   },
   "home": {
     "title": "Poludev",
@@ -28,37 +29,45 @@
     "cta": "Explore Our Projects"
   },
   "about": {
-    "title": "About Us",
-    "heroDescription": "We are passionate developers creating innovative solutions",
-    "mert": {
-      "name": "Mert",
-      "bio": "Full-stack developer and technology enthusiast"
+      "title": "About Us",
+      "heroDescription": "We are passionate developers creating innovative solutions",
+      "mert": {
+        "name": "Mert",
+        "bio": "Full-stack developer and technology enthusiast"
+      },
+      "mustafa": {
+        "name": "Mustafa",
+        "bio": "Full-stack developer and software architect"
+      },
+      "skills": "Skills",
+      "education": "Education",
+      "experience": "Experience",
+      "certifications": {
+        "title": "Certifications",
+        "subtitle": "Professional certifications and credentials",
+        "issued": "Issued",
+        "expires": "Expires",
+        "credentialId": "Credential ID",
+        "viewCredential": "View Credential"
+      },
+      "testimonials": {
+        "title": "What People Say",
+        "subtitle": "Testimonials from our clients and partners"
+      },
+      "contact": {
+        "title": "Get In Touch",
+        "subtitle": "We would love to hear from you",
+        "email": "Email",
+        "phone": "Phone",
+        "location": "Location",
+        "sendMessage": "Send us a message",
+        "name": "Your Name",
+        "message": "Your Message",
+        "send": "Send Message",
+        "contactEmail": "Contact Email",
+        "contactPhone": "Contact Phone"
+      }
     },
-    "mustafa": {
-      "name": "Mustafa",
-      "bio": "Full-stack developer and software architect"
-    },
-    "skills": "Skills",
-    "certifications": {
-      "title": "Certifications",
-      "subtitle": "Professional certifications and credentials"
-    },
-    "testimonials": {
-      "title": "What People Say",
-      "subtitle": "Testimonials from our clients and partners"
-    },
-    "contact": {
-      "title": "Get In Touch",
-      "subtitle": "We would love to hear from you",
-      "email": "Email",
-      "phone": "Phone",
-      "location": "Location",
-      "sendMessage": "Send us a message",
-      "name": "Your Name",
-      "message": "Your Message",
-      "send": "Send Message"
-    }
-  },
   "projects": {
     "title": "Our Projects",
     "description": "Projects we developed together",
@@ -156,11 +165,12 @@
     "contactUs": "Get In Touch"
   },
   "admin": {
-    "title": "Admin Panel",
-    "dashboard": "Dashboard",
-    "projectManagement": "Project Management",
-    "aboutManagement": "About Management",
-    "cvManagement": "CV Management",
+      "title": "Admin Panel",
+      "dashboard": "Dashboard",
+      "projectManagement": "Project Management",
+      "aboutManagement": "About Management",
+      "cvManagement": "CV Management",
+      "siteSettings": "Site Settings",
     "addProject": "Add Project",
     "editProject": "Edit Project",
     "projectTitle": "Project Title",
@@ -297,7 +307,8 @@
     "defaultTemplate": "Default Template",
     "modernTemplate": "Modern Template",
     "classicTemplate": "Classic Template",
-    "creativeTemplate": "Creative Template"
+    "creativeTemplate": "Creative Template",
+    "projectsReordered": "Projects reordered successfully"
   },
   "auth": {
     "email": "Email",

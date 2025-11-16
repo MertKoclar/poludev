@@ -1213,7 +1213,32 @@ const UploadTab: React.FC<UploadTabProps> = ({
   templates,
   t,
 }) => {
+  const [dragActive, setDragActive] = useState(false);
   const nextVersion = (user.cv_versions?.length || 0) + 1;
+
+  const handleDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === 'dragenter' || e.type === 'dragover') {
+      setDragActive(true);
+    } else if (e.type === 'dragleave') {
+      setDragActive(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      const file = e.dataTransfer.files[0];
+      const fakeEvent = {
+        target: { files: [file] },
+      } as unknown as React.ChangeEvent<HTMLInputElement>;
+      onFileSelect(fakeEvent);
+    }
+  };
 
   return (
     <motion.div
@@ -1232,7 +1257,19 @@ const UploadTab: React.FC<UploadTabProps> = ({
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             {t('admin.selectCVFile') || 'Select CV File'} *
           </label>
-          <div className="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg p-6 text-center hover:border-orange-600 transition-colors">
+          <div
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+            className={`
+              border-2 border-dashed rounded-lg p-6 text-center transition-colors
+              ${dragActive 
+                ? 'border-orange-500 bg-orange-50 dark:bg-orange-900/20' 
+                : 'border-gray-300 dark:border-gray-600 hover:border-orange-600'
+              }
+            `}
+          >
             <input
               type="file"
               onChange={onFileSelect}
@@ -1262,7 +1299,7 @@ const UploadTab: React.FC<UploadTabProps> = ({
                 <>
                   <Upload className="w-12 h-12 text-gray-400 mb-2" />
                   <p className="text-gray-900 dark:text-white font-medium mb-1">
-                    {t('admin.clickToUpload') || 'Click to upload CV'}
+                    {t('admin.clickToUpload') || 'Click to upload or drag & drop'}
                   </p>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     PDF, DOCX, HTML supported (Max 10MB)

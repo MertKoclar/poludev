@@ -8,7 +8,8 @@ import { ImageUploader } from '../../components/ImageUploader';
 import { Modal } from '../../components/Modal';
 import { useToast } from '../../context/ToastContext';
 import { STORAGE_BUCKETS } from '../../config/constants';
-import { Trash2, Edit, Eye, CheckSquare, Square, ExternalLink } from 'lucide-react';
+import { Trash2, Edit, Eye, CheckSquare, Square, ExternalLink, GripVertical } from 'lucide-react';
+import { getErrorMessage, logError } from '../../utils/errorHandler';
 
 export const ProjectManagement: React.FC = () => {
   const { t } = useTranslation();
@@ -20,6 +21,8 @@ export const ProjectManagement: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [selectedProjects, setSelectedProjects] = useState<Set<string>>(new Set());
   const [previewProject, setPreviewProject] = useState<Project | null>(null);
+  const [draggedProject, setDraggedProject] = useState<string | null>(null);
+  const [dragOverProject, setDragOverProject] = useState<string | null>(null);
 
   useEffect(() => {
     fetchProjects();
@@ -30,14 +33,79 @@ export const ProjectManagement: React.FC = () => {
       const { data, error } = await supabase
         .from('projects')
         .select('*')
+        .order('display_order', { ascending: true, nullsFirst: false })
         .order('created_at', { ascending: false });
 
       if (error) throw error;
       setProjects(data || []);
-    } catch (error) {
-      console.error('Error fetching projects:', error);
+    } catch (err: any) {
+      logError(err, 'fetchProjects');
+      error(getErrorMessage(err, t('admin.errorFetchingProjects') || 'Failed to fetch projects'));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDragStart = (projectId: string) => {
+    setDraggedProject(projectId);
+  };
+
+  const handleDragOver = (e: React.DragEvent, projectId: string) => {
+    e.preventDefault();
+    if (draggedProject && draggedProject !== projectId) {
+      setDragOverProject(projectId);
+    }
+  };
+
+  const handleDragLeave = () => {
+    setDragOverProject(null);
+  };
+
+  const handleDrop = async (e: React.DragEvent, targetProjectId: string) => {
+    e.preventDefault();
+    setDragOverProject(null);
+
+    if (!draggedProject || draggedProject === targetProjectId) {
+      setDraggedProject(null);
+      return;
+    }
+
+    const draggedIndex = projects.findIndex(p => p.id === draggedProject);
+    const targetIndex = projects.findIndex(p => p.id === targetProjectId);
+
+    if (draggedIndex === -1 || targetIndex === -1) {
+      setDraggedProject(null);
+      return;
+    }
+
+    // Reorder projects array
+    const newProjects = [...projects];
+    const [draggedItem] = newProjects.splice(draggedIndex, 1);
+    newProjects.splice(targetIndex, 0, draggedItem);
+
+    // Update display_order for all affected projects
+    const updates = newProjects.map((project, index) => ({
+      id: project.id,
+      display_order: index,
+    }));
+
+    try {
+      // Update all projects in batch
+      for (const update of updates) {
+        await supabase
+          .from('projects')
+          .update({ display_order: update.display_order })
+          .eq('id', update.id);
+      }
+
+      setProjects(newProjects);
+      success(t('admin.projectsReordered') || 'Projects reordered successfully');
+    } catch (err: any) {
+      console.error('Error reordering projects:', err);
+      error(err.message || 'Failed to reorder projects');
+      fetchProjects(); // Revert on error
+    } finally {
+      setDraggedProject(null);
     }
   };
 
@@ -55,8 +123,8 @@ export const ProjectManagement: React.FC = () => {
       fetchProjects();
       setSelectedProjects(new Set());
     } catch (err: any) {
-      console.error('Error deleting project:', err);
-      error(err.message || 'Failed to delete project');
+      logError(err, 'handleDelete');
+      error(getErrorMessage(err, t('admin.errorDeletingProject') || 'Failed to delete project'));
     }
   };
 
@@ -188,12 +256,25 @@ export const ProjectManagement: React.FC = () => {
               key={project.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border-2 transition-all ${
+              draggable
+              onDragStart={() => handleDragStart(project.id)}
+              onDragOver={(e) => handleDragOver(e, project.id)}
+              onDragLeave={handleDragLeave}
+              onDrop={(e) => handleDrop(e, project.id)}
+              className={`bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border-2 transition-all cursor-move ${
                 selectedProjects.has(project.id) 
                   ? 'border-orange-600 ring-2 ring-orange-600' 
+                  : dragOverProject === project.id
+                  ? 'border-orange-500 ring-2 ring-orange-500'
+                  : draggedProject === project.id
+                  ? 'opacity-50'
                   : 'border-transparent'
               }`}
             >
+              {/* Drag Handle */}
+              <div className="absolute top-2 left-2 p-1 bg-gray-100 dark:bg-gray-700 rounded cursor-grab active:cursor-grabbing z-10">
+                <GripVertical className="w-4 h-4 text-gray-500" />
+              </div>
               {/* Project Image */}
               {project.image_url && (
                 <div className="relative h-40 sm:h-48 overflow-hidden">

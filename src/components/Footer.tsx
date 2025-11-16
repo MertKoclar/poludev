@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Twitter, Code2, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, Code2 } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -91,7 +91,7 @@ export const Footer: React.FC = () => {
           >
             <h4 className="text-lg font-semibold text-white mb-4">{t('footer.contact')}</h4>
             <p className="text-gray-400 mb-2">
-              {t('footer.email')}: contact@poludev.com
+              {t('footer.email')}: poludevs@gmail.com
             </p>
             <p className="text-gray-400">
               {t('footer.buildTogether')}

@@ -92,7 +92,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ testimonials }) => {
                   </h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     {testimonial.role}
-                    {testimonial.company && ` at ${testimonial.company}`}
+                    {testimonial.company && ` ${t('common.at')} ${testimonial.company}`}
                   </p>
                 </div>
               </div>

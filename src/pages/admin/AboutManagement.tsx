@@ -3,10 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../../config/supabaseClient';
 import { USER_IDS, STORAGE_BUCKETS } from '../../config/constants';
-import type { AboutUs, SocialLink, Education, Experience, Certification, Testimonial } from '../../types';
+import type { AboutUs, SocialLink, Education, Experience, Certification, Testimonial, SiteSettings } from '../../types';
 import { ImageUploader } from '../../components/ImageUploader';
 import { Modal } from '../../components/Modal';
 import { useToast } from '../../context/ToastContext';
+import { getErrorMessage, logError } from '../../utils/errorHandler';
+import { RichTextEditor } from '../../components/editor/RichTextEditor';
+import { MarkdownEditor } from '../../components/editor/MarkdownEditor';
 import { 
   Plus, 
   X, 
@@ -26,6 +29,7 @@ import {
   ExternalLink,
   Star,
   Save,
+  Settings,
 } from 'lucide-react';
 
 type TabType = 'general' | 'education' | 'experience' | 'certifications' | 'testimonials';
@@ -34,12 +38,15 @@ export const AboutManagement: React.FC = () => {
   const { t } = useTranslation();
   const [mertData, setMertData] = useState<AboutUs | null>(null);
   const [mustafaData, setMustafaData] = useState<AboutUs | null>(null);
+  const [siteSettings, setSiteSettings] = useState<SiteSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [editingUser, setEditingUser] = useState<'mert' | 'mustafa' | null>(null);
+  const [editingSiteSettings, setEditingSiteSettings] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>('general');
 
   useEffect(() => {
     fetchAboutData();
+    fetchSiteSettings();
   }, []);
 
   const fetchAboutData = async () => {
@@ -58,6 +65,21 @@ export const AboutManagement: React.FC = () => {
       console.error('Error fetching about data:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchSiteSettings = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('site_settings')
+        .select('*')
+        .eq('id', '00000000-0000-0000-0000-000000000001')
+        .single();
+
+      if (error) throw error;
+      setSiteSettings(data || null);
+    } catch (error) {
+      console.error('Error fetching site settings:', error);
     }
   };
 
@@ -214,6 +236,53 @@ export const AboutManagement: React.FC = () => {
         </motion.div>
       </div>
 
+      {/* Site Settings Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700"
+      >
+        <div className="flex items-start gap-4 mb-4">
+          <div className="p-3 bg-gradient-to-br from-orange-500 to-amber-600 rounded-lg">
+            <Settings className="w-6 h-6 text-white" />
+          </div>
+          <div className="flex-1">
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+              {t('admin.siteSettings') || 'Site Settings'}
+            </h2>
+            {siteSettings && (
+              <div className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                {siteSettings.email && (
+                  <div className="flex items-center gap-2">
+                    <Mail className="w-4 h-4" />
+                    <span className="truncate">{siteSettings.email}</span>
+                  </div>
+                )}
+                {siteSettings.phone && (
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4" />
+                    <span>{siteSettings.phone}</span>
+                  </div>
+                )}
+                {siteSettings.location && (
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    <span>{siteSettings.location}</span>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+        <button
+          onClick={() => setEditingSiteSettings(true)}
+          className="w-full px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors duration-200 flex items-center justify-center gap-2"
+        >
+          <Edit2 className="w-4 h-4" />
+          {t('common.edit')}
+        </button>
+      </motion.div>
+
       {editingUser && (
         <AboutForm
           user={editingUser}
@@ -226,6 +295,17 @@ export const AboutManagement: React.FC = () => {
           }}
           onSuccess={() => {
             fetchAboutData();
+          }}
+        />
+      )}
+
+      {editingSiteSettings && (
+        <SiteSettingsForm
+          data={siteSettings}
+          onClose={() => setEditingSiteSettings(false)}
+          onSuccess={() => {
+            fetchSiteSettings();
+            setEditingSiteSettings(false);
           }}
         />
       )}
@@ -266,6 +346,7 @@ const AboutForm: React.FC<AboutFormProps> = ({ user, data, activeTab, onTabChang
     type: 'education' | 'experience' | 'certification' | 'testimonial';
     index: number;
   } | null>(null);
+  const [bioEditorMode, setBioEditorMode] = useState<'rich' | 'markdown' | 'plain'>('plain');
 
   const handleAddSkill = () => {
     if (newSkill.trim() && !formData.skills.includes(newSkill.trim())) {
@@ -338,8 +419,8 @@ const AboutForm: React.FC<AboutFormProps> = ({ user, data, activeTab, onTabChang
       showSuccess(t('admin.changesSaved') || 'Changes saved successfully');
       onSuccess();
     } catch (err: any) {
-      console.error('Error saving about data:', err);
-      showError(err.message || 'Failed to save changes');
+      logError(err, 'handleSubmit');
+      showError(getErrorMessage(err, t('admin.errorSavingChanges') || 'Failed to save changes'));
     } finally {
       setLoading(false);
     }
@@ -425,6 +506,8 @@ const AboutForm: React.FC<AboutFormProps> = ({ user, data, activeTab, onTabChang
                   handleAddSocialLink={handleAddSocialLink}
                   handleRemoveSocialLink={handleRemoveSocialLink}
                   socialPlatforms={socialPlatforms}
+                  bioEditorMode={bioEditorMode}
+                  setBioEditorMode={setBioEditorMode}
                   t={t}
                 />
               )}
@@ -513,6 +596,8 @@ interface GeneralTabProps {
   handleAddSocialLink: () => void;
   handleRemoveSocialLink: (index: number) => void;
   socialPlatforms: string[];
+  bioEditorMode: 'rich' | 'markdown' | 'plain';
+  setBioEditorMode: (mode: 'rich' | 'markdown' | 'plain') => void;
   t: (key: string) => string;
 }
 
@@ -528,6 +613,8 @@ const GeneralTab: React.FC<GeneralTabProps> = ({
   handleAddSocialLink,
   handleRemoveSocialLink,
   socialPlatforms,
+  bioEditorMode,
+  setBioEditorMode,
   t,
 }) => {
   return (
@@ -552,32 +639,108 @@ const GeneralTab: React.FC<GeneralTabProps> = ({
       </div>
 
       {/* Bio */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            {t('admin.bioTr')}
+      <div className="space-y-4">
+        {/* Editor Mode Selector */}
+        <div className="flex items-center gap-2">
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+            Editor Mode:
           </label>
-          <textarea
-            value={formData.bio_tr}
-            onChange={(e) => setFormData({ ...formData, bio_tr: e.target.value })}
-            required
-            rows={6}
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
-            placeholder={t('admin.bioTr') || 'Turkish biography...'}
-          />
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => setBioEditorMode('plain')}
+              className={`px-3 py-1 rounded text-sm transition-colors ${
+                bioEditorMode === 'plain'
+                  ? 'bg-orange-600 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              }`}
+            >
+              Plain Text
+            </button>
+            <button
+              type="button"
+              onClick={() => setBioEditorMode('rich')}
+              className={`px-3 py-1 rounded text-sm transition-colors ${
+                bioEditorMode === 'rich'
+                  ? 'bg-orange-600 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              }`}
+            >
+              Rich Text
+            </button>
+            <button
+              type="button"
+              onClick={() => setBioEditorMode('markdown')}
+              className={`px-3 py-1 rounded text-sm transition-colors ${
+                bioEditorMode === 'markdown'
+                  ? 'bg-orange-600 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+              }`}
+            >
+              Markdown
+            </button>
+          </div>
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            {t('admin.bioEn')}
-          </label>
-          <textarea
-            value={formData.bio_en}
-            onChange={(e) => setFormData({ ...formData, bio_en: e.target.value })}
-            required
-            rows={6}
-            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
-            placeholder={t('admin.bioEn') || 'English biography...'}
-          />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              {t('admin.bioTr')}
+            </label>
+            {bioEditorMode === 'plain' && (
+              <textarea
+                value={formData.bio_tr}
+                onChange={(e) => setFormData({ ...formData, bio_tr: e.target.value })}
+                required
+                rows={6}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                placeholder={t('admin.bioTr') || 'Turkish biography...'}
+              />
+            )}
+            {bioEditorMode === 'rich' && (
+              <RichTextEditor
+                value={formData.bio_tr}
+                onChange={(value) => setFormData({ ...formData, bio_tr: value })}
+                placeholder={t('admin.bioTr') || 'Turkish biography...'}
+              />
+            )}
+            {bioEditorMode === 'markdown' && (
+              <MarkdownEditor
+                value={formData.bio_tr}
+                onChange={(value) => setFormData({ ...formData, bio_tr: value })}
+                placeholder={t('admin.bioTr') || 'Turkish biography...'}
+              />
+            )}
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              {t('admin.bioEn')}
+            </label>
+            {bioEditorMode === 'plain' && (
+              <textarea
+                value={formData.bio_en}
+                onChange={(e) => setFormData({ ...formData, bio_en: e.target.value })}
+                required
+                rows={6}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                placeholder={t('admin.bioEn') || 'English biography...'}
+              />
+            )}
+            {bioEditorMode === 'rich' && (
+              <RichTextEditor
+                value={formData.bio_en}
+                onChange={(value) => setFormData({ ...formData, bio_en: value })}
+                placeholder={t('admin.bioEn') || 'English biography...'}
+              />
+            )}
+            {bioEditorMode === 'markdown' && (
+              <MarkdownEditor
+                value={formData.bio_en}
+                onChange={(value) => setFormData({ ...formData, bio_en: value })}
+                placeholder={t('admin.bioEn') || 'English biography...'}
+              />
+            )}
+          </div>
         </div>
       </div>
 
@@ -759,6 +922,10 @@ interface EducationTabProps {
 }
 
 const EducationTab: React.FC<EducationTabProps> = ({ education, setEducation, editingItem, setEditingItem, t }) => {
+  const { i18n } = useTranslation();
+  const lang = i18n.language as 'tr' | 'en';
+  const [draggedItem, setDraggedItem] = useState<number | null>(null);
+  const [dragOverItem, setDragOverItem] = useState<number | null>(null);
   const [newEducation, setNewEducation] = useState<Education>({
     institution: '',
     degree: '',
@@ -816,6 +983,37 @@ const EducationTab: React.FC<EducationTabProps> = ({ education, setEducation, ed
       description_en: '',
       location: '',
     });
+  };
+
+  const handleDragStart = (index: number) => {
+    setDraggedItem(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    if (draggedItem !== null && draggedItem !== index) {
+      setDragOverItem(index);
+    }
+  };
+
+  const handleDragLeave = () => {
+    setDragOverItem(null);
+  };
+
+  const handleDrop = (e: React.DragEvent, targetIndex: number) => {
+    e.preventDefault();
+    setDragOverItem(null);
+
+    if (draggedItem === null || draggedItem === targetIndex) {
+      setDraggedItem(null);
+      return;
+    }
+
+    const newEducation = [...education];
+    const [draggedEdu] = newEducation.splice(draggedItem, 1);
+    newEducation.splice(targetIndex, 0, draggedEdu);
+    setEducation(newEducation);
+    setDraggedItem(null);
   };
 
   return (
@@ -951,23 +1149,39 @@ const EducationTab: React.FC<EducationTabProps> = ({ education, setEducation, ed
             key={edu.id || index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+            draggable
+            onDragStart={() => handleDragStart(index)}
+            onDragOver={(e) => handleDragOver(e, index)}
+            onDragLeave={handleDragLeave}
+            onDrop={(e) => handleDrop(e, index)}
+            className={`bg-white dark:bg-gray-800 p-4 rounded-lg border-2 transition-all cursor-move ${
+              dragOverItem === index
+                ? 'border-orange-500 ring-2 ring-orange-500'
+                : draggedItem === index
+                ? 'opacity-50 border-gray-300 dark:border-gray-600'
+                : 'border-gray-200 dark:border-gray-700'
+            }`}
           >
             <div className="flex items-start justify-between mb-2">
-              <div className="flex-1">
-                <h4 className="font-semibold text-gray-900 dark:text-white">{edu.degree}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-400">{edu.field}</p>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">{edu.institution}</p>
-                {edu.location && (
+              <div className="flex items-start gap-2 flex-1">
+                <div className="p-1 bg-gray-100 dark:bg-gray-700 rounded cursor-grab active:cursor-grabbing mt-1">
+                  <GripVertical className="w-4 h-4 text-gray-500" />
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-gray-900 dark:text-white">{edu.degree}</h4>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{edu.field}</p>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mt-1">{edu.institution}</p>
+                  {edu.location && (
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
+                      <MapPin className="w-3 h-3" />
+                      {edu.location}
+                    </p>
+                  )}
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
-                    <MapPin className="w-3 h-3" />
-                    {edu.location}
+                    <Calendar className="w-3 h-3" />
+                    {new Date(edu.start_date).toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-US', { year: 'numeric' })} - {edu.end_date ? new Date(edu.end_date).toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-US', { year: 'numeric' }) : t('admin.current') || 'Current'}
                   </p>
-                )}
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
-                  <Calendar className="w-3 h-3" />
-                  {new Date(edu.start_date).getFullYear()} - {edu.end_date ? new Date(edu.end_date).getFullYear() : t('admin.current') || 'Current'}
-                </p>
+                </div>
               </div>
               <div className="flex gap-2">
                 <button
@@ -1005,6 +1219,10 @@ const EducationTab: React.FC<EducationTabProps> = ({ education, setEducation, ed
 
 // Experience Tab Component (similar structure to Education)
 const ExperienceTab: React.FC<any> = ({ experience, setExperience, editingItem, setEditingItem, t }) => {
+  const { i18n } = useTranslation();
+  const lang = i18n.language as 'tr' | 'en';
+  const [draggedItem, setDraggedItem] = useState<number | null>(null);
+  const [dragOverItem, setDragOverItem] = useState<number | null>(null);
   const [newExperience, setNewExperience] = useState<Experience>({
     company: '',
     position: '',
@@ -1062,6 +1280,37 @@ const ExperienceTab: React.FC<any> = ({ experience, setExperience, editingItem, 
       location: '',
       current: false,
     });
+  };
+
+  const handleDragStart = (index: number) => {
+    setDraggedItem(index);
+  };
+
+  const handleDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    if (draggedItem !== null && draggedItem !== index) {
+      setDragOverItem(index);
+    }
+  };
+
+  const handleDragLeave = () => {
+    setDragOverItem(null);
+  };
+
+  const handleDrop = (e: React.DragEvent, targetIndex: number) => {
+    e.preventDefault();
+    setDragOverItem(null);
+
+    if (draggedItem === null || draggedItem === targetIndex) {
+      setDraggedItem(null);
+      return;
+    }
+
+    const newExperience = [...experience];
+    const [draggedExp] = newExperience.splice(draggedItem, 1);
+    newExperience.splice(targetIndex, 0, draggedExp);
+    setExperience(newExperience);
+    setDraggedItem(null);
   };
 
   return (
@@ -1197,32 +1446,48 @@ const ExperienceTab: React.FC<any> = ({ experience, setExperience, editingItem, 
             key={exp.id || index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700"
+            draggable
+            onDragStart={() => handleDragStart(index)}
+            onDragOver={(e) => handleDragOver(e, index)}
+            onDragLeave={handleDragLeave}
+            onDrop={(e) => handleDrop(e, index)}
+            className={`bg-white dark:bg-gray-800 p-4 rounded-lg border-2 transition-all cursor-move ${
+              dragOverItem === index
+                ? 'border-orange-500 ring-2 ring-orange-500'
+                : draggedItem === index
+                ? 'opacity-50 border-gray-300 dark:border-gray-600'
+                : 'border-gray-200 dark:border-gray-700'
+            }`}
           >
             <div className="flex items-start justify-between mb-2">
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <h4 className="font-semibold text-gray-900 dark:text-white">{exp.position}</h4>
-                  {exp.current && (
-                    <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded text-xs font-medium">
-                      {t('admin.current') || 'Current'}
-                    </span>
-                  )}
+              <div className="flex items-start gap-2 flex-1">
+                <div className="p-1 bg-gray-100 dark:bg-gray-700 rounded cursor-grab active:cursor-grabbing mt-1">
+                  <GripVertical className="w-4 h-4 text-gray-500" />
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1">
-                  <Building className="w-4 h-4" />
-                  {exp.company}
-                </p>
-                {exp.location && (
-                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
-                    <MapPin className="w-3 h-3" />
-                    {exp.location}
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-semibold text-gray-900 dark:text-white">{exp.position}</h4>
+                    {exp.current && (
+                      <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded text-xs font-medium">
+                        {t('admin.current') || 'Current'}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1">
+                    <Building className="w-4 h-4" />
+                    {exp.company}
                   </p>
-                )}
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
-                  <Calendar className="w-3 h-3" />
-                  {new Date(exp.start_date).toLocaleDateString()} - {exp.end_date ? new Date(exp.end_date).toLocaleDateString() : t('admin.current') || 'Current'}
-                </p>
+                  {exp.location && (
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
+                      <MapPin className="w-3 h-3" />
+                      {exp.location}
+                    </p>
+                  )}
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
+                    <Calendar className="w-3 h-3" />
+                    {new Date(exp.start_date).toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-US')} - {exp.end_date ? new Date(exp.end_date).toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-US') : t('admin.current') || 'Current'}
+                  </p>
+                </div>
               </div>
               <div className="flex gap-2">
                 <button
@@ -1260,6 +1525,8 @@ const ExperienceTab: React.FC<any> = ({ experience, setExperience, editingItem, 
 
 // Certifications Tab Component
 const CertificationsTab: React.FC<any> = ({ certifications, setCertifications, editingItem, setEditingItem, t }) => {
+  const { i18n } = useTranslation();
+  const lang = i18n.language as 'tr' | 'en';
   const [newCert, setNewCert] = useState<Certification>({
     name: '',
     issuer: '',
@@ -1431,13 +1698,13 @@ const CertificationsTab: React.FC<any> = ({ certifications, setCertifications, e
                 <p className="text-sm text-gray-600 dark:text-gray-400">{cert.issuer}</p>
                 {cert.credential_id && (
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                    ID: {cert.credential_id}
+                    {t('about.certifications.credentialId')}: {cert.credential_id}
                   </p>
                 )}
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 flex items-center gap-1">
                   <Calendar className="w-3 h-3" />
-                  {new Date(cert.issue_date).toLocaleDateString()}
-                  {cert.expiry_date && ` - ${new Date(cert.expiry_date).toLocaleDateString()}`}
+                  {t('about.certifications.issued')}: {new Date(cert.issue_date).toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-US')}
+                  {cert.expiry_date && ` - ${t('about.certifications.expires')}: ${new Date(cert.expiry_date).toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-US')}`}
                 </p>
                 {cert.credential_url && (
                   <a
@@ -1698,7 +1965,7 @@ const TestimonialsTab: React.FC<any> = ({ testimonials, setTestimonials, editing
                   <h4 className="font-semibold text-gray-900 dark:text-white">{test.name}</h4>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     {test.role}
-                    {test.company && ` at ${test.company}`}
+                    {test.company && ` ${t('common.at')} ${test.company}`}
                   </p>
                   {test.rating && (
                     <div className="flex items-center gap-1 mt-1">
@@ -1745,5 +2012,131 @@ const TestimonialsTab: React.FC<any> = ({ testimonials, setTestimonials, editing
         )}
       </div>
     </motion.div>
+  );
+};
+
+// Site Settings Form Component
+interface SiteSettingsFormProps {
+  data: SiteSettings | null;
+  onClose: () => void;
+  onSuccess: () => void;
+}
+
+const SiteSettingsForm: React.FC<SiteSettingsFormProps> = ({ data, onClose, onSuccess }) => {
+  const { t } = useTranslation();
+  const { success: showSuccess, error: showError } = useToast();
+  const [formData, setFormData] = useState({
+    email: data?.email || '',
+    phone: data?.phone || '',
+    location: data?.location || '',
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    setLoading(true);
+
+    try {
+      const settingsData = {
+        email: formData.email || null,
+        phone: formData.phone || null,
+        location: formData.location || null,
+      };
+
+      if (data) {
+        const { error: updateError } = await supabase
+          .from('site_settings')
+          .update(settingsData)
+          .eq('id', '00000000-0000-0000-0000-000000000001');
+        if (updateError) throw updateError;
+      } else {
+        const { error: insertError } = await supabase
+          .from('site_settings')
+          .insert([{
+            id: '00000000-0000-0000-0000-000000000001',
+            ...settingsData,
+          }]);
+        if (insertError) throw insertError;
+      }
+
+      showSuccess(t('admin.changesSaved') || 'Changes saved successfully');
+      onSuccess();
+    } catch (err: any) {
+      console.error('Error saving site settings:', err);
+      showError(err.message || 'Failed to save changes');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Modal
+      isOpen={true}
+      onClose={onClose}
+      title={t('admin.siteSettings') || 'Site Settings'}
+      size="md"
+    >
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <Mail className="w-4 h-4 inline mr-2" />
+            {t('about.contactEmail') || 'Email'}
+          </label>
+          <input
+            type="email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            placeholder="poludevs@gmail.com"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <Phone className="w-4 h-4 inline mr-2" />
+            {t('about.contactPhone') || 'Phone'}
+          </label>
+          <input
+            type="tel"
+            value={formData.phone}
+            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            placeholder="şimdilik yok"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <MapPin className="w-4 h-4 inline mr-2" />
+            {t('about.location') || 'Location'}
+          </label>
+          <input
+            type="text"
+            value={formData.location}
+            onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+            placeholder="Bursa, Türkiye"
+          />
+        </div>
+
+        <div className="flex gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+          <button
+            type="submit"
+            disabled={loading}
+            className="flex-1 px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors duration-200 disabled:opacity-50 flex items-center justify-center gap-2"
+          >
+            <Save className="w-4 h-4" />
+            {loading ? t('common.loading') : t('admin.saveChanges')}
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200"
+          >
+            {t('common.cancel')}
+          </button>
+        </div>
+      </form>
+    </Modal>
   );
 };

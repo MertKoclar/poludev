@@ -47,6 +47,14 @@ Bu dosya, Poludev projesine eklenebilecek ve geliştirilebilecek özellikleri i�
 - [x] Admin Hakkımızda Yönetimi - Tab yapısı ile organize edilmiş form
 - [x] Admin paneli tasarımı komple yeniden yazıldı (responsive, modern sidebar, tab navigation)
 - [x] ImageUploader component (drag & drop görsel yükleme)
+- [x] Site settings tablosu ve yönetimi (email, telefon, konum bilgileri)
+- [x] About sayfasında site bilgileri gösterimi
+- [x] Admin panelinde site bilgileri düzenleme
+- [x] Çoklu dil problemleri düzeltildi (hardcoded metinler, tarih formatları)
+- [x] Sertifika sayfasında çeviri anahtarları eklendi (Issued, Expires, Credential ID, View Credential)
+- [x] Tarih formatları locale'e göre ayarlandı (tr-TR, en-US)
+- [x] Testimonials ve About Management'te "at" kelimesi çevrildi
+- [x] Site settings çeviri anahtarları eklendi
 
 ## 📋 Yapılacaklar
 
@@ -172,10 +180,10 @@ Bu dosya, Poludev projesine eklenebilecek ve geliştirilebilecek özellikleri i�
 
 #### Site İçeriği Yönetimi
 - [ ] Site content editor
-- [ ] SEO settings
-- [ ] Meta tags management
+- [x] SEO settings (meta tags, Open Graph, Twitter Cards, structured data)
+- [x] Meta tags management
 - [ ] Open Graph images
-- [ ] Site settings (site name, description, vb.)
+- [x] Site settings (email, telefon, konum bilgileri - admin panelinden düzenlenebilir)
 - [ ] Analytics integration
 
 ### 📱 Responsive Design
@@ -196,6 +204,11 @@ Bu dosya, Poludev projesine eklenebilecek ve geliştirilebilecek özellikleri i�
 - [x] Dil dosyalarını düzenleme
 - [x] Çeviri kalitesi iyileştirme
 - [x] Dynamic language switching
+- [x] Hardcoded metinlerin çeviri sistemine entegrasyonu
+- [x] Tarih formatlarının locale'e göre ayarlanması
+- [x] Sertifika sayfası çeviri anahtarları (Issued, Expires, Credential ID, View Credential)
+- [x] Testimonials ve About Management çeviri iyileştirmeleri
+- [x] Site settings çeviri anahtarları
 - [ ] Language-specific content
 
 ### 🎭 Animasyonlar
@@ -432,25 +445,51 @@ Bu dosya, Poludev projesine eklenebilecek ve geliştirilebilecek özellikleri i�
     - ✅ Mobile bottom navigation
     - ✅ Full-screen modal support
     - ✅ Improved card designs
+16. ✅ Site settings sistemi
+    - ✅ Site settings veritabanı tablosu oluşturuldu (singleton pattern)
+    - ✅ Varsayılan site bilgileri eklendi (poludevs@gmail.com, telefon yok, Bursa Türkiye)
+    - ✅ About sayfasında site bilgileri gösterimi
+    - ✅ Admin panelinde site bilgileri düzenleme kartı ve formu
+17. ✅ Çoklu dil problemleri düzeltildi
+    - ✅ About.tsx'te hardcoded metinler düzeltildi (Issued, Expires, Credential ID, View Credential)
+    - ✅ Tarih formatları locale'e göre ayarlandı (tr-TR, en-US)
+    - ✅ Admin panelinde tarih formatları düzeltildi
+    - ✅ Testimonials ve About Management'te "at" kelimesi çevrildi
+    - ✅ Çeviri dosyalarına eksik anahtarlar eklendi (certifications.issued, certifications.expires, vb.)
+    - ✅ Site settings çeviri anahtarları eklendi
 
 ### 🔄 Devam Eden / Sonraki Adımlar
 
-16. [ ] Admin paneli geliştirmeleri
+18. [x] Admin paneli geliştirmeleri
     - [x] Proje ekleme/düzenleme/silme
     - [x] About us yönetimi (tam özellikli - Education, Experience, Certifications, Testimonials dahil)
     - [x] Admin paneli tasarımı komple yeniden yazıldı
-    - [ ] CV yükleme (frontend iyileştirmeleri)
-    - [ ] Proje sıralama (drag & drop)
-    - [ ] Dashboard charts ve grafikler
-    - [ ] System health monitoring
-17. [ ] RLS policies test etme
-18. [ ] Basic CRUD operations test etme
-19. [ ] Error handling iyileştirmeleri
-20. [ ] SEO optimizasyonu
-21. [ ] Performance optimizasyonu
-22. [ ] Test coverage
-23. [ ] About Management ek iyileştirmeleri
-    - [ ] Rich text editor (WYSIWYG)
-    - [ ] Markdown editor
-    - [ ] Image upload for bio sections
-    - [ ] Drag & drop ile sıralama (Education, Experience, vb.)
+    - [x] CV yükleme (frontend iyileştirmeleri - drag & drop desteği eklendi)
+    - [x] Proje sıralama (drag & drop - display_order alanı ve sıralama özelliği eklendi)
+    - [x] Dashboard charts ve grafikler (Projects by Category Bar Chart, Projects by Status Pie Chart)
+    - [ ] System health monitoring (basit health check - opsiyonel)
+19. [ ] RLS policies test etme
+20. [ ] Basic CRUD operations test etme
+21. [x] Error handling iyileştirmeleri
+    - [x] Global error handler utility oluşturuldu (parseSupabaseError, getErrorMessage, logError)
+    - [x] Supabase hatalarını kullanıcı dostu mesajlara çevirme
+    - [x] ProjectManagement ve AboutManagement'te error handler entegrasyonu
+22. [x] SEO optimizasyonu
+    - [x] Breadcrumb component ve structured data (BreadcrumbList schema) eklendi
+    - [x] Open Graph image dimensions ve alt text eklendi
+    - [x] Twitter Card image alt text eklendi
+    - [x] Dynamic sitemap generation utility oluşturuldu (projeler için)
+    - [x] Preload/prefetch optimizasyonları (fonts, critical resources)
+    - [x] Additional SEO meta tags (geo, rating, distribution, coverage)
+    - [x] Breadcrumb'lar tüm sayfalara eklendi (Home, Projects, ProjectDetail, About)
+    - [x] Semantic HTML iyileştirmeleri (breadcrumb navigation)
+23. [x] Performance optimizasyonu
+    - [x] Lazy loading eklendi (tüm sayfalar için React.lazy)
+    - [x] Code splitting ile chunk'lar ayrıldı
+    - [x] Suspense ile loading state'leri eklendi
+24. [ ] Test coverage
+25. [x] About Management ek iyileştirmeleri
+    - [x] Rich text editor (WYSIWYG) - Custom contentEditable editor eklendi
+    - [x] Markdown editor - react-markdown ile split view editor eklendi
+    - [x] Image upload for bio sections - Rich text editor'a image insert özelliği eklendi, bio HTML olarak render ediliyor
+    - [x] Drag & drop ile sıralama (Education, Experience) - GripVertical icon ile drag & drop sıralama eklendi

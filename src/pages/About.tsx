@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { supabase } from '../config/supabaseClient';
 import { USER_IDS, USER_NAMES } from '../config/constants';
-import type { AboutUs, User } from '../types';
+import type { AboutUs, User, SiteSettings } from '../types';
 import { SkillsSection } from '../components/SkillsSection';
 import { ProfileImage } from '../components/ProfileImage';
 import { SocialLinks } from '../components/SocialLinks';
@@ -12,6 +12,7 @@ import { Timeline } from '../components/Timeline';
 import { Testimonials } from '../components/Testimonials';
 import { ContactInfo } from '../components/ContactInfo';
 import { SEO } from '../components/SEO';
+import { Breadcrumb } from '../components/Breadcrumb';
 import { Code, User as UserIcon, Award, Briefcase, GraduationCap, Heart, Briefcase as BriefcaseIcon, FileText, ExternalLink } from 'lucide-react';
 
 export const About: React.FC = () => {
@@ -21,11 +22,13 @@ export const About: React.FC = () => {
   const [mustafaData, setMustafaData] = useState<AboutUs | null>(null);
   const [mertUser, setMertUser] = useState<User | null>(null);
   const [mustafaUser, setMustafaUser] = useState<User | null>(null);
+  const [siteSettings, setSiteSettings] = useState<SiteSettings | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchAboutData();
     fetchUsers();
+    fetchSiteSettings();
   }, []);
 
   const fetchAboutData = async () => {
@@ -66,6 +69,21 @@ export const About: React.FC = () => {
       }
     } catch (error) {
       console.error('Error fetching users:', error);
+    }
+  };
+
+  const fetchSiteSettings = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('site_settings')
+        .select('*')
+        .eq('id', '00000000-0000-0000-0000-000000000001')
+        .single();
+
+      if (error) throw error;
+      setSiteSettings(data || null);
+    } catch (error) {
+      console.error('Error fetching site settings:', error);
     }
   };
 
@@ -193,6 +211,13 @@ export const About: React.FC = () => {
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
+          <Breadcrumb
+            items={[
+              { label: t('common.home') || 'Home', path: '/' },
+              { label: t('about.title') || 'About Us', path: '/about' },
+            ]}
+            className="mb-6"
+          />
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -280,13 +305,16 @@ export const About: React.FC = () => {
 
                       {/* Bio */}
                       <div className="mb-6">
-                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg">
-                          {member.data
-                            ? lang === 'tr'
-                              ? member.data.bio_tr
-                              : member.data.bio_en
-                            : member.fallbackBio}
-                        </p>
+                        <div 
+                          className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg prose prose-lg dark:prose-invert max-w-none"
+                          dangerouslySetInnerHTML={{
+                            __html: member.data
+                              ? lang === 'tr'
+                                ? member.data.bio_tr || member.fallbackBio
+                                : member.data.bio_en || member.fallbackBio
+                              : member.fallbackBio
+                          }}
+                        />
                       </div>
 
                       {/* Skills */}
@@ -478,14 +506,14 @@ export const About: React.FC = () => {
                               </p>
                               <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
                                 <span>
-                                  Issued: {new Date(cert.issue_date).toLocaleDateString('en-US', { 
+                                  {t('about.certifications.issued')}: {new Date(cert.issue_date).toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-US', { 
                                     month: 'long', 
                                     year: 'numeric' 
                                   })}
                                 </span>
                                 {cert.expiry_date && (
                                   <span>
-                                    Expires: {new Date(cert.expiry_date).toLocaleDateString('en-US', { 
+                                    {t('about.certifications.expires')}: {new Date(cert.expiry_date).toLocaleDateString(lang === 'tr' ? 'tr-TR' : 'en-US', { 
                                       month: 'long', 
                                       year: 'numeric' 
                                     })}
@@ -494,7 +522,7 @@ export const About: React.FC = () => {
                               </div>
                               {cert.credential_id && (
                                 <p className="text-xs text-gray-500 dark:text-gray-500 mt-2">
-                                  Credential ID: {cert.credential_id}
+                                  {t('about.certifications.credentialId')}: {cert.credential_id}
                                 </p>
                               )}
                               {cert.credential_url && (
@@ -504,7 +532,7 @@ export const About: React.FC = () => {
                                   rel="noopener noreferrer"
                                   className="inline-block mt-3 text-orange-600 dark:text-orange-400 hover:underline text-sm font-medium"
                                 >
-                                  View Credential →
+                                  {t('about.certifications.viewCredential')} →
                                 </a>
                               )}
                             </div>
@@ -597,9 +625,9 @@ export const About: React.FC = () => {
 
       {/* Contact Information */}
       <ContactInfo
-        email={mertData?.contact_email || mustafaData?.contact_email}
-        phone={mertData?.contact_phone || mustafaData?.contact_phone}
-        location={mertData?.location || mustafaData?.location}
+        email={siteSettings?.email || undefined}
+        phone={siteSettings?.phone || undefined}
+        location={siteSettings?.location || undefined}
       />
       </div>
     </>
