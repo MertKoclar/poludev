@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
-import { CodeXml, Menu, X, LogOut } from 'lucide-react';
+import { CodeXml, Menu, X, LogOut, LayoutDashboard } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -75,20 +75,27 @@ export const Header: React.FC = () => {
               </Link>
             ))}
 
-            {isAdmin && (
-              <Link
-                to="/admin"
-                className={`px-3 py-2 font-medium transition-colors ${
-                  isActive('/admin')
-                    ? 'text-orange-600 dark:text-orange-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400'
-                }`}
-              >
-                {t('common.admin')}
-              </Link>
-            )}
-
             <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-300 dark:border-gray-700">
+              {isAdmin && (
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center"
+                >
+                  <Link
+                    to="/admin"
+                    className={`flex items-center justify-center p-2.5 rounded-lg transition-colors duration-200 shadow-sm hover:shadow-md ${
+                      isActive('/admin') || location.pathname.startsWith('/admin')
+                        ? 'bg-orange-500 hover:bg-orange-600 text-white'
+                        : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300'
+                    }`}
+                    aria-label={t('common.admin') || 'Admin'}
+                    title={t('common.admin') || 'Admin'}
+                  >
+                    <LayoutDashboard className="w-5 h-5" />
+                  </Link>
+                </motion.div>
+              )}
               {user && (
                 <motion.button
                   onClick={handleLogout}
@@ -140,35 +147,47 @@ export const Header: React.FC = () => {
                     {link.label}
                   </Link>
                 ))}
-                {isAdmin && (
-                  <Link
-                    to="/admin"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="px-4 py-2 font-medium text-gray-700 dark:text-gray-300"
-                  >
-                    {t('common.admin')}
-                  </Link>
-                )}
                 <div className="flex items-center justify-between px-4 pt-4 border-t border-gray-200 dark:border-gray-800">
                   <div className="flex items-center gap-3">
+                    {isAdmin && (
+                      <motion.div
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex items-center justify-center"
+                      >
+                        <Link
+                          to="/admin"
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`flex items-center justify-center p-2.5 rounded-lg transition-colors duration-200 shadow-sm ${
+                            isActive('/admin') || location.pathname.startsWith('/admin')
+                              ? 'bg-orange-500 hover:bg-orange-600 text-white'
+                              : 'bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300'
+                          }`}
+                          aria-label={t('common.admin') || 'Admin'}
+                          title={t('common.admin') || 'Admin'}
+                        >
+                          <LayoutDashboard className="w-5 h-5" />
+                        </Link>
+                      </motion.div>
+                    )}
+                    {user && (
+                      <motion.button
+                        onClick={() => {
+                          handleLogout();
+                          setMobileMenuOpen(false);
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="p-2.5 rounded-lg bg-red-500 hover:bg-red-600 text-white transition-colors duration-200 shadow-sm"
+                        aria-label={t('common.logout') || 'Logout'}
+                        title={t('common.logout') || 'Logout'}
+                      >
+                        <LogOut className="w-5 h-5" />
+                      </motion.button>
+                    )}
                     <LanguageToggle />
                     <ThemeToggle />
                   </div>
-                  {user && (
-                    <motion.button
-                      onClick={() => {
-                        handleLogout();
-                        setMobileMenuOpen(false);
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="p-2.5 rounded-lg bg-red-500 hover:bg-red-600 text-white transition-colors duration-200 shadow-sm"
-                      aria-label={t('common.logout') || 'Logout'}
-                      title={t('common.logout') || 'Logout'}
-                    >
-                      <LogOut className="w-5 h-5" />
-                    </motion.button>
-                  )}
                 </div>
               </div>
             </motion.div>
