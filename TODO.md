@@ -130,14 +130,14 @@ Bu dosya, Poludev projesine eklenebilecek ve geliştirilebilecek özellikleri i�
 - [x] Statistics cards (proje sayısı, kullanıcı sayısı, vb.)
 - [x] Recent activity feed
 - [x] Quick actions
-- [ ] Charts ve grafikler
+- [x] Charts ve grafikler (Recharts ile Bar Chart ve Pie Chart - Projects by Category, Projects by Status)
 - [ ] System health monitoring
 
 #### Proje Yönetimi
 - [x] Bulk operations (toplu silme, düzenleme)
 - [x] Proje görseli yükleme (drag & drop)
 - [x] Proje önizleme
-- [ ] Proje sıralama (drag & drop)
+- [x] Proje sıralama (drag & drop - display_order ile)
 - [x] Proje kategorileri yönetimi
 - [x] Proje durumu yönetimi
 - [x] Proje görselleri için Supabase Storage entegrasyonu
@@ -154,18 +154,20 @@ Bu dosya, Poludev projesine eklenebilecek ve geliştirilebilecek özellikleri i�
 - [x] Education management (CRUD işlemleri)
   - [x] Kurum, derece, alan, başlangıç/bitiş tarihi, konum, açıklama (TR/EN)
   - [x] Eğitim listesi görüntüleme ve düzenleme
+  - [x] Drag & drop ile sıralama
 - [x] Experience management (CRUD işlemleri)
   - [x] Şirket, pozisyon, başlangıç/bitiş tarihi, konum, "Devam Ediyor" seçeneği, açıklama (TR/EN)
   - [x] Deneyim listesi görüntüleme ve düzenleme
+  - [x] Drag & drop ile sıralama
 - [x] Certifications management (CRUD işlemleri)
   - [x] Sertifika adı, veren kurum, veriliş/son geçerlilik tarihi, credential ID ve URL
   - [x] Sertifika listesi görüntüleme ve düzenleme
 - [x] Testimonials management (CRUD işlemleri)
   - [x] İsim, rol, şirket, avatar URL, rating (1-5 yıldız), içerik (TR/EN)
   - [x] Referans listesi görüntüleme ve düzenleme
-- [ ] Rich text editor (WYSIWYG)
-- [ ] Markdown editor
-- [ ] Image upload for bio sections
+- [x] Rich text editor (WYSIWYG) - Custom contentEditable based editor
+- [x] Markdown editor - react-markdown ile
+- [x] Image upload for bio sections (Rich Text Editor'da URL ile görsel ekleme)
 
 #### CV Yönetimi
 - [x] CV önizleme (PDF iframe ile)
