@@ -14,7 +14,8 @@ import {
   TrendingUp,
   Clock,
   CheckCircle,
-  AlertCircle
+  AlertCircle,
+  Map
 } from 'lucide-react';
 import { BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -60,6 +61,7 @@ export const Dashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [projectsByCategory, setProjectsByCategory] = useState<ProjectByCategory[]>([]);
   const [projectsByStatus, setProjectsByStatus] = useState<ProjectByStatus[]>([]);
+  const [generatingSitemap, setGeneratingSitemap] = useState(false);
 
   useEffect(() => {
     fetchDashboardData();
@@ -258,6 +260,33 @@ export const Dashboard: React.FC = () => {
     return `${diffInDays} ${t('admin.daysAgo') || 'days ago'}`;
   };
 
+  const handleGenerateSitemap = async () => {
+    setGeneratingSitemap(true);
+    try {
+      // generateSitemap fonksiyonunu kullan
+      const { generateSitemap } = await import('../../utils/generateSitemap');
+      const xml = await generateSitemap();
+      
+      // XML'i blob olarak indir
+      const blob = new Blob([xml], { type: 'application/xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'sitemap.xml';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      alert('Sitemap başarıyla oluşturuldu ve indirildi! Dosyayı public/sitemap.xml konumuna kopyalayın.');
+    } catch (error) {
+      console.error('Sitemap oluşturma hatası:', error);
+      alert('Sitemap oluşturulurken bir hata oluştu. Lütfen konsolu kontrol edin.');
+    } finally {
+      setGeneratingSitemap(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -367,6 +396,23 @@ export const Dashboard: React.FC = () => {
                 </Link>
               );
             })}
+            <button
+              onClick={handleGenerateSitemap}
+              disabled={generatingSitemap}
+              className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white px-4 py-3 rounded-lg transition-colors w-full"
+            >
+              {generatingSitemap ? (
+                <>
+                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                  <span>Sitemap Oluşturuluyor...</span>
+                </>
+              ) : (
+                <>
+                  <Map className="w-5 h-5" />
+                  <span>Sitemap Oluştur</span>
+                </>
+              )}
+            </button>
           </div>
         </motion.div>
 

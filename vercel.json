@@ -1,5 +1,9 @@
 {
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
-  ]
+  ],
+  "crons": [{
+    "path": "/api/sitemap",
+    "schedule": "0 0 * * 0"
+  }]
 }
