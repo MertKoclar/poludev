@@ -3,10 +3,10 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   
-  <!-- Homepage -->
+  <!-- Ana Sayfa - Homepage -->
   <url>
     <loc>https://poludev.com/</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/" />
@@ -14,10 +14,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/" />
   </url>
   
-  <!-- About Page -->
+  <!-- Hakkımda Sayfası - About Page -->
   <url>
     <loc>https://poludev.com/about</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/about" />
@@ -25,10 +25,10 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/about" />
   </url>
   
-  <!-- Projects Page -->
+  <!-- Projeler Sayfası - Projects Page -->
   <url>
     <loc>https://poludev.com/projects</loc>
-    <lastmod>2024-01-15</lastmod>
+    <lastmod>2024-12-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/projects" />
@@ -36,8 +36,41 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/projects" />
   </url>
   
-  <!-- Note: Project detail pages and CV pages should be dynamically generated -->
-  <!-- You can add them programmatically from your database -->
+  <!-- Blog Sayfası - Blog Page -->
+  <url>
+    <loc>https://poludev.com/blog</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/tr/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog" />
+  </url>
+  
+  <!-- CV Sayfaları - CV Pages -->
+  <url>
+    <loc>https://poludev.com/cv/mert</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/cv/mert" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/tr/cv/mert" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/cv/mert" />
+  </url>
+  
+  <url>
+    <loc>https://poludev.com/cv/mustafa</loc>
+    <lastmod>2024-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/cv/mustafa" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/tr/cv/mustafa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/cv/mustafa" />
+  </url>
+  
+  <!-- Not: Proje detay sayfaları ve blog yazıları veritabanından dinamik olarak oluşturulmalıdır -->
+  <!-- Not: Project detail pages and blog posts should be dynamically generated from the database -->
+  <!-- generateSitemap.ts dosyasını kullanarak dinamik sitemap oluşturabilirsiniz -->
+  <!-- You can use generateSitemap.ts to create dynamic sitemap -->
   
 </urlset>
-
