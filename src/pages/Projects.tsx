@@ -192,7 +192,7 @@ export const Projects: React.FC = () => {
       />
       <div className="min-h-screen">
         {/* Breadcrumb Section */}
-        <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 pt-20 pb-3">
+        <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 pt-20 pb-2">
           <div className="container mx-auto px-4">
             <Breadcrumb
               items={[
@@ -203,7 +203,7 @@ export const Projects: React.FC = () => {
           </div>
         </div>
         {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-0 right-0 w-96 h-96 bg-amber-300 dark:bg-amber-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
@@ -223,7 +223,7 @@ export const Projects: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto"
+            className="text-center max-w-3xl mx-auto overflow-visible"
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -232,7 +232,7 @@ export const Projects: React.FC = () => {
             >
               <Code2 className="w-16 h-16 mx-auto mb-6 text-orange-600 dark:text-orange-400" />
             </motion.div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 dark:from-orange-400 dark:via-orange-500 dark:to-amber-500">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 dark:from-orange-400 dark:via-orange-500 dark:to-amber-500 py-2">
               {t('projects.title')}
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 leading-relaxed">

@@ -173,7 +173,7 @@ export const ProjectDetail: React.FC = () => {
       />
       <div className="min-h-screen pb-20">
         {/* Breadcrumb Section */}
-        <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 pt-20 pb-3">
+        <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 pt-20 pb-2">
           <div className="container mx-auto px-4">
             <Breadcrumb
               items={[

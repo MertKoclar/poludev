@@ -211,7 +211,7 @@ export const BlogDetail: React.FC = () => {
       />
       <div className="min-h-screen">
         {/* Breadcrumb Section */}
-        <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 pt-20 pb-3">
+        <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 pt-20 pb-2">
           <div className="container mx-auto px-4">
             <Breadcrumb
               items={[
@@ -259,7 +259,8 @@ export const BlogDetail: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="max-w-4xl mx-auto"
             >
-              {/* Back Button */}
+              <div className='flex justify-between items-center'>
+                {/* Back Button */}
               <Link
                 to="/blog"
                 className="inline-flex items-center gap-2 text-orange-600 dark:text-orange-400 hover:text-orange-700 dark:hover:text-orange-300 mb-6 transition-colors group"
@@ -279,6 +280,7 @@ export const BlogDetail: React.FC = () => {
                   {getCategoryLabel(post.category)}
                 </motion.span>
               )}
+              </div>
 
               {/* Title */}
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-orange-500 via-orange-600 to-amber-600 dark:from-orange-400 dark:via-orange-500 dark:to-amber-500">
@@ -342,7 +344,7 @@ export const BlogDetail: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 font-semibold"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 font-semibold"
                 >
                   <Download className="w-5 h-5" />
                   {getDownloadLabel()}
