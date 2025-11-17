@@ -126,7 +126,7 @@ export const Projects: React.FC = () => {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: t('projects.title') || 'Projects',
-    description: t('projects.description') || 'Our portfolio of web development projects',
+    description: t('projects.description') || 'Web geliştirme projelerimizin portföyü. React, TypeScript ve modern teknolojilerle geliştirilmiş projeler.',
     url: `${siteUrl}${location.pathname}`,
     mainEntity: {
       '@type': 'ItemList',
@@ -182,8 +182,8 @@ export const Projects: React.FC = () => {
     <>
       <SEO
         title={t('projects.title') || 'Projects'}
-        description={t('projects.description') || 'Our portfolio of web development projects'}
-        keywords="projects, portfolio, web development, React projects, TypeScript projects, web applications, software projects, Poludev projects"
+        description={t('projects.description') || 'Web geliştirme projelerimizin portföyü. React, TypeScript ve modern teknolojilerle geliştirilmiş projeler.'}
+        keywords="projeler, portföy, web geliştirme, React projeleri, TypeScript projeleri, web uygulamaları, yazılım projeleri, Poludev projeleri"
         url={`${siteUrl}${location.pathname}`}
         type="website"
         locale={currentLocale}
@@ -191,8 +191,19 @@ export const Projects: React.FC = () => {
         structuredData={structuredData}
       />
       <div className="min-h-screen">
+        {/* Breadcrumb Section */}
+        <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 pt-20 pb-3">
+          <div className="container mx-auto px-4">
+            <Breadcrumb
+              items={[
+                { label: t('common.home') || 'Home', path: '/' },
+                { label: t('projects.title') || 'Projects', path: '/projects' },
+              ]}
+            />
+          </div>
+        </div>
         {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-0 right-0 w-96 h-96 bg-amber-300 dark:bg-amber-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
@@ -208,13 +219,6 @@ export const Projects: React.FC = () => {
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <Breadcrumb
-            items={[
-              { label: t('common.home') || 'Home', path: '/' },
-              { label: t('projects.title') || 'Projects', path: '/projects' },
-            ]}
-            className="mb-6"
-          />
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

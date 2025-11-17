@@ -28,10 +28,10 @@ export const SEO: React.FC<SEOProps> = ({
   image,
   url,
   type = 'website',
-  author = 'Poludev',
+  author = 'Poludev - Mert & Mustafa',
   publishedTime,
   modifiedTime,
-  siteName = 'Poludev - Mert & Mustafa',
+  siteName = 'Poludev',
   locale,
   alternateLocales,
   structuredData,
@@ -42,15 +42,18 @@ export const SEO: React.FC<SEOProps> = ({
   const { i18n } = useTranslation();
   const location = useLocation();
 
-  const currentLocale = locale || i18n.language || 'en';
+  const currentLocale = locale || i18n.language || 'tr';
   const siteUrl = typeof window !== 'undefined' ? window.location.origin : '';
   const currentUrl = url || `${siteUrl}${location.pathname}${location.search}`;
   const currentTitle = title 
     ? `${title} | ${siteName}` 
     : siteName;
-  const currentDescription = description || 'Full-stack developers creating modern web solutions. React, TypeScript, Node.js, Supabase.';
+  const currentDescription = description || 'Modern web çözümleri üreten full-stack geliştiriciler. React, TypeScript, Node.js, Supabase. Profesyonel web geliştirme hizmetleri.';
   const currentImage = image || `${siteUrl}/og-image.jpg`;
   const canonicalUrl = canonical || currentUrl;
+  
+  // Default locale mapping for Open Graph
+  const ogLocale = currentLocale === 'tr' ? 'tr_TR' : currentLocale === 'en' ? 'en_US' : 'tr_TR';
 
   // Generate image dimensions for better SEO
   const imageWidth = 1200;
@@ -80,6 +83,24 @@ export const SEO: React.FC<SEOProps> = ({
       updateMetaTag('keywords', keywords);
     }
     updateMetaTag('author', author);
+    updateMetaTag('language', currentLocale === 'tr' ? 'Türkçe, İngilizce' : 'English, Turkish');
+    updateMetaTag('revisit-after', '7 days');
+    updateMetaTag('theme-color', '#f97316');
+    
+    // Search engine bots
+    updateMetaTag('googlebot', 'index, follow');
+    updateMetaTag('bingbot', 'index, follow');
+    
+    // Geo tags
+    updateMetaTag('geo.region', 'TR-16');
+    updateMetaTag('geo.placename', 'Bursa, Türkiye');
+    
+    // Additional SEO tags
+    updateMetaTag('rating', 'general');
+    updateMetaTag('distribution', 'global');
+    updateMetaTag('coverage', 'worldwide');
+    updateMetaTag('target', 'all');
+    updateMetaTag('audience', 'all');
 
     // Open Graph tags
     updateMetaTag('og:title', currentTitle, true);
@@ -91,7 +112,14 @@ export const SEO: React.FC<SEOProps> = ({
     updateMetaTag('og:url', currentUrl, true);
     updateMetaTag('og:type', type, true);
     updateMetaTag('og:site_name', siteName, true);
-    updateMetaTag('og:locale', currentLocale, true);
+    updateMetaTag('og:locale', ogLocale, true);
+    
+    // Add alternate locale for Open Graph
+    if (currentLocale === 'tr') {
+      updateMetaTag('og:locale:alternate', 'en_US', true);
+    } else {
+      updateMetaTag('og:locale:alternate', 'tr_TR', true);
+    }
 
     // Twitter Card tags
     updateMetaTag('twitter:card', 'summary_large_image');
@@ -114,6 +142,12 @@ export const SEO: React.FC<SEOProps> = ({
       nofollow ? 'nofollow' : 'follow',
     ].join(', ');
     updateMetaTag('robots', robotsContent);
+    
+    // Update googlebot and bingbot if robots are set
+    if (noindex || nofollow) {
+      updateMetaTag('googlebot', robotsContent);
+      updateMetaTag('bingbot', robotsContent);
+    }
 
     // Canonical link
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
@@ -178,6 +212,7 @@ export const SEO: React.FC<SEOProps> = ({
     modifiedTime,
     siteName,
     currentLocale,
+    ogLocale,
     alternateLocales,
     structuredData,
     noindex,

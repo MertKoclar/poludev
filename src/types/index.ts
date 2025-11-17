@@ -164,6 +164,57 @@ export interface SiteSettings {
   updated_at: string;
 }
 
+// Blog types
+export type BlogCategory = 'general' | 'tutorial' | 'project' | 'news' | 'tips' | 'other';
+
+export interface BlogPost {
+  id: string;
+  title_tr: string;
+  title_en: string;
+  slug_tr: string;
+  slug_en: string;
+  excerpt_tr?: string | null;
+  excerpt_en?: string | null;
+  content_tr: string;
+  content_en: string;
+  featured_image_url?: string | null;
+  download_url?: string | null;
+  download_label_tr?: string | null;
+  download_label_en?: string | null;
+  category?: BlogCategory;
+  tags: string[];
+  published: boolean;
+  published_at?: string | null;
+  view_count?: number;
+  author_id?: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+// Footer links types
+export interface FooterLink {
+  id: string;
+  label_tr: string;
+  label_en: string;
+  path: string;
+  order_index: number;
+  is_external: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+// Social links types
+export interface SocialLinkItem {
+  id: string;
+  platform: string;
+  url: string;
+  icon_name?: string | null;
+  order_index: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 // Auth context types
 export interface AuthContextType {
   user: User | null;

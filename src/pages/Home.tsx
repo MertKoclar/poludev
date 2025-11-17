@@ -23,18 +23,18 @@ export const Home: React.FC = () => {
     alternateName: 'Poludev - Mert & Mustafa',
     url: `${siteUrl}${location.pathname}`,
     logo: `${siteUrl}/logo.png`,
-    description: t('home.description') || 'Full-stack developers creating modern web solutions',
+    description: t('home.description') || 'Modern web çözümleri üreten full-stack geliştiriciler. React, TypeScript, Node.js, Supabase. Profesyonel web geliştirme hizmetleri.',
     foundingDate: '2024',
     founders: [
       {
         '@type': 'Person',
         name: 'Mert',
-        jobTitle: 'Full-stack Developer',
+        jobTitle: 'Full-Stack Geliştirici',
       },
       {
         '@type': 'Person',
         name: 'Mustafa',
-        jobTitle: 'Full-stack Developer',
+        jobTitle: 'Full-Stack Geliştirici',
       },
     ],
     sameAs: [
@@ -43,7 +43,7 @@ export const Home: React.FC = () => {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      availableLanguage: ['English', 'Turkish'],
+      availableLanguage: ['Türkçe', 'İngilizce'],
     },
   };
 
@@ -56,8 +56,8 @@ export const Home: React.FC = () => {
     <>
       <SEO
         title={t('home.title') || 'Poludev'}
-        description={t('home.description') || 'Full-stack developers creating modern web solutions'}
-        keywords="full-stack developer, web development, React, TypeScript, Node.js, Supabase, software development, web design, Mert, Mustafa, Poludev"
+        description={t('home.description') || 'Modern web çözümleri üreten full-stack geliştiriciler. React, TypeScript, Node.js, Supabase. Profesyonel web geliştirme hizmetleri.'}
+        keywords="full-stack geliştirici, web geliştirme, React, TypeScript, Node.js, Supabase, yazılım geliştirme, web tasarım, Mert, Mustafa, Poludev"
         url={`${siteUrl}${location.pathname}`}
         type="website"
         locale={currentLocale}

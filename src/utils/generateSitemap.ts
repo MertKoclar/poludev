@@ -52,6 +52,17 @@ export const generateSitemap = async (): Promise<string> => {
     ],
   });
 
+  urls.push({
+    loc: `${SITE_URL}/blog`,
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'weekly',
+    priority: 0.9,
+    alternateLocales: [
+      { locale: 'en', url: `${SITE_URL}/blog` },
+      { locale: 'tr', url: `${SITE_URL}/tr/blog` },
+    ],
+  });
+
   // Dynamic project pages
   try {
     const { data: projects, error } = await supabase
@@ -82,6 +93,53 @@ export const generateSitemap = async (): Promise<string> => {
     }
   } catch (error) {
     console.error('Error fetching projects for sitemap:', error);
+  }
+
+  // Dynamic blog post pages
+  try {
+    const { data: blogPosts, error } = await supabase
+      .from('blog_posts')
+      .select('slug_tr, slug_en, updated_at, created_at, published_at')
+      .eq('published', true)
+      .order('published_at', { ascending: false });
+
+    if (!error && blogPosts) {
+      blogPosts.forEach((post: { slug_tr: string; slug_en: string; updated_at?: string; created_at?: string; published_at?: string }) => {
+        const lastmod = post.updated_at
+          ? new Date(post.updated_at).toISOString().split('T')[0]
+          : post.published_at
+          ? new Date(post.published_at).toISOString().split('T')[0]
+          : post.created_at
+          ? new Date(post.created_at).toISOString().split('T')[0]
+          : new Date().toISOString().split('T')[0];
+
+        // Turkish version
+        urls.push({
+          loc: `${SITE_URL}/blog/${post.slug_tr}`,
+          lastmod,
+          changefreq: 'monthly',
+          priority: 0.7,
+          alternateLocales: [
+            { locale: 'tr', url: `${SITE_URL}/blog/${post.slug_tr}` },
+            { locale: 'en', url: `${SITE_URL}/blog/${post.slug_en}` },
+          ],
+        });
+
+        // English version
+        urls.push({
+          loc: `${SITE_URL}/blog/${post.slug_en}`,
+          lastmod,
+          changefreq: 'monthly',
+          priority: 0.7,
+          alternateLocales: [
+            { locale: 'en', url: `${SITE_URL}/blog/${post.slug_en}` },
+            { locale: 'tr', url: `${SITE_URL}/blog/${post.slug_tr}` },
+          ],
+        });
+      });
+    }
+  } catch (error) {
+    console.error('Error fetching blog posts for sitemap:', error);
   }
 
   // Generate XML

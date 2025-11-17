@@ -99,17 +99,17 @@ export const About: React.FC = () => {
       name: 'Poludev',
       alternateName: 'Poludev - Mert & Mustafa',
       url: `${siteUrl}${location.pathname}`,
-      description: t('about.heroDescription') || 'Passionate developers creating innovative solutions',
+      description: t('about.heroDescription') || 'Yenilikçi çözümler üreten tutkulu geliştiriciler. Mert ve Mustafa ile tanışın.',
       founders: [
         {
           '@type': 'Person',
           name: mertUser?.name || 'Mert',
-          jobTitle: 'Full-stack Developer',
+          jobTitle: 'Full-Stack Geliştirici',
         },
         {
           '@type': 'Person',
           name: mustafaUser?.name || 'Mustafa',
-          jobTitle: 'Full-stack Developer',
+          jobTitle: 'Full-Stack Geliştirici',
         },
       ],
     },
@@ -184,9 +184,9 @@ export const About: React.FC = () => {
   return (
     <>
       <SEO
-        title={t('about.title') || 'About Us'}
-        description={t('about.heroDescription') || 'Passionate developers creating innovative solutions'}
-        keywords="about us, Mert, Mustafa, full-stack developers, web developers, React developers, TypeScript developers, software developers, Poludev"
+        title={t('about.title') || 'Hakkımızda'}
+        description={t('about.heroDescription') || 'Yenilikçi çözümler üreten tutkulu geliştiriciler. Mert ve Mustafa ile tanışın.'}
+        keywords="hakkımızda, Mert, Mustafa, full-stack geliştirici, web geliştirici, React geliştirici, TypeScript geliştirici, yazılım geliştirici, Poludev, ekip, geliştirici ekibi"
         url={`${siteUrl}${location.pathname}`}
         type="website"
         locale={currentLocale}
@@ -194,8 +194,19 @@ export const About: React.FC = () => {
         structuredData={structuredData}
       />
       <div className="min-h-screen">
+        {/* Breadcrumb Section */}
+        <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 pt-20 pb-3">
+          <div className="container mx-auto px-4">
+            <Breadcrumb
+              items={[
+                { label: t('common.home') || 'Home', path: '/' },
+                { label: t('about.title') || 'About Us', path: '/about' },
+              ]}
+            />
+          </div>
+        </div>
         {/* Hero Section */}
-      <section className="relative py-32 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative py-24 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-0 right-0 w-96 h-96 bg-orange-300 dark:bg-orange-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
@@ -211,13 +222,6 @@ export const About: React.FC = () => {
           />
         </div>
         <div className="container mx-auto px-4 relative z-10">
-          <Breadcrumb
-            items={[
-              { label: t('common.home') || 'Home', path: '/' },
-              { label: t('about.title') || 'About Us', path: '/about' },
-            ]}
-            className="mb-6"
-          />
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

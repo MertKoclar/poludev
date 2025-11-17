@@ -1,26 +1,64 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Twitter, Code2 } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, Instagram, Code2 } from 'lucide-react';
+import { supabase } from '../config/supabaseClient';
+import type { FooterLink, SocialLinkItem } from '../types';
 
 export const Footer: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language as 'tr' | 'en';
+  const [footerLinks, setFooterLinks] = useState<FooterLink[]>([]);
+  const [socialLinks, setSocialLinks] = useState<SocialLinkItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: Mail, href: 'mailto:contact@poludev.com', label: 'Email' },
-  ];
+  // Icon mapping
+  const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+    github: Github,
+    linkedin: Linkedin,
+    twitter: Twitter,
+    instagram: Instagram,
+    mail: Mail,
+  };
 
-  const footerLinks = [
-    { path: '/', label: t('common.home') },
-    { path: '/about', label: t('common.about') },
-    { path: '/projects', label: t('common.projects') },
-  ];
+  useEffect(() => {
+    fetchFooterLinks();
+    fetchSocialLinks();
+  }, []);
+
+  const fetchFooterLinks = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('footer_links')
+        .select('*')
+        .order('order_index', { ascending: true });
+
+      if (error) throw error;
+      setFooterLinks(data || []);
+    } catch (error) {
+      console.error('Error fetching footer links:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchSocialLinks = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('social_links')
+        .select('*')
+        .eq('is_active', true)
+        .order('order_index', { ascending: true });
+
+      if (error) throw error;
+      setSocialLinks(data || []);
+    } catch (error) {
+      console.error('Error fetching social links:', error);
+    }
+  };
 
   return (
     <footer className="bg-gray-900 dark:bg-black text-gray-300 border-t border-gray-800">
@@ -40,23 +78,51 @@ export const Footer: React.FC = () => {
               {t('home.description')}
             </p>
             <div className="flex gap-4">
-              {socialLinks.map((social, index) => {
-                const Icon = social.icon;
-                return (
+              {socialLinks.length > 0 ? (
+                socialLinks.map((social) => {
+                  const Icon = iconMap[social.icon_name || social.platform.toLowerCase()] || Code2;
+                  return (
+                    <motion.a
+                      key={social.id}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.2, y: -3 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="p-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
+                      aria-label={social.platform}
+                    >
+                      <Icon className="w-5 h-5" />
+                    </motion.a>
+                  );
+                })
+              ) : (
+                // Fallback to default icons if no data
+                <>
                   <motion.a
-                    key={index}
-                    href={social.href}
+                    href="https://github.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.2, y: -3 }}
                     whileTap={{ scale: 0.9 }}
                     className="p-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
-                    aria-label={social.label}
+                    aria-label="GitHub"
                   >
-                    <Icon className="w-5 h-5" />
+                    <Github className="w-5 h-5" />
                   </motion.a>
-                );
-              })}
+                  <motion.a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.2, y: -3 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="p-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </motion.a>
+                </>
+              )}
             </div>
           </motion.div>
 
@@ -69,16 +135,39 @@ export const Footer: React.FC = () => {
           >
             <h4 className="text-lg font-semibold text-white mb-4">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2">
-              {footerLinks.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors inline-block"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
+              {loading ? (
+                <li className="text-gray-400">{t('common.loading')}</li>
+              ) : footerLinks.length > 0 ? (
+                footerLinks.map((link) => {
+                  const label = lang === 'tr' ? link.label_tr : link.label_en;
+                  if (link.is_external) {
+                    return (
+                      <li key={link.id}>
+                        <a
+                          href={link.path}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-400 hover:text-white transition-colors inline-block"
+                        >
+                          {label}
+                        </a>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={link.id}>
+                      <Link
+                        to={link.path}
+                        className="text-gray-400 hover:text-white transition-colors inline-block"
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  );
+                })
+              ) : (
+                <li className="text-gray-400">{t('common.home')}</li>
+              )}
             </ul>
           </motion.div>
 

@@ -13,6 +13,8 @@ const Home = lazy(() => import('./pages/Home').then(module => ({ default: module
 const About = lazy(() => import('./pages/About').then(module => ({ default: module.About })));
 const Projects = lazy(() => import('./pages/Projects').then(module => ({ default: module.Projects })));
 const ProjectDetail = lazy(() => import('./pages/ProjectDetail').then(module => ({ default: module.ProjectDetail })));
+const Blog = lazy(() => import('./pages/Blog').then(module => ({ default: module.Blog })));
+const BlogDetail = lazy(() => import('./pages/BlogDetail').then(module => ({ default: module.BlogDetail })));
 const Login = lazy(() => import('./pages/Login').then(module => ({ default: module.Login })));
 const CV = lazy(() => import('./pages/CV').then(module => ({ default: module.CV })));
 const Admin = lazy(() => import('./pages/Admin').then(module => ({ default: module.Admin })));
@@ -46,6 +48,8 @@ function App() {
                           <Route path="/about" element={<About />} />
                           <Route path="/projects" element={<Projects />} />
                           <Route path="/projects/:id" element={<ProjectDetail />} />
+                          <Route path="/blog" element={<Blog />} />
+                          <Route path="/blog/:slug" element={<BlogDetail />} />
                           <Route path="/login" element={<Login />} />
                           <Route path="/cv/:name" element={<CV />} />
                         </Routes>

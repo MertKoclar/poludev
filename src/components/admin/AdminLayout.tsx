@@ -10,6 +10,7 @@ import {
   FolderKanban,
   User,
   FileText,
+  BookOpen,
   Menu,
   X,
   LogOut,
@@ -17,6 +18,8 @@ import {
   Home,
   Bell,
   Search,
+  Link as LinkIcon,
+  Share2,
 } from 'lucide-react';
 
 interface AdminLayoutProps {
@@ -31,6 +34,15 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'instant' as ScrollBehavior,
+    });
+  }, [location.pathname]);
 
   useEffect(() => {
     // Check if mobile on mount and resize
@@ -89,6 +101,21 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       icon: FileText,
       label: t('admin.cvManagement'),
       path: '/admin/cv',
+    },
+    {
+      icon: BookOpen,
+      label: t('admin.blogManagement') || 'Blog Management',
+      path: '/admin/blog',
+    },
+    {
+      icon: LinkIcon,
+      label: t('admin.footerManagement') || 'Footer Management',
+      path: '/admin/footer',
+    },
+    {
+      icon: Share2,
+      label: t('admin.socialLinksManagement') || 'Social Links Management',
+      path: '/admin/social-links',
     },
   ];
 

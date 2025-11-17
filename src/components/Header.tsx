@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { ThemeToggle } from './ThemeToggle';
 import { LanguageToggle } from './LanguageToggle';
-import { CodeXml, Menu, X } from 'lucide-react';
+import { CodeXml, Menu, X, LogOut } from 'lucide-react';
 
 export const Header: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { user, signOut, isAdmin } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,11 +23,13 @@ export const Header: React.FC = () => {
     }
   };
 
-  const navLinks = [
+  // Re-create navLinks when language changes
+  const navLinks = useMemo(() => [
     { path: '/', label: t('common.home') },
     { path: '/about', label: t('common.about') },
     { path: '/projects', label: t('common.projects') },
-  ];
+    { path: '/blog', label: t('common.blog') || 'Blog' },
+  ], [t, i18n.language]);
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -86,14 +88,18 @@ export const Header: React.FC = () => {
               </Link>
             )}
 
-            <div className="flex items-center gap-4 ml-4 pl-4 border-l border-gray-300 dark:border-gray-700">
+            <div className="flex items-center gap-3 ml-4 pl-4 border-l border-gray-300 dark:border-gray-700">
               {user && (
-                <button
+                <motion.button
                   onClick={handleLogout}
-                  className="px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 transition-colors font-medium"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-2.5 rounded-lg bg-red-500 hover:bg-red-600 text-white transition-colors duration-200 shadow-sm hover:shadow-md"
+                  aria-label={t('common.logout') || 'Logout'}
+                  title={t('common.logout') || 'Logout'}
                 >
-                  {t('common.logout')}
-                </button>
+                  <LogOut className="w-5 h-5" />
+                </motion.button>
               )}
               <LanguageToggle />
               <ThemeToggle />
@@ -144,20 +150,24 @@ export const Header: React.FC = () => {
                   </Link>
                 )}
                 <div className="flex items-center justify-between px-4 pt-4 border-t border-gray-200 dark:border-gray-800">
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-3">
                     <LanguageToggle />
                     <ThemeToggle />
                   </div>
                   {user && (
-                    <button
+                    <motion.button
                       onClick={() => {
                         handleLogout();
                         setMobileMenuOpen(false);
                       }}
-                      className="px-4 py-2 text-gray-700 dark:text-gray-300"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="p-2.5 rounded-lg bg-red-500 hover:bg-red-600 text-white transition-colors duration-200 shadow-sm"
+                      aria-label={t('common.logout') || 'Logout'}
+                      title={t('common.logout') || 'Logout'}
                     >
-                      {t('common.logout')}
-                    </button>
+                      <LogOut className="w-5 h-5" />
+                    </motion.button>
                   )}
                 </div>
               </div>

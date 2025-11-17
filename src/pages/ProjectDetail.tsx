@@ -160,7 +160,7 @@ export const ProjectDetail: React.FC = () => {
       <SEO
         title={projectTitle}
         description={projectDescription}
-        keywords={`${projectTitle}, ${project.tags?.join(', ') || ''}, web development, React, TypeScript, ${project.category || ''}, Poludev`}
+        keywords={`${projectTitle}, ${project.tags?.join(', ') || ''}, web geliştirme, React, TypeScript, ${project.category || ''}, Poludev, proje, yazılım geliştirme`}
         image={project.image_url || undefined}
         url={`${siteUrl}${location.pathname}`}
         type="article"
@@ -171,9 +171,21 @@ export const ProjectDetail: React.FC = () => {
         structuredData={structuredData}
         canonical={`${siteUrl}/projects/${project.id}`}
       />
-      <div className="min-h-screen pt-20 pb-20">
+      <div className="min-h-screen pb-20">
+        {/* Breadcrumb Section */}
+        <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 pt-20 pb-3">
+          <div className="container mx-auto px-4">
+            <Breadcrumb
+              items={[
+                { label: t('common.home') || 'Home', path: '/' },
+                { label: t('projects.title') || 'Projects', path: '/projects' },
+                { label: projectTitle, path: `/projects/${project.id}` },
+              ]}
+            />
+          </div>
+        </div>
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      <section className="relative py-16 bg-gradient-to-br from-orange-50 via-white to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-0 right-0 w-96 h-96 bg-amber-300 dark:bg-amber-900 rounded-full mix-blend-multiply dark:mix-blend-soft-light filter blur-3xl opacity-20"
@@ -194,15 +206,6 @@ export const ProjectDetail: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Breadcrumb */}
-            <Breadcrumb
-              items={[
-                { label: t('common.home') || 'Home', path: '/' },
-                { label: t('projects.title') || 'Projects', path: '/projects' },
-                { label: projectTitle, path: `/projects/${project.id}` },
-              ]}
-              className="mb-6"
-            />
             {/* Back Button */}
             <Link
               to="/projects"
