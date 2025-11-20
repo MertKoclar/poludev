@@ -442,5 +442,10 @@
     "emailInvalid": "Please enter a valid email address",
     "passwordRequired": "Password is required",
     "passwordMinLength": "Password must be at least 8 characters"
+  },
+  "notFoundPage": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "button": "Back to Home"
   }
 }

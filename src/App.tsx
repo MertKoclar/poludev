@@ -18,6 +18,7 @@ const BlogDetail = lazy(() => import('./pages/BlogDetail').then(module => ({ def
 const Login = lazy(() => import('./pages/Login').then(module => ({ default: module.Login })));
 const CV = lazy(() => import('./pages/CV').then(module => ({ default: module.CV })));
 const Admin = lazy(() => import('./pages/Admin').then(module => ({ default: module.Admin })));
+const NotFound = lazy(() => import('./pages/NotFound').then(module => ({ default: module.NotFound })));
 
 // Loading component
 const PageLoader = () => (
@@ -52,6 +53,7 @@ function App() {
                           <Route path="/blog/:slug" element={<BlogDetail />} />
                           <Route path="/login" element={<Login />} />
                           <Route path="/cv/:name" element={<CV />} />
+                          <Route path="*" element={<NotFound />} />
                         </Routes>
                       </Suspense>
                     </Layout>
