@@ -60,7 +60,7 @@ async function generateSitemap() {
       priority: 1.0,
       alternateLocales: [
         { locale: 'en', url: `${SITE_URL}/` },
-        { locale: 'tr', url: `${SITE_URL}/tr` },
+        { locale: 'tr', url: `${SITE_URL}/` },
       ],
     },
     {
@@ -70,7 +70,7 @@ async function generateSitemap() {
       priority: 0.8,
       alternateLocales: [
         { locale: 'en', url: `${SITE_URL}/about` },
-        { locale: 'tr', url: `${SITE_URL}/tr/about` },
+        { locale: 'tr', url: `${SITE_URL}//about` },
       ],
     },
     {
@@ -80,7 +80,7 @@ async function generateSitemap() {
       priority: 0.9,
       alternateLocales: [
         { locale: 'en', url: `${SITE_URL}/projects` },
-        { locale: 'tr', url: `${SITE_URL}/tr/projects` },
+        { locale: 'tr', url: `${SITE_URL}//projects` },
       ],
     },
     {
@@ -90,7 +90,7 @@ async function generateSitemap() {
       priority: 0.9,
       alternateLocales: [
         { locale: 'en', url: `${SITE_URL}/blog` },
-        { locale: 'tr', url: `${SITE_URL}/tr/blog` },
+        { locale: 'tr', url: `${SITE_URL}//blog` },
       ],
     },
     {
@@ -100,7 +100,7 @@ async function generateSitemap() {
       priority: 0.7,
       alternateLocales: [
         { locale: 'en', url: `${SITE_URL}/cv/mert` },
-        { locale: 'tr', url: `${SITE_URL}/tr/cv/mert` },
+        { locale: 'tr', url: `${SITE_URL}/cv/mert` },
       ],
     },
     {
@@ -110,7 +110,7 @@ async function generateSitemap() {
       priority: 0.7,
       alternateLocales: [
         { locale: 'en', url: `${SITE_URL}/cv/mustafa` },
-        { locale: 'tr', url: `${SITE_URL}/tr/cv/mustafa` },
+        { locale: 'tr', url: `${SITE_URL}/cv/mustafa` },
       ],
     },
   ];
@@ -138,7 +138,7 @@ async function generateSitemap() {
           priority: 0.7,
           alternateLocales: [
             { locale: 'en', url: `${SITE_URL}/projects/${project.id}` },
-            { locale: 'tr', url: `${SITE_URL}/tr/projects/${project.id}` },
+            { locale: 'tr', url: `${SITE_URL}/projects/${project.id}` },
           ],
         });
       });
