@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { supabase } from '../config/supabaseClient';
 import type { User } from '../types';
 
+import { SEO } from '../components/SEO';
+
 export const CV: React.FC = () => {
   const { name } = useParams<{ name: string }>();
   const { t } = useTranslation();
@@ -46,8 +48,17 @@ export const CV: React.FC = () => {
     );
   }
 
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : '';
+
   return (
     <div className="max-w-4xl mx-auto">
+      <SEO
+        title={`${user.name} - CV`}
+        description={`${user.name} - Full-Stack Geliştirici CV. Poludev kurucu ortağı.`}
+        keywords="Poludev, Mert Koçlar, Ahmet Mert Koçlar, Mustafa Süne, web site, mobil uygulamalar, CV, özgeçmiş, full-stack geliştirici"
+        url={`${siteUrl}/cv/${name}`}
+        type="profile"
+      />
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

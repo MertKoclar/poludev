@@ -186,7 +186,7 @@ export const About: React.FC = () => {
       <SEO
         title={t('about.title') || 'Hakkımızda'}
         description={t('about.heroDescription') || 'Yenilikçi çözümler üreten tutkulu geliştiriciler. Mert ve Mustafa ile tanışın.'}
-        keywords="hakkımızda, Mert, Mustafa, full-stack geliştirici, web geliştirici, React geliştirici, TypeScript geliştirici, yazılım geliştirici, Poludev, ekip, geliştirici ekibi"
+        keywords="Poludev, Mert Koçlar, Ahmet Mert Koçlar, Mustafa Süne, web site, mobil uygulamalar, hakkımızda, ekip, geliştirici ekibi, yazılım ajansı, full-stack geliştirici"
         url={`${siteUrl}${location.pathname}`}
         type="website"
         locale={currentLocale}

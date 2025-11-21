@@ -130,7 +130,7 @@ export const Blog: React.FC = () => {
       <SEO
         title={t('blog.title') || 'Blog'}
         description={t('blog.description') || 'Blog yazıları ve makaleler. Web geliştirme, teknoloji ve yazılım dünyasından güncel içerikler.'}
-        keywords={t('blog.keywords') || 'blog, makaleler, yazılar, web geliştirme, teknoloji, yazılım'}
+        keywords={t('blog.keywords') || 'Poludev, Mert Koçlar, Ahmet Mert Koçlar, Mustafa Süne, web site, mobil uygulamalar, blog, makaleler, yazılar, web geliştirme, teknoloji, yazılım'}
         url={`${window.location.origin}/blog`}
         type="website"
         locale={currentLocale}

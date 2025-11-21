@@ -183,7 +183,7 @@ export const Projects: React.FC = () => {
       <SEO
         title={t('projects.title') || 'Projects'}
         description={t('projects.description') || 'Web geliştirme projelerimizin portföyü. React, TypeScript ve modern teknolojilerle geliştirilmiş projeler.'}
-        keywords="projeler, portföy, web geliştirme, React projeleri, TypeScript projeleri, web uygulamaları, yazılım projeleri, Poludev projeleri"
+        keywords="Poludev, Mert Koçlar, Ahmet Mert Koçlar, Mustafa Süne, web site, mobil uygulamalar, projeler, portföy, referanslar, web uygulamaları, yazılım projeleri"
         url={`${siteUrl}${location.pathname}`}
         type="website"
         locale={currentLocale}

@@ -57,7 +57,7 @@ export const Home: React.FC = () => {
       <SEO
         title={t('home.title') || 'Poludev'}
         description={t('home.description') || 'Modern web çözümleri üreten full-stack geliştiriciler. React, TypeScript, Node.js, Supabase. Profesyonel web geliştirme hizmetleri.'}
-        keywords="full-stack geliştirici, web geliştirme, React, TypeScript, Node.js, Supabase, yazılım geliştirme, web tasarım, Mert, Mustafa, Poludev"
+        keywords="Poludev, Mert Koçlar, Ahmet Mert Koçlar, Mustafa Süne, web site, mobil uygulamalar, full-stack geliştirici, web geliştirme, React, TypeScript, Node.js, Supabase, yazılım geliştirme, web tasarım"
         url={`${siteUrl}${location.pathname}`}
         type="website"
         locale={currentLocale}
