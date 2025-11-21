@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 
@@ -43,11 +44,12 @@ export const SEO: React.FC<SEOProps> = ({
   const location = useLocation();
 
   const currentLocale = locale || i18n.language || 'tr';
-  const siteUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  const siteUrl = typeof window !== 'undefined' ? window.location.origin : 'https://poludev.com';
   const currentUrl = url || `${siteUrl}${location.pathname}${location.search}`;
   const currentTitle = title 
     ? `${title} | ${siteName}` 
-    : siteName;
+    : `${siteName} - Web & Mobil Geliştiriciler | Mert & Mustafa`;
+  
   const currentDescription = description || 'Modern web çözümleri üreten full-stack geliştiriciler. React, TypeScript, Node.js, Supabase. Profesyonel web geliştirme hizmetleri.';
   const currentImage = image || `${siteUrl}/og-image.jpg`;
   const canonicalUrl = canonical || currentUrl;
@@ -59,167 +61,89 @@ export const SEO: React.FC<SEOProps> = ({
   const imageWidth = 1200;
   const imageHeight = 630;
 
-  useEffect(() => {
-    // Update document title
-    document.title = currentTitle;
+  // Robots meta tag
+  const robotsContent = [
+    noindex ? 'noindex' : 'index',
+    nofollow ? 'nofollow' : 'follow',
+  ].join(', ');
 
-    // Meta tags
-    const updateMetaTag = (name: string, content: string, isProperty = false) => {
-      const attribute = isProperty ? 'property' : 'name';
-      let element = document.querySelector(`meta[${attribute}="${name}"]`) as HTMLMetaElement;
+  return (
+    <Helmet>
+      {/* Basic Meta Tags */}
+      <title>{currentTitle}</title>
+      <meta name="title" content={currentTitle} />
+      <meta name="description" content={currentDescription} />
+      {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="author" content={author} />
+      <meta name="robots" content={robotsContent} />
+      <meta name="language" content={currentLocale === 'tr' ? 'Türkçe, İngilizce' : 'English, Turkish'} />
+      <meta name="revisit-after" content="7 days" />
+      <meta name="theme-color" content="#f97316" />
       
-      if (!element) {
-        element = document.createElement('meta');
-        element.setAttribute(attribute, name);
-        document.head.appendChild(element);
-      }
+      {/* Search Engine Bots */}
+      <meta name="googlebot" content={robotsContent} />
+      <meta name="bingbot" content={robotsContent} />
+
+      {/* Geo Tags */}
+      <meta name="geo.region" content="TR-16" />
+      <meta name="geo.placename" content="Bursa, Türkiye" />
+
+      {/* Additional SEO Tags */}
+      <meta name="rating" content="general" />
+      <meta name="distribution" content="global" />
+      <meta name="coverage" content="worldwide" />
+      <meta name="target" content="all" />
+      <meta name="audience" content="all" />
+
+      {/* Open Graph Tags */}
+      <meta property="og:type" content={type} />
+      <meta property="og:url" content={currentUrl} />
+      <meta property="og:title" content={currentTitle} />
+      <meta property="og:description" content={currentDescription} />
+      <meta property="og:image" content={currentImage} />
+      <meta property="og:image:width" content={String(imageWidth)} />
+      <meta property="og:image:height" content={String(imageHeight)} />
+      <meta property="og:image:alt" content={currentTitle} />
+      <meta property="og:site_name" content={siteName} />
+      <meta property="og:locale" content={ogLocale} />
       
-      element.content = content;
-    };
+      {/* Alternate Locales for Open Graph */}
+      {currentLocale === 'tr' ? (
+        <meta property="og:locale:alternate" content="en_US" />
+      ) : (
+        <meta property="og:locale:alternate" content="tr_TR" />
+      )}
 
-    // Basic meta tags
-    updateMetaTag('description', currentDescription);
-    if (keywords) {
-      updateMetaTag('keywords', keywords);
-    }
-    updateMetaTag('author', author);
-    updateMetaTag('language', currentLocale === 'tr' ? 'Türkçe, İngilizce' : 'English, Turkish');
-    updateMetaTag('revisit-after', '7 days');
-    updateMetaTag('theme-color', '#f97316');
-    
-    // Search engine bots
-    updateMetaTag('googlebot', 'index, follow');
-    updateMetaTag('bingbot', 'index, follow');
-    
-    // Geo tags
-    updateMetaTag('geo.region', 'TR-16');
-    updateMetaTag('geo.placename', 'Bursa, Türkiye');
-    
-    // Additional SEO tags
-    updateMetaTag('rating', 'general');
-    updateMetaTag('distribution', 'global');
-    updateMetaTag('coverage', 'worldwide');
-    updateMetaTag('target', 'all');
-    updateMetaTag('audience', 'all');
+      {/* Twitter Card Tags */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:url" content={currentUrl} />
+      <meta name="twitter:title" content={currentTitle} />
+      <meta name="twitter:description" content={currentDescription} />
+      <meta name="twitter:image" content={currentImage} />
+      <meta name="twitter:image:alt" content={currentTitle} />
 
-    // Open Graph tags
-    updateMetaTag('og:title', currentTitle, true);
-    updateMetaTag('og:description', currentDescription, true);
-    updateMetaTag('og:image', currentImage, true);
-    updateMetaTag('og:image:width', String(imageWidth), true);
-    updateMetaTag('og:image:height', String(imageHeight), true);
-    updateMetaTag('og:image:alt', currentTitle, true);
-    updateMetaTag('og:url', currentUrl, true);
-    updateMetaTag('og:type', type, true);
-    updateMetaTag('og:site_name', siteName, true);
-    updateMetaTag('og:locale', ogLocale, true);
-    
-    // Add alternate locale for Open Graph
-    if (currentLocale === 'tr') {
-      updateMetaTag('og:locale:alternate', 'en_US', true);
-    } else {
-      updateMetaTag('og:locale:alternate', 'tr_TR', true);
-    }
+      {/* Article Meta Tags */}
+      {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+      {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 
-    // Twitter Card tags
-    updateMetaTag('twitter:card', 'summary_large_image');
-    updateMetaTag('twitter:title', currentTitle);
-    updateMetaTag('twitter:description', currentDescription);
-    updateMetaTag('twitter:image', currentImage);
-    updateMetaTag('twitter:image:alt', currentTitle);
+      {/* Canonical Link */}
+      <link rel="canonical" href={canonicalUrl} />
 
-    // Article meta tags
-    if (publishedTime) {
-      updateMetaTag('article:published_time', publishedTime, true);
-    }
-    if (modifiedTime) {
-      updateMetaTag('article:modified_time', modifiedTime, true);
-    }
+      {/* Alternate Language Links */}
+      {alternateLocales && alternateLocales.map(({ locale, url }) => (
+        <link key={locale} rel="alternate" hrefLang={locale} href={url} />
+      ))}
+      {alternateLocales && (
+        <link rel="alternate" hrefLang="x-default" href={currentUrl} />
+      )}
 
-    // Robots meta tag
-    const robotsContent = [
-      noindex ? 'noindex' : 'index',
-      nofollow ? 'nofollow' : 'follow',
-    ].join(', ');
-    updateMetaTag('robots', robotsContent);
-    
-    // Update googlebot and bingbot if robots are set
-    if (noindex || nofollow) {
-      updateMetaTag('googlebot', robotsContent);
-      updateMetaTag('bingbot', robotsContent);
-    }
-
-    // Canonical link
-    let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!canonicalLink) {
-      canonicalLink = document.createElement('link');
-      canonicalLink.rel = 'canonical';
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.href = canonicalUrl;
-
-    // Alternate language links
-    if (alternateLocales && alternateLocales.length > 0) {
-      // Remove existing alternate links
-      document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(link => link.remove());
-
-      // Add alternate links
-      alternateLocales.forEach(({ locale, url }) => {
-        const alternateLink = document.createElement('link');
-        alternateLink.rel = 'alternate';
-        alternateLink.hreflang = locale;
-        alternateLink.href = url;
-        document.head.appendChild(alternateLink);
-      });
-
-      // Add x-default
-      const defaultLink = document.createElement('link');
-      defaultLink.rel = 'alternate';
-      defaultLink.hreflang = 'x-default';
-      defaultLink.href = currentUrl;
-      document.head.appendChild(defaultLink);
-    }
-
-    // Structured data (JSON-LD)
-    if (structuredData) {
-      // Remove existing structured data
-      document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
-        try {
-          const data = JSON.parse(script.textContent || '{}');
-          if (data['@context'] === 'https://schema.org') {
-            script.remove();
-          }
-        } catch {
-          script.remove();
-        }
-      });
-
-      // Add new structured data
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(structuredData);
-      document.head.appendChild(script);
-    }
-  }, [
-    currentTitle,
-    currentDescription,
-    keywords,
-    currentImage,
-    currentUrl,
-    type,
-    author,
-    publishedTime,
-    modifiedTime,
-    siteName,
-    currentLocale,
-    ogLocale,
-    alternateLocales,
-    structuredData,
-    noindex,
-    nofollow,
-    canonicalUrl,
-  ]);
-
-  return null;
+      {/* Structured Data (JSON-LD) */}
+      {structuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      )}
+    </Helmet>
+  );
 };
 

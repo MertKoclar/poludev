@@ -6,71 +6,173 @@
   <!-- Ana Sayfa - Homepage -->
   <url>
     <loc>https://poludev.com/</loc>
-    <lastmod>2025-11-17</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <priority>1</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/tr" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/" />
   </url>
-  
-  <!-- Hakkımda Sayfası - About Page -->
   <url>
     <loc>https://poludev.com/about</loc>
-    <lastmod>2025-11-17</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/about" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/tr/about" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com//about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/about" />
   </url>
-  
-  <!-- Projeler Sayfası - Projects Page -->
   <url>
     <loc>https://poludev.com/projects</loc>
-    <lastmod>2025-11-17</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/projects" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/tr/projects" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com//projects" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/projects" />
   </url>
-  
-  <!-- Blog Sayfası - Blog Page -->
   <url>
     <loc>https://poludev.com/blog</loc>
-    <lastmod>2025-11-17</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/tr/blog" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com//blog" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog" />
   </url>
-  
-  <!-- CV Sayfaları - CV Pages -->
   <url>
     <loc>https://poludev.com/cv/mert</loc>
-    <lastmod>2025-11-17</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/cv/mert" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/tr/cv/mert" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/cv/mert" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/cv/mert" />
   </url>
-  
   <url>
     <loc>https://poludev.com/cv/mustafa</loc>
-    <lastmod>2025-11-17</lastmod>
+    <lastmod>2025-11-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/cv/mustafa" />
-    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/tr/cv/mustafa" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/cv/mustafa" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/cv/mustafa" />
   </url>
-  
-  <!-- Not: Proje detay sayfaları ve blog yazıları veritabanından dinamik olarak oluşturulmalıdır -->
-  <!-- Not: Project detail pages and blog posts should be dynamically generated from the database -->
-  <!-- generateSitemap.ts dosyasını kullanarak dinamik sitemap oluşturabilirsiniz -->
-  <!-- You can use generateSitemap.ts to create dynamic sitemap -->
-  
+  <url>
+    <loc>https://poludev.com/projects/b2f3c84f-eabc-4f28-b920-acc4b89b5cf1</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/projects/b2f3c84f-eabc-4f28-b920-acc4b89b5cf1" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/projects/b2f3c84f-eabc-4f28-b920-acc4b89b5cf1" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/projects/b2f3c84f-eabc-4f28-b920-acc4b89b5cf1" />
+  </url>
+  <url>
+    <loc>https://poludev.com/projects/49ccd6bb-aacb-481f-9b79-c1e7aad5038f</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/projects/49ccd6bb-aacb-481f-9b79-c1e7aad5038f" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/projects/49ccd6bb-aacb-481f-9b79-c1e7aad5038f" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/projects/49ccd6bb-aacb-481f-9b79-c1e7aad5038f" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/supabase-full-stack-gelistirme</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/supabase-full-stack-gelistirme" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/supabase-full-stack-development" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/supabase-full-stack-gelistirme" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/supabase-full-stack-development</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/supabase-full-stack-development" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/supabase-full-stack-gelistirme" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/supabase-full-stack-development" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/yeni-proje-e-ticaret-platformu</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/yeni-proje-e-ticaret-platformu" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/new-project-e-commerce-platform" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/yeni-proje-e-ticaret-platformu" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/new-project-e-commerce-platform</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/new-project-e-commerce-platform" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/yeni-proje-e-ticaret-platformu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/new-project-e-commerce-platform" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/typescript-best-practices</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/typescript-best-practices" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/typescript-best-practices" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/typescript-best-practices" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/react-19-yeni-ozellikler</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/react-19-yeni-ozellikler" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/react-19-new-features" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/react-19-yeni-ozellikler" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/react-19-new-features</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/react-19-new-features" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/react-19-yeni-ozellikler" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/react-19-new-features" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/tailwind-css-modern-ui-tasarimi</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/tailwind-css-modern-ui-tasarimi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/tailwind-css-modern-ui-design" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/tailwind-css-modern-ui-tasarimi" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/tailwind-css-modern-ui-design</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/tailwind-css-modern-ui-design" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/tailwind-css-modern-ui-tasarimi" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/tailwind-css-modern-ui-design" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/web-gelistirme-trendleri-2024</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/web-gelistirme-trendleri-2024" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/web-development-trends-2024" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/web-gelistirme-trendleri-2024" />
+  </url>
+  <url>
+    <loc>https://poludev.com/blog/web-development-trends-2024</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://poludev.com/blog/web-development-trends-2024" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://poludev.com/blog/web-gelistirme-trendleri-2024" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://poludev.com/blog/web-development-trends-2024" />
+  </url>
 </urlset>

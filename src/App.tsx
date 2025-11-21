@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
@@ -33,7 +34,8 @@ const PageLoader = () => (
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider>
+      <HelmetProvider>
+        <ThemeProvider>
         <ToastProvider>
           <AuthProvider>
             <Router>
@@ -76,6 +78,7 @@ function App() {
           </AuthProvider>
         </ToastProvider>
       </ThemeProvider>
+      </HelmetProvider>
     </ErrorBoundary>
   );
 }
